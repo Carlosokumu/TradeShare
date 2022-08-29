@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/night"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MainActivity">
+
+
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/blur_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/night"
+        android:gravity="center"
+        app:realtimeBlurRadius="20dp"
+        app:realtimeOverlayColor="@color/night" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/topBar"
+        android:background="@color/night"
+        android:layout_height="60dp">
+
+
+
+        <ImageButton
+            android:id="@+id/mainMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@null"
+            android:src="@drawable/ic_menuwhite" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/iconNotification"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@null"
+            android:src="@drawable/ic_notification" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/padding_4"
+            android:layout_margin="@dimen/padding_4"
+            android:layout_below="@+id/iconNotification"
+            android:background="@color/gray"
+            android:layout_height="1dp"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topBar"
+        android:orientation="vertical"
+        android:background="@color/night"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            app:tabIndicatorColor="@color/gray"
+            android:background="@color/night"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_logina"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+
+    <View
+        android:id="@+id/animbro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/black" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/signUpCardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_1"
+        android:foregroundGravity="center"
+        app:cardBackgroundColor="@color/effect_group_selected_bg"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardUseCompatPadding="true"
+        app:rippleColor="@color/effect_group_selected_bg">
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:id="@+id/blur_view"
+            android:layout_width="match_parent"
+            android:alpha="0.5"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/effect_group_selected_bg"
+            android:gravity="center"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="@color/effect_group_selected_bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:background="@color/effect_group_selected_bg"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnContainer"
+                android:layout_below="@+id/formSection"
+                android:layout_alignParentBottom="false"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <Button
+                        android:id="@+id/btnsignUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/red_style"
+                        android:text="Sign Up"
+                        android:textColor="@color/tabcolo"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/media"
+                        app:cornerRadius="8dp"
+                        app:elevation="0dp"
+                        app:rippleColor="@color/black_effective" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open"
+                    android:text="Getting Started"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_right_16"
+                    android:layout_marginTop="@dimen/margin_right_16"
+                    android:layout_marginEnd="@dimen/margin_right_16"
+                    android:layout_marginBottom="@dimen/margin_right_16"
+                    android:text="Create an account"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/formSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10dp"
+                        android:hint="username"
+                        app:boxCornerRadiusBottomEnd="15dp"
+                        app:boxCornerRadiusBottomStart="15dp"
+                        app:boxCornerRadiusTopEnd="15dp"
+                        app:boxCornerRadiusTopStart="15dp"
+                        app:boxStrokeColor="@color/white"
+                        app:errorTextColor="@color/red"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextColor="@color/light_green">
+
+                        <EditText
+                            android:id="@+id/edusername"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="@dimen/padd_10"
+                            android:background="@drawable/form_bg"
+                            android:inputType="textPersonName"
+                            android:padding="@dimen/padding_12"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textCursorDrawable="@null"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:hintTextColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <!-- First Name Section -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- First name Label -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutfirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="firstname"
+                        app:boxCornerRadiusBottomEnd="15dp"
+                        app:boxCornerRadiusBottomStart="15dp"
+                        app:boxCornerRadiusTopEnd="15dp"
+                        app:boxCornerRadiusTopStart="15dp"
+                        app:boxStrokeColor="@color/transpar"
+                        app:errorTextColor="@color/red"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextColor="@color/light_green">
+
+                        <EditText
+                            android:id="@+id/edfirstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/form_bg"
+                            android:inputType="textEmailAddress"
+                            android:padding="@dimen/padding_12"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textCursorDrawable="@null"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:hintTextColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+                <!-- Last Name Section -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- Last name Label -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutlastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="lastname"
+                        app:boxCornerRadiusBottomEnd="15dp"
+                        app:boxCornerRadiusBottomStart="15dp"
+                        app:boxCornerRadiusTopEnd="15dp"
+                        app:boxCornerRadiusTopStart="15dp"
+                        app:boxStrokeColor="@color/transpar"
+                        app:errorTextColor="@color/red"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextColor="@color/light_green">
+
+                        <EditText
+                            android:id="@+id/edlastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/form_bg"
+                            android:inputType="textEmailAddress"
+                            android:padding="@dimen/padding_12"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textCursorDrawable="@null"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:hintTextColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+                <!-- Email Section -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- Email Label -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="email"
+                        app:boxCornerRadiusBottomEnd="15dp"
+                        app:boxCornerRadiusBottomStart="15dp"
+                        app:boxCornerRadiusTopEnd="15dp"
+                        app:boxCornerRadiusTopStart="15dp"
+                        app:boxStrokeColor="@color/transpar"
+                        app:errorTextColor="@color/red"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextColor="@color/light_green">
+
+                        <EditText
+                            android:id="@+id/edEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/form_bg"
+                            android:inputType="textEmailAddress"
+                            android:padding="@dimen/padding_12"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textCursorDrawable="@null"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:hintTextColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+                <!-- Password Section -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- Password Label -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="password"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="15dp"
+                        app:boxCornerRadiusBottomStart="15dp"
+                        app:boxCornerRadiusTopEnd="15dp"
+                        app:boxCornerRadiusTopStart="15dp"
+                        app:boxStrokeColor="@color/transpar"
+                        app:errorTextColor="@color/red"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextColor="@color/white"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white">
+
+                        <EditText
+                            android:id="@+id/edPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/form_bg"
+                            android:inputType="textPassword"
+                            android:padding="@dimen/padding_12"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textCursorDrawable="@null"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:hintTextColor="@color/light_green" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- Password Label -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/layoutConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="confirm password"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxCornerRadiusBottomEnd="15dp"
+                        app:boxCornerRadiusBottomStart="15dp"
+                        app:boxCornerRadiusTopEnd="15dp"
+                        app:boxCornerRadiusTopStart="15dp"
+                        app:boxStrokeColor="@color/transpar"
+                        app:errorTextColor="@color/red"
+                        app:hintAnimationEnabled="true"
+                        app:hintEnabled="true"
+                        app:hintTextColor="@color/white"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white">
+
+                        <EditText
+                            android:id="@+id/confrimPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/form_bg"
+                            android:inputType="textPassword"
+                            android:padding="@dimen/padding_12"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textCursorDrawable="@null"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:hintTextColor="@color/light_green" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal">
+
+                    <android.widget.ProgressBar
+                        android:id="@+id/progressBarz"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:indeterminate="false"
+                        android:maxHeight="20dip"
+                        android:minHeight="20dip"
+                        android:progress="0"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/password_strength"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:text="Weak"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:visibility="invisible" />
+
+                    <requestFocus />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="@style/progress"
+                android:layout_below="@+id/btnContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/radius_32"
+                android:layout_marginTop="@dimen/padd_10"
+                android:layout_marginEnd="@dimen/radius_32"
+                android:layout_marginBottom="@dimen/radius_32"
+                android:visibility="invisible" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
+
+

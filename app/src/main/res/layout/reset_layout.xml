@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/effect_group_selected_bg"
+    android:gravity="center_horizontal">
+
+
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:id="@+id/blur_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:realtimeBlurRadius="20dp"
+        app:realtimeOverlayColor="@color/effect_group_selected_bg" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:padding="3dp">
+
+
+            <TextView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/open"
+                android:gravity="center_horizontal"
+                android:paddingTop="20dp"
+                android:singleLine="true"
+                android:text="Close"
+                android:textColor="@color/white"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+                <!-- Email Label -->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="10dp"
+                    app:boxCornerRadiusBottomEnd="15dp"
+                    app:boxCornerRadiusBottomStart="15dp"
+                    app:boxCornerRadiusTopEnd="15dp"
+                    android:hint="email"
+                    android:padding="@dimen/padding_12"
+                    app:boxCornerRadiusTopStart="15dp"
+                    app:boxStrokeColor="@color/white"
+                    app:errorTextColor="@color/red"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextColor="@color/light_green">
+
+                    <EditText
+                        android:id="@+id/edEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/form_bg"
+                        android:inputType="textEmailAddress"
+                        android:padding="@dimen/padding_12"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/padd_10"
+                        android:textColor="@color/white"
+                        android:textCursorDrawable="@null"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        app:hintTextColor="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.button.MaterialButton
+
+                    android:id="@+id/btnReset"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+
+                    android:layout_marginLeft="34dp"
+
+                    android:layout_marginRight="34dp"
+                    android:background="@color/yellow"
+
+                    android:elevation="10dp"
+                    android:text="Send password reset link"
+                    android:textColor="@color/tabcolo"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/yellow"
+                    app:elevation="0dp"
+                    app:rippleColor="@color/white" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

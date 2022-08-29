@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/night"
+    android:layout_height="match_parent"
+    tools:context=".activities.MenuActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:elevation="@dimen/text_12"
+        android:id="@+id/topBar"
+        android:layout_height="75dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="@dimen/padding_12"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/logo" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content">
+<!--            <ImageButton-->
+<!--                android:layout_width="40dp"-->
+<!--                android:id="@+id/notification"-->
+<!--                android:background="@color/night"-->
+<!--                android:src="@drawable/ic_notification"-->
+<!--                android:layout_height="40dp"/>-->
+            <ImageButton
+                android:layout_width="40dp"
+                android:background="@null"
+                android:layout_margin="@dimen/padding_12"
+                android:src="@drawable/ic_cancel"
+                android:layout_height="40dp"/>
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/padding_4"
+            android:background="@color/gray"
+            android:layout_height="1dp"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topBar"
+        android:orientation="vertical"
+        android:background="@color/night"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            app:tabIndicatorColor="@color/gray"
+            android:layout_width="match_parent"
+            android:background="@color/night"
+            android:layout_height="wrap_content" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/night"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</RelativeLayout>

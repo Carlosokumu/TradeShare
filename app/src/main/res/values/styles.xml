@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="BodyText" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/body_text_size</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:fontFamily">@font/inter_regular</item>
+    </style>
+
+    <dimen name="body_text_size">16dp</dimen>
+
+
+    <style name="AppTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">4dp</item>
+        <item name="tabPaddingStart">6dp</item>
+        <item name="tabPaddingEnd">6dp</item>
+        <item name="tabIndicator">@color/light_green</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+    </style>
+
+    <style name="Font_family_light">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+    <style name="Font_family_regular">
+        <item name="android:fontFamily">sans-serif-regular</item>
+    </style>
+
+
+    <style name="TextLabel" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <!-- Hint color and label color in FALSE state -->
+
+        <item name="hintTextColor">@color/white</item>
+        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+        <item name="android:textColorHint">@color/white</item>
+        <item name="shapeAppearance">?attr/shapeAppearanceSmallComponent</item>
+        <item name="shapeAppearanceOverlay">@null</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
+
+    <style name="progress" parent="Widget.AppCompat.ProgressBar">
+         <item name="color">@color/media</item>
+        <item name="android:progressTint">@color/media</item>
+        <item name="colorAccent">@color/charcoal</item>
+    </style>
+
+
+
+    <style name="detfragnograd" parent="Theme.MaterialComponents.Dialog">
+
+        <item name="android:windowBackground">@color/effect_group_selected_bg</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:colorAccent">@color/bg_main</item>
+        <item name="android:colorControlHighlight">@color/bg_main</item>
+        <item name="android:colorControlActivated">@color/bg_main</item>
+        <item name="android:colorControlNormal">@color/bg_main</item>
+
+
+        <item name="android:windowIsFloating">false</item>
+
+
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+
+    </style>
+
+</resources>

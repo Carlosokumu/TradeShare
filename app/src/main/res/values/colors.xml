@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="dary">#0008ff</color>
+    <color name="colorPrimary">#0083ff</color>
+    <color name="colorPrimaryDark">#0083ff</color>
+    <color name="colorAccent">#00c8ff</color>
+    <color name="colorAccentLightDark">#0083ff</color>
+    <color name="colorAccentDark">#0083ff</color>
+    <color name="collapsing">#0083ff</color>
+    <color name="mapping_color">#92e8ff</color>
+    <color name="mapping_color_dary">#77e1fd</color>
+    <color name="app_background">#F5F5F5</color>
+    <color name="lightDark">#212121</color>
+    <color name="charcoal">#212121</color>
+    <color name="red">#ff0000</color>
+    <color name="night">#0C090A</color>
+
+    <color name="horsebrown">#80461B</color>
+
+
+    <color name="img_1">#b5bfce</color>
+    <color name="img_2">#ced3da</color>
+    <color name="img_3">#e0e2e4</color>
+
+    <color name="happy_orange">#F49C1E</color>
+    <color name="flower_outer_mapping">#ffe8c7</color>
+
+    <color name="curated_light">#c6c6c6</color>
+    <color name="curated">#777777</color>
+    <color name="bg_color">#f7f7f7</color>
+    <color name="black">#000000</color>
+    <color name="gray">#656565</color>
+    <color name="white">#FFFFFF</color>
+    <color name="indigo_ink">#283655</color>
+    <color name="black_effective">#2a2a2a</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="view_line">#F7F7F9</color>
+    <color name="icon_default">#F0F0E9</color>
+
+
+    <color name="being_dark">#B34C26</color>
+    <color name="happy">#0083ff</color>
+    <color name="forgot">#007AFF</color>
+    <color name="audio_background">#FDEFE9</color>
+    <color name="media">#EA6D78</color>
+    <color name="gratitude_txt">#666666</color>
+    <color name="gratitude_btn">#FCBC54</color>
+    <color name="cal">#ff0801</color>
+    <color name="white_trans">#99FFFFFF</color>
+
+    <color name="red_dark">#F06423</color>
+    <color name="red_dark2">#D85A1B</color>
+    <color name="cyan_light">#c9ebee</color>
+    <color name="cyan">#b5e3e7</color>
+    <color name="cyan_dark">#70BDC6</color>
+    <color name="navy_blue">#214258</color>
+    <color name="navy_blue_dark">#1C3A4E</color>
+    <color name="light_green">#78DC96</color>
+    <color name="light_blue">#55C8F0</color>
+    <color name="blue_black_dark">#13171d</color>
+    <color name="blue_black_light">#516179</color>
+    <color name="blue_grey_light">#A5B4C8</color>
+    <color name="orange">#FFA500</color>
+    <color name="yellow">#fff44f</color>
+    <color name="tabcolo">#000000</color>
+    <color name="bg_main">#287bbc</color>
+    <color name="tabcolotransptranstoo">#9911131c</color>
+    <color name="transpar">#00000000</color>
+
+
+    <color name="circle_deep_translucent_bg">#4dffffff</color>
+    <color name="circle_shallow_translucent_bg">#26ffffff</color>
+    <color name="design_fab_shadow_end_color">@android:color/transparent</color>
+    <color name="design_fab_shadow_mid_color">#14000000</color>
+    <color name="design_fab_shadow_start_color">#44000000</color>
+    <color name="design_fab_stroke_end_inner_color">#0a000000</color>
+    <color name="design_fab_stroke_end_outer_color">#0f000000</color>
+    <color name="design_fab_stroke_top_inner_color">#1affffff</color>
+    <color name="design_fab_stroke_top_outer_color">#2effffff</color>
+    <color name="design_snackbar_background_color">#ff323232</color>
+    <color name="design_textinput_error_color">#ffdd2c00</color>
+    <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
+    <color name="dim_foreground_disabled_material_light">#80323232</color>
+    <color name="dim_foreground_material_dark">#ffbebebe</color>
+    <color name="dim_foreground_material_light">#ff323232</color>
+    <color name="divider_color">#ffe5e5e5</color>
+    <color name="editing_background">#6e000000</color>
+    <color name="effect_delete_color">#ff656565</color>
+    <color name="effect_group_selected_bg">#ff3b3b3b</color>
+    <color name="face_tip_background">#b4000000</color>
+    <color name="female_bg_color">#fffee4e4</color>
+    <color name="filter_text_color">#ff9e9d9d</color>
+
+    <color name="bg_main2">#ff67df91</color>
+    <color name="bg_register">#ff2e3237</color>
+    <color name="black_overlay">#33000000</color>
+    <color name="black_over">#98000000</color>
+    <color name="infowin">#88287bbc</color>
+    <color name="black_overla">#44000000</color>
+    <color name="darkgray">#0a0a0a</color>
+
+</resources>

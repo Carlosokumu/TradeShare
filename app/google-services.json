@@ -1,0 +1,201 @@
+{
+  "project_info": {
+    "project_number": "22936116779",
+    "firebase_url": "https://trader-35082-default-rtdb.firebaseio.com",
+    "project_id": "trader-35082",
+    "storage_bucket": "trader-35082.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22936116779:android:384ac9ed3436c98232546e",
+        "android_client_info": {
+          "package_name": "com.example.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22936116779-ubi8t6ga1keih7lvc69nrei7v4dbglcr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chatapp",
+            "certificate_hash": "ebf71410bd08eb8fe717fc03c3c9f9156778aa17"
+          }
+        },
+        {
+          "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWuEPVKCy6APhrx-cVkEYlzryiX0s9GCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22936116779:android:1ef296daf055e39232546e",
+        "android_client_info": {
+          "package_name": "com.example.farmers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWuEPVKCy6APhrx-cVkEYlzryiX0s9GCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22936116779:android:d7c4ba3510a4ea1132546e",
+        "android_client_info": {
+          "package_name": "com.example.jmholdings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWuEPVKCy6APhrx-cVkEYlzryiX0s9GCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22936116779:android:d8acec2eb27e467632546e",
+        "android_client_info": {
+          "package_name": "com.example.shopapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWuEPVKCy6APhrx-cVkEYlzryiX0s9GCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22936116779:android:b45203925209fe2332546e",
+        "android_client_info": {
+          "package_name": "com.example.smarttrader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22936116779-dagm6fts9b1o9tmr465dd5st5gglde2f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smarttrader",
+            "certificate_hash": "ebf71410bd08eb8fe717fc03c3c9f9156778aa17"
+          }
+        },
+        {
+          "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWuEPVKCy6APhrx-cVkEYlzryiX0s9GCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22936116779:android:2bef3770518d02e332546e",
+        "android_client_info": {
+          "package_name": "com.example.workmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWuEPVKCy6APhrx-cVkEYlzryiX0s9GCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22936116779-56bcqtsdf63p19ngo78sf271t4e8t49g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

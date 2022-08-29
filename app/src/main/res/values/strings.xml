@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">smart trader</string>
+    <string name="jmHoldings">Jm Holdings LLC</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_text">Register</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="account">Let us  create you an account real quick.It wont take long!</string>
+    <string name="datafeed">Data Feed</string>
+    <string name="positions">Positions</string>
+    <string name="forums">Forums</string>
+    <string name="mainmenu">Main Menu</string>
+    <string name="accountdet">Account</string>
+    <string name="us">Trading With You</string>
+    <string name="company_name">Smart trader &#8482;</string>
+    <string name="email_rationale">Verifying your email,Upon verification we will be using your email to send you updates.
+        Please enter the 6 digit code sent to your email </string>
+
+</resources>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_logina"
+    android:background="@color/charcoal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/animbro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/gradientllistview" />
+
+    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/signUpCardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        app:cardBackgroundColor="@color/tabcolotransptranstoo"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="7dp"
+        app:cardUseCompatPadding="true"
+        app:rippleColor="@color/black_effective">
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:id="@+id/blur_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="@color/transpar" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <Button
+                        android:id="@+id/loginphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="Log In"
+                        android:textColor="@color/tabcolo"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/media"
+                        app:cornerRadius="8dp"
+                        app:elevation="0dp"
+                        app:rippleColor="@color/black_effective" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="60dp"
+                android:orientation="vertical"
+                android:padding="3dp">
+
+
+                <!-- First Name Section -->
+
+
+
+
+                <!-- Email Section -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <!-- Email Label -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/register_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:hintEnabled="true"
+                        app:hintTextColor="@color/white"
+                        android:hint="username"
+                        app:hintAnimationEnabled="true"
+                        app:boxStrokeColor="@color/transpar"
+                        app:boxCornerRadiusTopEnd="15dp"
+                        app:boxCornerRadiusBottomStart="15dp"
+                        app:boxCornerRadiusTopStart="15dp"
+                        app:boxCornerRadiusBottomEnd="15dp">
+                        <EditText
+                            android:textCursorDrawable="@null"
+                            android:textStyle="bold"
+                            android:id="@+id/city"
+                            android:background="@color/transpar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="30dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp"
+                            android:text=""
+                            android:textColor="@color/white"
+                            app:hintTextColor="@color/white"
+                            android:textSize="16dp"
+                            android:inputType="textEmailAddress" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+                <!-- Password Section -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <!-- Password Label -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/reg_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:boxBackgroundColor="@color/white"
+                        app:hintEnabled="true"
+                        app:hintTextColor="@color/white"
+                        android:hint="password"
+                        app:hintAnimationEnabled="true"
+                        app:boxStrokeColor="@color/transpar"
+                        app:boxCornerRadiusTopEnd="15dp"
+                        app:boxCornerRadiusBottomStart="15dp"
+                        app:boxCornerRadiusTopStart="15dp"
+                        app:boxCornerRadiusBottomEnd="15dp"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white">
+
+                        <EditText
+                            android:textCursorDrawable="@null"
+                            android:id="@+id/pass"
+                            android:textStyle="bold"
+                            android:background="@color/transpar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/white"
+                            app:hintTextColor="@color/white"
+                            android:textSize="16dp"
+                            android:paddingTop="30dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp"
+                            android:inputType="textPassword" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/prog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal">
+                    <android.widget.ProgressBar
+                        android:id="@+id/progressBarz"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="false"
+                        android:maxHeight="20dip"
+                        android:minHeight="20dip"
+                        android:layout_weight="1"
+                        android:visibility="invisible"
+                        android:progress="0"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Weak"
+                        android:textStyle="bold"
+                        android:padding="5dp"
+                        android:visibility="invisible"
+                        android:textColor="@color/white"
+                        android:id="@+id/password_strength"/>
+                    <requestFocus />
+                </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

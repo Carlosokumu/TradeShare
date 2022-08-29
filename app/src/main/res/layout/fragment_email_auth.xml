@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/radius_16"
+    android:layout_gravity="center_horizontal"
+    android:animateLayoutChanges="true"
+    android:background="@color/night"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:src="@drawable/logo"
+        android:layout_height="50dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:padding="10dp"
+        android:fontFamily="@font/lato"
+        android:text="@string/email_rationale"
+        android:textAlignment="center"
+        android:textColor="@color/white" />
+
+
+
+
+
+
+    <ir.samanjafari.easycountdowntimer.EasyCountDownTextview
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:colonColor="#9c9c9c"
+        app:days="0"
+        app:daysLabel="D"
+        app:digitBackground="@android:color/transparent"
+        app:hours="0"
+        app:minute="0"
+        app:second="15"
+        app:setAnimation="true"
+        app:showDays="false"
+        app:showHours="true"
+        app:showOnlySecond="true"
+        app:start_automatically="false"
+        app:textColor="@color/cal"
+        app:textSize="@dimen/text_20"
+        app:useFarsiNumeral="false" />
+
+
+    <LinearLayout
+        android:id="@+id/ver1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:gravity="center"
+        android:visibility="visible">
+
+
+        <TextView
+            android:id="@+id/txtUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:animateLayoutChanges="true"
+            android:padding="10dp"
+            android:text="Please wait..."
+            android:textAlignment="center"
+            android:textColor="@color/light_green"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:visibility="visible"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/et1"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/background_otp"
+            android:inputType="phone"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp">
+
+        </Space>
+
+
+        <EditText
+            android:id="@+id/et2"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:background="@drawable/background_otp"
+            android:inputType="numberSigned"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp">
+
+        </Space>
+
+        <EditText
+            android:id="@+id/et3"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:background="@drawable/background_otp"
+            android:inputType="numberSigned"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp">
+
+        </Space>
+
+        <EditText
+            android:id="@+id/et4"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:background="@drawable/background_otp"
+            android:inputType="numberSigned"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp">
+
+        </Space>
+
+        <EditText
+            android:id="@+id/et5"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:background="@drawable/background_otp"
+            android:inputType="numberSigned"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="4dp"
+            android:layout_height="0dp">
+
+        </Space>
+
+        <EditText
+            android:id="@+id/et6"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:background="@drawable/background_otp"
+            android:inputType="numberSigned"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Resend Code"
+        android:layout_marginTop="@dimen/margin_big"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:id="@+id/txtResend"
+        android:padding="@dimen/padding_12"
+        android:background="@drawable/background_otp"
+        android:layout_height="wrap_content"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progress_indicator"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
+
+</LinearLayout>
