@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/signUpCardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        app:cardBackgroundColor="@color/black_effective"
+        app:cardCornerRadius="@dimen/padding_12"
+        app:cardElevation="7dp"
+        app:cardUseCompatPadding="true"
+        app:rippleColor="@color/black_effective">
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:id="@+id/blur_view"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:layout_gravity="center"
+            android:background="@color/effect_group_selected_bg"
+            android:gravity="center"
+            app:realtimeBlurRadius="20dp"
+            app:realtimeOverlayColor="@color/effect_group_selected_bg" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:padding="@dimen/margin_left_8"
+            android:background="@color/effect_group_selected_bg"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtEntryTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_left_8"
+                android:layout_marginTop="@dimen/margin_left_16"
+                android:fontFamily="@font/lato"
+                android:text="Entry Time"
+                android:textColor="@color/curated" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/curated"
+                android:id="@+id/txtDuration"
+                android:layout_below="@+id/txtEntryTime"
+                android:layout_marginLeft="@dimen/margin_left_8"
+                android:layout_marginTop="@dimen/margin_left_16"
+                android:fontFamily="@font/lato"
+                android:text="Duration" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtUpside"
+                android:textColor="@color/curated"
+                android:layout_below="@+id/txtDuration"
+                android:layout_marginLeft="@dimen/margin_left_8"
+                android:layout_marginTop="@dimen/margin_left_16"
+                android:fontFamily="@font/lato"
+                android:text="Upside (%)" />
+
+            <TextView
+                android:id="@+id/txtDownside"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtUpside"
+                android:layout_marginLeft="@dimen/margin_left_8"
+                android:layout_marginTop="@dimen/margin_left_16"
+                android:fontFamily="@font/lato"
+                android:text="Downside(%)"
+                android:textColor="@color/curated" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:id="@+id/txtRealEntry"
+                android:layout_alignBaseline="@+id/txtEntryTime"
+                android:layout_marginRight="@dimen/margin_left_8"
+                android:text="10000"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                 android:id="@+id/txtRealDuration"
+                android:layout_below="@+id/txtRealEntry"
+                android:layout_alignBaseline="@+id/txtDuration"
+                android:layout_marginRight="@dimen/margin_left_8"
+                android:text="10000"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtRealDuration"
+                android:layout_alignBaseline="@+id/txtUpside"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_left_8"
+                android:fontFamily="@font/robotolight"
+                android:text="-10%"
+                android:textColor="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:id="@+id/txtRealDownSide"
+                android:layout_alignBaseline="@+id/txtDownside"
+                android:layout_marginRight="@dimen/margin_left_8"
+                android:text="-10%"
+                android:fontFamily="@font/robotolight"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtDownside"
+                android:fontFamily="@font/open"
+                android:layout_marginStart="@dimen/margin_left_8"
+                android:layout_marginTop="@dimen/margin_left_16"
+                android:layout_marginEnd="@dimen/margin_left_16"
+                android:layout_marginBottom="@dimen/margin_left_16"
+                android:background="@drawable/shape_comment"
+                android:padding="@dimen/margin_left_4"
+                android:text="Comment" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
