@@ -9,5 +9,5 @@ and much more.The app automatically updates  each clients account data according
 Before a user can be able to monitor a trader's account or make any contributions,an account needs to be created.Authentication is completely handled by tradex api.
 This is how the splash,sign in and sign up screens are designed respectively:
 
-<img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151801.png" width="280"/>     <img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151810.png" width="280"/>  <img scr="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151825.png" width="280"/ >
+<img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151801.png" width="280"/>     <img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151810.png" width="280"/>  <img scr="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151825.png" width="280"/>
 
