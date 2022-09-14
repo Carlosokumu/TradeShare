@@ -6,3 +6,6 @@ The idea behind Smarttrader is to provide trading services to people interested 
 and much more.The app automatically updates  each clients account data according to contributions made to the main account(trader's account).
 
 ### Account Creation
+Before a user can be able to monitor a traders account or make any contributions,an account needs to be created.Authentication is completely handled by tradex api.
+This is how the splash,sign in and sign up screens are designed respectively:
+
