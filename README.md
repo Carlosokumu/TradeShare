@@ -4,3 +4,5 @@ Mobile Application that fetches data from the metatrader account.It fetches data
 ## Background
 The idea behind Smarttrader is to provide trading services to people interested in forex.People who are willing to take the risk and with adequate knowledge of what risk taking entails.The app monitors the trader's account activities in real time.It provides data on the account risk taken per trade,the currently running positions
 and much more.The app automatically updates  each clients account data according to contributions made to the main account(trader's account).
+
+### Account Creation
