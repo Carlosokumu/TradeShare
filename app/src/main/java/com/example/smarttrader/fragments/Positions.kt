@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.core.network.data.models.MtPosition
 import com.example.core.network.data.models.Position
@@ -61,7 +62,7 @@ class Positions : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         refresher.setProgressBackgroundColorSchemeColor(Color.TRANSPARENT)
         refresher.setColorSchemeColors(Color.RED, Color.RED, Color.RED)
 
-        val dataTable = view.findViewById<DataTable>(R.id.data_table)
+        val recyclerPositions = view.findViewById<RecyclerView>(R.id.recyclerPositions)
 
 
         positionsViewModel.getOpenPositions()
@@ -196,7 +197,7 @@ class Positions : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
 
-    fun setMt4Positions(dataTable: DataTable, context: Context, positions: List<MtPosition>) {
+    private fun setMt4Positions(dataTable: DataTable, context: Context, positions: List<MtPosition>) {
         val header =
             DataTableHeader.Builder().item("Position", 1).item("Entry time", 1).item("Duration", 1)
                 .item("Upside(%)", 1).item("Downside(%)", 1).build()
