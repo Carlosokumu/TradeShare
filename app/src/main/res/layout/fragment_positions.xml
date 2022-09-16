@@ -121,46 +121,50 @@
 
                             <TextView
                                 android:id="@+id/positionNumber"
-                                android:layout_below="@+id/separator"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_below="@+id/separator"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
+                                android:textColor="@color/curated"
                                 android:layout_marginEnd="@dimen/text_size_date_message"
                                 android:layout_marginBottom="@dimen/text_size_date_message"
-                                android:fontFamily="@font/open"
-                                android:text="positions" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_below="@+id/separator"
-                                android:text="10"
-                                android:id="@+id/txtActualPositions"
                                 android:fontFamily="@font/lato"
+                                android:text="positions" />
+
+                            <TextView
+                                android:id="@+id/txtActualPositions"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/separator"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/positionNumber"
-                                android:layout_height="wrap_content"/>
+                                android:fontFamily="@font/open"
+                                android:text="10" />
+
                             <TextView
                                 android:id="@+id/txtTrades"
-                                android:layout_below="@+id/txtActualPositions"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_below="@+id/txtActualPositions"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_marginEnd="@dimen/text_size_date_message"
                                 android:layout_marginBottom="@dimen/text_size_date_message"
-                                android:fontFamily="@font/open"
+                                android:fontFamily="@font/lato"
                                 android:text="trades" />
+
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:text="7"
                                 android:id="@+id/txtTradesActual"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_below="@+id/txtActualPositions"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/txtTrades"
-                                android:fontFamily="@font/lato"
-                                android:layout_height="wrap_content"/>
+                                android:fontFamily="@font/open"
+                                android:text="7" />
 
                             <TextView
                                 android:id="@+id/txtRisk"
@@ -169,18 +173,19 @@
                                 android:layout_below="@+id/txtTradesActual"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
-                                android:fontFamily="@font/open"
+                                android:fontFamily="@font/lato"
                                 android:text="Account Risk(%)" />
+
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:text=" 10 %"
                                 android:id="@+id/txtAcountRisk"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_below="@+id/txtTradesActual"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/txtRisk"
-                                android:fontFamily="@font/lato"
-                                android:layout_height="wrap_content"/>
+                                android:fontFamily="@font/open"
+                                android:text=" 10 %" />
 
                             <TextView
                                 android:id="@+id/txtValue"
@@ -189,18 +194,18 @@
                                 android:layout_below="@+id/txtAcountRisk"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
-                                android:fontFamily="@font/open"
+                                android:fontFamily="@font/lato"
                                 android:text="Account Risk(Ksh)" />
 
                             <TextView
+                                android:id="@+id/txtRiskValue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/txtRiskValue"
                                 android:layout_below="@+id/txtAcountRisk"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/txtValue"
-                                android:fontFamily="@font/lato"
+                                android:fontFamily="@font/open"
                                 android:text="5000" />
 
                             <TextView
@@ -281,15 +286,15 @@
 
 <!--                </androidx.cardview.widget.CardView>-->
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewDailyMedicineStatistics"
+                    android:id="@+id/recyclerPositions"
                     android:layout_width="match_parent"
-                    tools:listitem="@layout/row_positions"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/linearfirst"
                     android:layout_marginTop="4dp"
-                    android:clipToPadding="false" />
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/row_positions" />
 
 
                 <!--                <ir.androidexception.datatable.DataTable-->
