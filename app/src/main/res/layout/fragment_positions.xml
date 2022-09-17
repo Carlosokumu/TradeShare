@@ -25,15 +25,12 @@
         android:layout_height="match_parent"
         android:visibility="visible">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:id="@+id/swipe_to_refresh_layout"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:id="@+id/topSection"
+                android:layout_height="wrap_content">
 
 
                 <LinearLayout
@@ -54,59 +51,75 @@
                         app:cardUseCompatPadding="true"
                         app:rippleColor="@color/black_effective">
 
-                    <com.github.mmin18.widget.RealtimeBlurView
-                        android:id="@+id/blur_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:layout_gravity="center"
-                        android:background="@color/effect_group_selected_bg"
-                        android:gravity="center"
-                        app:realtimeBlurRadius="20dp"
-                        app:realtimeOverlayColor="@color/effect_group_selected_bg" />
+<!--                    <com.github.mmin18.widget.RealtimeBlurView-->
+<!--                        android:id="@+id/blur_view"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="200dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="@color/transparent"-->
+<!--                        android:gravity="center"-->
+<!--                        app:realtimeBlurRadius="20dp"-->
+<!--                        app:realtimeOverlayColor="@color/effect_group_selected_bg" />-->
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
                             <ImageView
-                                android:layout_width="wrap_content"
                                 android:id="@+id/ic_Clock"
+                                android:layout_width="20dp"
+                                android:layout_height="30dp"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_marginEnd="@dimen/text_size_date_message"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_time" />
+                                android:src="@drawable/clock" />
 
                             <TextView
                                 android:id="@+id/txtTime"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/text_size_date_message"
-                                android:layout_marginTop="@dimen/text_size_date_message"
-                                android:layout_marginEnd="@dimen/text_size_date_message"
+                                android:layout_marginStart="@dimen/padding_12"
+                                android:layout_marginTop="@dimen/padding_16"
+                                android:layout_marginEnd="@dimen/padding_12"
+                                android:layout_marginBottom="@dimen/padding_12"
                                 android:layout_toRightOf="@+id/ic_Clock"
                                 android:text="12/08/2022" />
 
-                            <TextView
-                                android:id="@+id/txtBalance"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/open"
-                                android:layout_marginStart="100dp"
-                                android:layout_marginTop="@dimen/margin_left_8"
-                                android:layout_marginEnd="@dimen/margin_left_8"
-                                android:layout_marginBottom="@dimen/margin_left_8"
+
+                            <Space
+                                android:layout_width="50dp"
+                                android:id="@+id/spacer"
                                 android:layout_toRightOf="@+id/txtTime"
-                                android:text="Balance" />
+                                android:layout_height="1dp"/>
+
+<!--                            <TextView-->
+<!--                                android:id="@+id/txtBalance"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="@dimen/margin_left_8"-->
+<!--                                android:layout_marginBottom="@dimen/margin_left_8"-->
+<!--                                android:layout_toRightOf="@+id/spacer"-->
+<!--                                android:fontFamily="@font/open"-->
+<!--                                android:text="Balance" />-->
 
                             <TextView
                                 android:id="@+id/txtActualBalance"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/margin_left_8"
-                                android:layout_toEndOf="@id/txtBalance"
+                                android:layout_marginStart="@dimen/padding_12"
+                                android:layout_marginTop="@dimen/padding_12"
+                                android:layout_marginEnd="@dimen/padding_12"
+                                android:layout_marginBottom="@dimen/padding_12"
+                                android:layout_toLeftOf="@+id/flag"
                                 android:fontFamily="@font/lato"
                                 android:text="10000"
-                                android:textColor="@color/light_green" />
+                                android:textColor="@color/green_connectify" />
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:id="@+id/flag"
+                                android:layout_marginEnd="@dimen/padding_20"
+                                android:layout_alignParentEnd="true"
+                                android:src="@drawable/kenya"
+                                android:layout_height="40dp"/>
 
                             <View
                                 android:id="@+id/separator"
@@ -114,7 +127,7 @@
                                 android:layout_height="1dp"
                                 android:layout_below="@+id/txtTime"
                                 android:layout_marginStart="@dimen/margin_left_8"
-                                android:layout_marginTop="@dimen/margin_left_16"
+                                android:layout_marginTop="@dimen/padd_10"
                                 android:layout_marginEnd="@dimen/margin_left_8"
                                 android:layout_marginBottom="@dimen/margin_left_8"
                                 android:background="@color/gray" />
@@ -209,24 +222,33 @@
                                 android:text="5000" />
 
                             <TextView
+                                android:id="@+id/txtReturn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/txtReturn"
                                 android:layout_below="@+id/txtRiskValue"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
+                                android:layout_marginBottom="@dimen/margin_left_16"
                                 android:fontFamily="@font/open"
                                 android:text="Expected Returns" />
 
                             <TextView
                                 android:layout_width="wrap_content"
+                                android:textColor="@color/green_connectify"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/txtRiskValue"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/txtReturn"
                                 android:fontFamily="@font/lato"
-                                android:text="7000" />
+                                android:text="+ 7000" />
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_below="@+id/txtRiskValue"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginRight="@dimen/padd_10"
+                                android:src="@drawable/moneybag"
+                                android:layout_height="35dp"/>
 
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
@@ -285,16 +307,14 @@
 <!--                        android:textAllCaps="true" />-->
 
 <!--                </androidx.cardview.widget.CardView>-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerPositions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/linearfirst"
-                    android:layout_marginTop="4dp"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/row_positions" />
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/recyclerPositions"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@+id/linearfirst"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:clipToPadding="false"-->
+<!--                    tools:listitem="@layout/row_positions" />-->
 
 
                 <!--                <ir.androidexception.datatable.DataTable-->
@@ -323,10 +343,29 @@
 <!--                    app:row_vertical_padding="16dp"-->
 <!--                    app:shadow="8dp" />-->
             </RelativeLayout>
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Running Trades"
+            android:id="@+id/running"
+            android:layout_centerInParent="true"
+            android:textColor="@color/green_connectify"
+            android:layout_below="@+id/topSection"
+            android:fontFamily="@font/robotothin"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPositions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/running"
+            android:layout_marginTop="4dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/row_positions" />
 
     </RelativeLayout>
+
 
 
 </RelativeLayout>
