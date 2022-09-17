@@ -14,5 +14,6 @@ data class MtPosition(
     val entryPrice: Double,
     val stopLoss: Double?,
     val takeProfit: Double?,
-    val comment: String?
+    val comment: String?,
+    val symbol: String
 )
