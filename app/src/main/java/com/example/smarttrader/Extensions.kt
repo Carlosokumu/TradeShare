@@ -99,3 +99,7 @@ fun Context.calculateDifference(startDate: Date, endDate: Date): String {
     return elapsedDays.toString() + "d" + elapsedHours + "hr" + elapsedMinutes.toString() + "min"
 
 }
+
+fun Context.isNumberNegative(number: Double): Boolean {
+    return number < 0.0
+}

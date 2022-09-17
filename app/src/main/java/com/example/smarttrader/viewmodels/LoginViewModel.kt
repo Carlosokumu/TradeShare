@@ -34,9 +34,7 @@ class LoginViewModel(
                 Log.d("APICALLERR", "Something went wrong")
             }
             is ApiCallResult.ServerError -> {
-
                 _uiState.value = LoginState.ServerCode(result.code)
-               // _onServerResponse.postValue(LoginState.ServerCode(result.code))
             }
             is ApiCallResult.Success -> {
                 _uiState.value = LoginState.Success(user = result.data.toUser())

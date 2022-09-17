@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.example.jmholdings",
+  "applicationId": "com.example.smarttrader",
   "variantName": "processReleaseResources",
   "elements": [
     {

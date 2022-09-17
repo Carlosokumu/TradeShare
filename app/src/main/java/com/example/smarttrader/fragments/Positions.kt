@@ -34,7 +34,9 @@ import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.truncate
 import kotlin.random.Random
+import kotlin.time.TestTimeSource
 
 
 class Positions : Fragment() {
@@ -50,6 +52,8 @@ class Positions : Fragment() {
     private lateinit var refresher: SwipeRefreshLayout
     private lateinit var contentlayout: RelativeLayout
     private lateinit var txtTrades: TextView
+    private lateinit var txtActualBalance: TextView
+    private  lateinit var currentDateTime: TextView
 
 
     private var isLoading = MutableStateFlow(false)
@@ -71,7 +75,12 @@ class Positions : Fragment() {
         shimmerFrame = view.findViewById(R.id.mShimmer)
         contentlayout = view.findViewById(R.id.contentLayout)
         txtPositions = view.findViewById(R.id.txtActualPositions)
-        txtTrades = view.findViewById(R.id.txtTrades)
+        txtTrades = view.findViewById(R.id.txtTradesActual)
+        txtActualBalance = view.findViewById(R.id.txtActualBalance)
+        currentDateTime = view.findViewById(R.id.txtTime)
+
+
+        currentDateTime.text = getCurrentTime()
 
 
         // refresher.setOnRefreshListener(this)
@@ -108,6 +117,11 @@ class Positions : Fragment() {
                         val positions = state.positions
 
                         txtPositions.text = positions.size.toString()
+
+                        userViewModel.user.observe(viewLifecycleOwner) { user ->
+                            txtActualBalance.text = truncate(user.balance).toString()
+                        }
+
                         for (i in state.positions) {
                             stagedTrades.add(i.symbol)
                         }
@@ -138,13 +152,13 @@ class Positions : Fragment() {
                         shimmerFrame.visibility = View.GONE
                         contentlayout.visibility = View.VISIBLE
                         shimmerFrame.stopShimmer()
-                        Toast.makeText(
-                            requireContext(),
-                            "Data fetched successfully",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        // refresher.isRefreshing = false
-                        Log.d("POSITIONS", state.positions.openpositions.size.toString())
+//                        Toast.makeText(
+//                            requireContext(),
+//                            "Data fetched successfully",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                        // refresher.isRefreshing = false
+//                        Log.d("POSITIONS", state.positions.openpositions.size.toString())
                     }
                     is OpenPositionFetchState.Loading -> {
                         // refresher.isRefreshing = false
@@ -372,6 +386,7 @@ class Positions : Fragment() {
 
 
     private fun findTrades(trades: List<String>): Int {
+
         var count = 0
         var stagedList = mutableListOf<String>()
         for (i in trades) {
@@ -381,6 +396,11 @@ class Positions : Fragment() {
             }
         }
         return count
+    }
+
+    private fun getCurrentTime(): String {
+        val sdf = SimpleDateFormat("yyyy-M-dd hh:mm")
+        return sdf.format(Date())
     }
 
 }

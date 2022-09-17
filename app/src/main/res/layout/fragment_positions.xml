@@ -198,7 +198,7 @@
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/txtRisk"
                                 android:fontFamily="@font/open"
-                                android:text=" 10 %" />
+                                android:text=" - %" />
 
                             <TextView
                                 android:id="@+id/txtValue"
@@ -219,7 +219,7 @@
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/txtValue"
                                 android:fontFamily="@font/open"
-                                android:text="5000" />
+                                android:text="-" />
 
                             <TextView
                                 android:id="@+id/txtReturn"

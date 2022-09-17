@@ -2,6 +2,7 @@ package com.example.smarttrader.fragments
 
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,12 +15,14 @@ import com.example.smarttrader.BuildConfig
 import com.example.smarttrader.R
 import com.example.smarttrader.data.local.entity.User
 import com.example.smarttrader.databinding.FragmentMainMenuBinding
+import com.example.smarttrader.isNumberNegative
 import com.example.smarttrader.settings.Settings
 import com.example.smarttrader.viewmodels.UserViewModel
 import com.tombayley.dropdowntipslist.DropDownList
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 import java.util.*
+import kotlin.math.truncate
 
 
 class MainMenu : Fragment() {
@@ -70,9 +73,17 @@ class MainMenu : Fragment() {
                     Log.d("USER", user.username)
                     binding.vManager.visibility = View.VISIBLE
                     binding.txtUserName.text = user.username
-                    binding.txtfProfit.text = user.floatingProfit.toString()
-                    binding.txtEquity.text = user.equity.toString()
-                    binding.txtBalance.text = user.balance.toString()
+                    binding.txtfProfit.apply {
+                        if (requireContext().isNumberNegative(user.balance)){
+                            this.setTextColor(Color.GREEN)
+                        }
+                        else {
+                          this.setTextColor(Color.RED)
+                        }
+                    }
+                    binding.txtfProfit.text = truncate(user.floatingProfit).toString()
+                    binding.txtEquity.text = truncate(user.equity).toString()
+                    binding.txtBalance.text = truncate(user.balance).toString()
                     item = DropDownList.Item(
                         title = "UserName",
                         description = user.username,
