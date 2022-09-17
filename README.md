@@ -12,4 +12,5 @@ This is how the splash,sign in and sign up screens are designed respectively:
 <img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151801.png" width="280"/>     <img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151810.png" width="280"/>  <img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151825.png" width="280"/>
 
 ### Running Positions
+Positions are like sides taken by a trader.A position taken by a trader on a currency can to lead to a profit or a losss.This is how the positions screen looks like after being authetication.
 
