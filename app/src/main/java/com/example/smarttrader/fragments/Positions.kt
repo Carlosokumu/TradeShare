@@ -11,11 +11,15 @@ import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.core.network.data.models.MtPosition
 import com.example.core.network.data.models.Position
+import com.example.core.utils.CirclePagerIndicatorDecoration
 import com.example.smarttrader.R
+import com.example.smarttrader.adapters.PositionsAdapter
 import com.example.smarttrader.models.MtFetchState
 import com.example.smarttrader.models.OpenPositionFetchState
 import com.example.smarttrader.viewmodels.PositionsViewModel
@@ -31,11 +35,12 @@ import java.util.*
 import kotlin.random.Random
 
 
-class Positions : Fragment(), SwipeRefreshLayout.OnRefreshListener {
+class Positions : Fragment(){
 
 
     private val positionsViewModel: PositionsViewModel by viewModel()
     private lateinit var shimmerFrame: ShimmerFrameLayout
+    private lateinit var recyclerPositions: RecyclerView
 
     private lateinit var refresher: SwipeRefreshLayout
     private lateinit var contentlayout: RelativeLayout
@@ -51,18 +56,20 @@ class Positions : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         val view = inflater.inflate(R.layout.fragment_positions, container, false)
 
 
-        refresher = view.findViewById(R.id.swipe_to_refresh_layout)
+        //refresher = view.findViewById(R.id.swipe_to_refresh_layout)
         shimmerFrame = view.findViewById(R.id.mShimmer)
         contentlayout = view.findViewById(R.id.contentLayout)
 
 
 
-        refresher.setOnRefreshListener(this)
+       // refresher.setOnRefreshListener(this)
 
-        refresher.setProgressBackgroundColorSchemeColor(Color.TRANSPARENT)
-        refresher.setColorSchemeColors(Color.RED, Color.RED, Color.RED)
+       // refresher.setProgressBackgroundColorSchemeColor(Color.TRANSPARENT)
+       // refresher.setColorSchemeColors(Color.RED, Color.RED, Color.RED)
 
-        val recyclerPositions = view.findViewById<RecyclerView>(R.id.recyclerPositions)
+        recyclerPositions = view.findViewById(R.id.recyclerPositions)
+
+
 
 
         positionsViewModel.getOpenPositions()
@@ -85,6 +92,7 @@ class Positions : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                         )
                         Toast.makeText(requireContext(), "Success Stage", Toast.LENGTH_SHORT).show()
                         Log.d("MTPOSITIONS", formattedDate.toString())
+                        setDataList(state.positions)
                         for (i in state.positions) {
 
                         }
@@ -118,14 +126,14 @@ class Positions : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                             "Data fetched successfully",
                             Toast.LENGTH_SHORT
                         ).show()
-                        refresher.isRefreshing = false
+                       // refresher.isRefreshing = false
                         Log.d("POSITIONS", state.positions.openpositions.size.toString())
                     }
                     is OpenPositionFetchState.Loading -> {
-                        refresher.isRefreshing = false
+                       // refresher.isRefreshing = false
                     }
                     is OpenPositionFetchState.Error -> {
-                        refresher.isRefreshing = false
+                       // refresher.isRefreshing = false
                         Toast.makeText(requireContext(), "Couldn't fetch data", Toast.LENGTH_SHORT)
                             .show()
 
@@ -143,7 +151,7 @@ class Positions : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 //            setTable(dataTable = dataTable, context = requireContext(), positions = positions)
 //        }
         positionsViewModel.positions.observe(viewLifecycleOwner) { positions ->
-            setMt4Positions(dataTable = dataTable, context = requireContext(), positions = positions)
+            //setMt4Positions(dataTable = dataTable, context = requireContext(), positions = positions)
         }
 
 
@@ -309,10 +317,25 @@ class Positions : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         }
     }
 
-    override fun onRefresh() {
-        refresher.isRefreshing = true
-        positionsViewModel.getOpenPositions()
-    }
+//    override fun onRefresh() {
+//        refresher.isRefreshing = true
+//        positionsViewModel.getOpenPositions()
+//    }
 
+
+    private fun setDataList(positions: List<MtPosition>){
+        val positionsAdapter = PositionsAdapter()
+        positionsAdapter.setData(positions)
+        recyclerPositions.layoutManager = LinearLayoutManager(
+            requireContext(),
+            LinearLayoutManager.HORIZONTAL, false
+        )
+
+        // add pager behavior
+        val snapHelper = PagerSnapHelper()
+        recyclerPositions.addItemDecoration(CirclePagerIndicatorDecoration())
+        snapHelper.attachToRecyclerView(recyclerPositions)
+        recyclerPositions.adapter = positionsAdapter
+    }
 
 }
