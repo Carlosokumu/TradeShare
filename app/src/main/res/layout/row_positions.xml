@@ -14,19 +14,18 @@
         app:cardUseCompatPadding="true"
         app:rippleColor="@color/black_effective">
 
-        <com.github.mmin18.widget.RealtimeBlurView
-            android:id="@+id/blur_view"
-            android:layout_width="match_parent"
-            android:layout_height="175dp"
-            android:layout_gravity="center"
-            android:background="@color/effect_group_selected_bg"
-            android:gravity="center"
-            app:realtimeBlurRadius="20dp"
-            app:realtimeOverlayColor="@color/effect_group_selected_bg" />
+<!--        <com.github.mmin18.widget.RealtimeBlurView-->
+<!--            android:id="@+id/blur_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="175dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:background="@color/effect_group_selected_bg"-->
+<!--            android:gravity="center"-->
+<!--            app:realtimeBlurRadius="20dp"-->
+<!--            app:realtimeOverlayColor="@color/effect_group_selected_bg" />-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:padding="@dimen/margin_left_8"
-            android:background="@color/effect_group_selected_bg"
             android:layout_height="wrap_content">
 
             <TextView
