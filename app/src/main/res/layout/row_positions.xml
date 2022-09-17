@@ -39,25 +39,26 @@
                 android:textColor="@color/curated" />
 
             <TextView
+                android:id="@+id/txtDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/curated"
-                android:id="@+id/txtDuration"
                 android:layout_below="@+id/txtEntryTime"
                 android:layout_marginLeft="@dimen/margin_left_8"
                 android:layout_marginTop="@dimen/margin_left_16"
                 android:fontFamily="@font/lato"
-                android:text="Duration" />
+                android:text="Duration"
+                android:textColor="@color/curated" />
+
             <TextView
+                android:id="@+id/txtUpside"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtUpside"
-                android:textColor="@color/curated"
                 android:layout_below="@+id/txtDuration"
                 android:layout_marginLeft="@dimen/margin_left_8"
                 android:layout_marginTop="@dimen/margin_left_16"
                 android:fontFamily="@font/lato"
-                android:text="Upside (%)" />
+                android:text="Upside (%)"
+                android:textColor="@color/curated" />
 
             <TextView
                 android:id="@+id/txtDownside"
@@ -69,16 +70,17 @@
                 android:fontFamily="@font/lato"
                 android:text="Downside(%)"
                 android:textColor="@color/curated" />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_alignParentRight="true"
                 android:id="@+id/txtRealEntry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/txtEntryTime"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_left_8"
-                android:text="10000"
                 android:fontFamily="@font/robotolight"
-                android:textColor="@color/white"
-                android:layout_height="wrap_content"/>
+                android:text="10000"
+                android:textColor="@color/white" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_alignParentRight="true"
@@ -95,6 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtRealDuration"
+                android:id="@+id/txtRealUpside"
                 android:layout_alignBaseline="@+id/txtUpside"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/margin_left_8"
