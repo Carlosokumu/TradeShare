@@ -39,20 +39,20 @@ class CirclePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
     private val mPaint: Paint = Paint()
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
-        val itemCount: Int = parent.getAdapter()!!.getItemCount()
+        val itemCount: Int = parent.adapter!!.itemCount
 
         // center horizontally, calculate width and subtract half from center
         val totalLength = mIndicatorItemLength * itemCount
-        val paddingBetweenItems = Math.max(0, itemCount - 1) * mIndicatorItemPadding
+        val paddingBetweenItems = 0.coerceAtLeast(itemCount - 1) * mIndicatorItemPadding
         val indicatorTotalWidth = totalLength + paddingBetweenItems
-        val indicatorStartX: Float = (parent.getWidth() - indicatorTotalWidth) / 2f
+        val indicatorStartX: Float = (parent.width - indicatorTotalWidth) / 2f
 
         // center vertically in the allotted space
-        val indicatorPosY: Float = parent.getHeight() - mIndicatorHeight / 2f
+        val indicatorPosY: Float = parent.height - mIndicatorHeight / 2f
         drawInactiveIndicators(c, indicatorStartX, indicatorPosY, itemCount)
 
         // find active page (which should be highlighted)
-        val layoutManager: LinearLayoutManager = parent.getLayoutManager() as LinearLayoutManager
+        val layoutManager: LinearLayoutManager = parent.layoutManager as LinearLayoutManager
         val activePosition: Int = layoutManager.findFirstVisibleItemPosition()
         if (activePosition == RecyclerView.NO_POSITION) {
             return
@@ -60,8 +60,8 @@ class CirclePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
 
         // find offset of active page (if the user is scrolling)
         val activeChild: View = layoutManager.findViewByPosition(activePosition)!!
-        val left: Int = activeChild.getLeft()
-        val width: Int = activeChild.getWidth()
+        val left: Int = activeChild.left
+        val width: Int = activeChild.width
 
         // on swipe the active item will be positioned from [-width, 0]
         // interpolate offset for smooth animation
@@ -91,7 +91,7 @@ class CirclePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
         c: Canvas, indicatorStartX: Float, indicatorPosY: Float,
         highlightPosition: Int, progress: Float, itemCount: Int
     ) {
-        mPaint.setColor(Color.parseColor("#349EE0"))
+        mPaint.color = Color.parseColor("#F49C1E")
 
         // width of item indicator including padding
         val itemWidth = mIndicatorItemLength + mIndicatorItemPadding
@@ -123,14 +123,14 @@ class CirclePagerIndicatorDecoration : RecyclerView.ItemDecoration() {
     }
 
     companion object {
-        private val DP: Float = Resources.getSystem().getDisplayMetrics().density
+        private val DP: Float = Resources.getSystem().displayMetrics.density
     }
 
     init {
-        mPaint.setStrokeCap(Paint.Cap.ROUND)
-        mPaint.setStrokeWidth(mIndicatorStrokeWidth)
-        mPaint.setStyle(Paint.Style.FILL)
-        mPaint.setAntiAlias(true)
+        mPaint.strokeCap = Paint.Cap.ROUND
+        mPaint.strokeWidth = mIndicatorStrokeWidth
+        mPaint.style = Paint.Style.FILL
+        mPaint.isAntiAlias = true
     }
 }
 
