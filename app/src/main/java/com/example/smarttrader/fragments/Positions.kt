@@ -1,13 +1,13 @@
 package com.example.smarttrader.fragments
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +22,9 @@ import com.example.smarttrader.R
 import com.example.smarttrader.adapters.PositionsAdapter
 import com.example.smarttrader.models.MtFetchState
 import com.example.smarttrader.models.OpenPositionFetchState
+import com.example.smarttrader.settings.Settings
 import com.example.smarttrader.viewmodels.PositionsViewModel
+import com.example.smarttrader.viewmodels.UserViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
 import ir.androidexception.datatable.DataTable
 import ir.androidexception.datatable.model.DataTableHeader
@@ -35,16 +37,25 @@ import java.util.*
 import kotlin.random.Random
 
 
-class Positions : Fragment(){
+class Positions : Fragment() {
 
 
     private val positionsViewModel: PositionsViewModel by viewModel()
+    private val userViewModel: UserViewModel by viewModel()
+
+    //Views
     private lateinit var shimmerFrame: ShimmerFrameLayout
     private lateinit var recyclerPositions: RecyclerView
-
+    private lateinit var txtPositions: TextView
     private lateinit var refresher: SwipeRefreshLayout
     private lateinit var contentlayout: RelativeLayout
+    private lateinit var txtTrades: TextView
+
+
     private var isLoading = MutableStateFlow(false)
+
+
+    private var stagedTrades = mutableListOf<String>()
     private var counter: Int = 0
 
 
@@ -59,13 +70,14 @@ class Positions : Fragment(){
         //refresher = view.findViewById(R.id.swipe_to_refresh_layout)
         shimmerFrame = view.findViewById(R.id.mShimmer)
         contentlayout = view.findViewById(R.id.contentLayout)
+        txtPositions = view.findViewById(R.id.txtActualPositions)
+        txtTrades = view.findViewById(R.id.txtTrades)
 
 
+        // refresher.setOnRefreshListener(this)
 
-       // refresher.setOnRefreshListener(this)
-
-       // refresher.setProgressBackgroundColorSchemeColor(Color.TRANSPARENT)
-       // refresher.setColorSchemeColors(Color.RED, Color.RED, Color.RED)
+        // refresher.setProgressBackgroundColorSchemeColor(Color.TRANSPARENT)
+        // refresher.setColorSchemeColors(Color.RED, Color.RED, Color.RED)
 
         recyclerPositions = view.findViewById(R.id.recyclerPositions)
 
@@ -90,12 +102,17 @@ class Positions : Fragment(){
                             "DURATIONBTN",
                             calculateDifference(startDate = formattedDate, endDate = current)
                         )
-                        Toast.makeText(requireContext(), "Success Stage", Toast.LENGTH_SHORT).show()
+
                         Log.d("MTPOSITIONS", formattedDate.toString())
                         setDataList(state.positions)
-                        for (i in state.positions) {
+                        val positions = state.positions
 
+                        txtPositions.text = positions.size.toString()
+                        for (i in state.positions) {
+                            stagedTrades.add(i.symbol)
                         }
+                        val count = findTrades(stagedTrades)
+                        txtTrades.text = count.toString()
 
                     }
                     is MtFetchState.Loading -> {
@@ -126,14 +143,14 @@ class Positions : Fragment(){
                             "Data fetched successfully",
                             Toast.LENGTH_SHORT
                         ).show()
-                       // refresher.isRefreshing = false
+                        // refresher.isRefreshing = false
                         Log.d("POSITIONS", state.positions.openpositions.size.toString())
                     }
                     is OpenPositionFetchState.Loading -> {
-                       // refresher.isRefreshing = false
+                        // refresher.isRefreshing = false
                     }
                     is OpenPositionFetchState.Error -> {
-                       // refresher.isRefreshing = false
+                        // refresher.isRefreshing = false
                         Toast.makeText(requireContext(), "Couldn't fetch data", Toast.LENGTH_SHORT)
                             .show()
 
@@ -144,7 +161,6 @@ class Positions : Fragment(){
 
 
         }
-
 
 
 //        positionsViewModel.profileModel.observe(viewLifecycleOwner) { positions ->
@@ -205,7 +221,11 @@ class Positions : Fragment(){
     }
 
 
-    private fun setMt4Positions(dataTable: DataTable, context: Context, positions: List<MtPosition>) {
+    private fun setMt4Positions(
+        dataTable: DataTable,
+        context: Context,
+        positions: List<MtPosition>
+    ) {
         val header =
             DataTableHeader.Builder().item("Position", 1).item("Entry time", 1).item("Duration", 1)
                 .item("Upside(%)", 1).item("Downside(%)", 1).build()
@@ -323,9 +343,9 @@ class Positions : Fragment(){
 //    }
 
 
-    private fun setDataList(positions: List<MtPosition>){
+    private fun setDataList(positions: List<MtPosition>) {
         val positionsAdapter = PositionsAdapter()
-        positionsAdapter.setData(positions)
+        positionsAdapter.setData(positions, requireContext())
         recyclerPositions.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.HORIZONTAL, false
@@ -336,6 +356,31 @@ class Positions : Fragment(){
         recyclerPositions.addItemDecoration(CirclePagerIndicatorDecoration())
         snapHelper.attachToRecyclerView(recyclerPositions)
         recyclerPositions.adapter = positionsAdapter
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launch {
+            Settings.getUserName()?.let { username ->
+                run {
+                    userViewModel.getUser(username)
+                }
+            }
+
+        }
+    }
+
+
+    private fun findTrades(trades: List<String>): Int {
+        var count = 0
+        var stagedList = mutableListOf<String>()
+        for (i in trades) {
+            if (!stagedList.contains(i)) {
+                count += 1
+                stagedList.add(i)
+            }
+        }
+        return count
     }
 
 }
