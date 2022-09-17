@@ -11,3 +11,5 @@ This is how the splash,sign in and sign up screens are designed respectively:
 
 <img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151801.png" width="280"/>     <img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151810.png" width="280"/>  <img src="https://github.com/Carlosokumu/smart-trader/blob/master/screenshots/Screenshot_20220914-151825.png" width="280"/>
 
+### Running Positions
+
