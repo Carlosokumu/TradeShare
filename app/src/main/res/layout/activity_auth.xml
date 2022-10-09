@@ -8,12 +8,13 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:elevation="@dimen/padd_10"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:src="@drawable/logo" />
+        android:layout_marginTop="@dimen/radius_32"
+        android:elevation="@dimen/padd_10"
+        android:src="@drawable/swingwizards_pg" />
     <androidx.cardview.widget.CardView
         android:id="@+id/signUpCardview"
         android:layout_width="match_parent"
