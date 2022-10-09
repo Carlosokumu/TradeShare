@@ -6,7 +6,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
+import com.example.smarttrader.R
 import com.example.smarttrader.databinding.ActivityAuthBinding
 import com.example.smarttrader.fragments.ResetPass
 import com.example.smarttrader.settings.Settings
@@ -26,6 +28,8 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityAuthBinding.inflate(layoutInflater)
+        val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.side_slide_100)
+        binding.signUpCardview.startAnimation(slideAnimation)
 
         setContentView(binding.root)
         updateApp(this)
