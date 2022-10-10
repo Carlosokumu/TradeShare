@@ -1,19 +1,27 @@
 package com.example.core.di
 
+import android.app.Application
 import android.graphics.ColorSpace.get
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.core.BuildConfig
 import com.example.core.network.data.api.MtApi
 import com.example.core.network.data.api.TradeApi
+import com.example.core.network.data.api.WebSocketService
 import com.example.core.network.repository.OpenPositionsRepo
 import com.example.core.network.repository.OpenPositionsRepoImp
 import com.example.core.network.repository.UserRepository
 import com.example.core.network.repository.UserRepositoryImp
 import com.example.core.utils.Constants
 import com.google.gson.GsonBuilder
+import com.tinder.scarlet.Scarlet
+import com.tinder.scarlet.lifecycle.android.AndroidLifecycle
+import com.tinder.scarlet.messageadapter.gson.GsonMessageAdapter
+import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
+import com.tinder.scarlet.websocket.okhttp.newWebSocketFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -65,6 +73,16 @@ val networkingModule: Module = module {
             .build()
     }
 
+    single {
+       val lifecycle = AndroidLifecycle.ofApplicationForeground(androidContext() as Application)
+        Scarlet.Builder()
+            .webSocketFactory(get<OkHttpClient>().newWebSocketFactory(Constants.EchoUrl))
+            .lifecycle(lifecycle)
+            .addMessageAdapterFactory(GsonMessageAdapter.Factory())
+            .addStreamAdapterFactory(RxJava2StreamAdapterFactory())
+            .build()
+    }
+
 }
 
 
@@ -75,6 +93,10 @@ val apiModule: Module = module {
 val mtModule: Module = module {
     single<MtApi> { get<Retrofit>(named(Constants.NodeBackend)).create() }
 
+}
+
+val webSocketService = module {
+    single<WebSocketService> { get<Scarlet>().create() }
 }
 
 
@@ -94,5 +116,6 @@ val coreModules: List<Module> = listOf(
     apiModule,
     userRepositoryModule,
     openPositionsRepoModule,
-    mtModule
+    mtModule,
+    webSocketService
 )
