@@ -5,6 +5,7 @@ object Constants {
 
     const val BASE_URL_GO = "https://smarttraders.herokuapp.com/"
     const val BASE_URL_NODE = "https://mt4functions.herokuapp.com/"
+    const val EchoUrl = "https://smarttraders.herokuapp.com/ws"
 
 
 
@@ -26,4 +27,5 @@ object Constants {
     //Backends
     const val NodeBackend = "NodeBackend"
     const val GolangBackend = "GolangBackend"
+
 }
