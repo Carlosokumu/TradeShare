@@ -4,5 +4,6 @@ data class ChatDetails(
 
     var username: String,
 
-    var text: String
+    var text: String,
+    var time: String
 )
