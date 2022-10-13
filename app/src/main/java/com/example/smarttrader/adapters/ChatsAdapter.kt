@@ -1,5 +1,6 @@
 package com.example.smarttrader.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ class ChatsAdapter(private val messageData: List<MessageData>) :
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.row_peerchat, parent, false)
             }
+
         }
         return ChatsVh(view!!)
     }
@@ -31,11 +33,14 @@ class ChatsAdapter(private val messageData: List<MessageData>) :
     override fun onBindViewHolder(holder: ChatsVh, position: Int) {
         when(holder.itemViewType){
             CHAT_MINE -> {
+                Log.d("CHATMINE", messageData[position].chatDetails.text)
                 holder.itemView.findViewById<TextView>(R.id.message).text = messageData[position].chatDetails.text
+                holder.itemView.findViewById<TextView>(R.id.txtTime).text = messageData[position].chatDetails.time
             }
             CHAT_PEER -> {
                 holder.itemView.findViewById<TextView>(R.id.message).text = messageData[position].chatDetails.text
             }
+
         }
 
     }
