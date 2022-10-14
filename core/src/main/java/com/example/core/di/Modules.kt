@@ -1,17 +1,11 @@
 package com.example.core.di
 
 import android.app.Application
-import android.graphics.ColorSpace.get
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.core.BuildConfig
 import com.example.core.network.data.api.MtApi
 import com.example.core.network.data.api.TradeApi
 import com.example.core.network.data.api.WebSocketService
-import com.example.core.network.repository.OpenPositionsRepo
-import com.example.core.network.repository.OpenPositionsRepoImp
-import com.example.core.network.repository.UserRepository
-import com.example.core.network.repository.UserRepositoryImp
+import com.example.core.network.repository.*
 import com.example.core.utils.Constants
 import com.google.gson.GsonBuilder
 import com.tinder.scarlet.Scarlet
@@ -109,7 +103,9 @@ val  openPositionsRepoModule: Module = module {
     single<OpenPositionsRepo> { OpenPositionsRepoImp(get(),get()) }
 }
 
-
+val  chatRepositoryModule: Module = module {
+    single<ChatRepository> { ChatRepositoryImp(get())}
+}
 
 val coreModules: List<Module> = listOf(
     networkingModule,
@@ -117,5 +113,6 @@ val coreModules: List<Module> = listOf(
     userRepositoryModule,
     openPositionsRepoModule,
     mtModule,
-    webSocketService
+    webSocketService,
+    chatRepositoryModule
 )
