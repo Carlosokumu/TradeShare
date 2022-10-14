@@ -8,33 +8,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewChat"
         android:layout_width="match_parent"
+        android:layout_above="@id/bottomCard"
+        android:layout_marginBottom="@dimen/margin_bottom_16"
         tools:listitem="@layout/row_peerchat"
         android:layout_height="match_parent" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/editText"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="16dp"-->
-<!--        android:hint="Say Something..."-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/sendButton"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/sendButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="end|bottom"-->
-<!--        android:layout_margin="16dp"-->
-<!--        android:src="@android:drawable/ic_menu_send"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@color/black_effective"
         android:padding="@dimen/padd_10"
+        android:id="@+id/bottomCard"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputLayout
