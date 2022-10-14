@@ -38,6 +38,9 @@ val emailAuthViewModel: Module = module {
 val  mainViewModel: Module = module {
     viewModel { MainViewModel(get()) }
 }
+val  forumViewModel: Module = module {
+    viewModel { ForumViewModel(get()) }
+}
 
 private val databaseModule: Module = module {
     single {
@@ -69,5 +72,6 @@ val appModules: List<Module> = listOf(
     userViewModel,
     loginViewModel,
     emailAuthViewModel,
-    mainViewModel
+    mainViewModel,
+    forumViewModel
 )
