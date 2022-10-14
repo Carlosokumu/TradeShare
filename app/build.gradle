@@ -131,6 +131,9 @@ dependencies {
     //Anko
     implementation "org.jetbrains.anko:anko:0.10.8"
 
+    //Top SnackBar
+    implementation 'com.github:topbottomsnackbar:1.1.1'
+
 
 
 }
