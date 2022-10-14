@@ -33,12 +33,16 @@ class ChatsAdapter(private val messageData: List<MessageData>) :
     override fun onBindViewHolder(holder: ChatsVh, position: Int) {
         when(holder.itemViewType){
             CHAT_MINE -> {
-                Log.d("CHATMINE", messageData[position].chatDetails.text)
+
                 holder.itemView.findViewById<TextView>(R.id.message).text = messageData[position].chatDetails.text
-                holder.itemView.findViewById<TextView>(R.id.txtTime).text = messageData[position].chatDetails.time
+                holder.itemView.findViewById<TextView>(R.id.txtTime).text = messageData[position].chatDetails.time.dropLast(10)
+                holder.itemView.findViewById<TextView>(R.id.shortTime).text = messageData[position].chatDetails.time.drop(12)
             }
             CHAT_PEER -> {
                 holder.itemView.findViewById<TextView>(R.id.message).text = messageData[position].chatDetails.text
+                holder.itemView.findViewById<TextView>(R.id.shortTime).text = messageData[position].chatDetails.time.drop(12)
+                holder.itemView.findViewById<TextView>(R.id.sender).text = messageData[position].chatDetails.username
+                holder.itemView.findViewById<TextView>(R.id.txtTime).text = messageData[position].chatDetails.time.dropLast(10)
             }
 
         }
