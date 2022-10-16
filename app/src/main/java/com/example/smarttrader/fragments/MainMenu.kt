@@ -33,7 +33,6 @@ class MainMenu : Fragment() {
     private lateinit var item: DropDownList.Item
     private var isFunding = false
     private val userViewModel: UserViewModel by viewModel()
-    private  lateinit var user: User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +58,11 @@ class MainMenu : Fragment() {
 
         binding.dropDownList.preferences =
             requireContext().getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
+
+        userViewModel.user.observe(viewLifecycleOwner){ user ->
+            binding.txtUserNameTop.text = user.username
+            binding.txtTop.text = user.balance.toString()
+        }
 
 
         binding.showHide.setOnClickListener {
