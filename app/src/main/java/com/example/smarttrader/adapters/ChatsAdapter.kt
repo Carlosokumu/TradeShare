@@ -40,7 +40,7 @@ class ChatsAdapter(private val messageData: List<MessageData>) :
             }
             CHAT_PEER -> {
                 holder.itemView.findViewById<TextView>(R.id.message).text = messageData[position].chatDetails.text
-                holder.itemView.findViewById<TextView>(R.id.shortTime).text = messageData[position].chatDetails.time.drop(12)
+                holder.itemView.findViewById<TextView>(R.id.txtShortTime).text = messageData[position].chatDetails.time.drop(12)
                 holder.itemView.findViewById<TextView>(R.id.sender).text = messageData[position].chatDetails.username
                 holder.itemView.findViewById<TextView>(R.id.txtTime).text = messageData[position].chatDetails.time.dropLast(10)
             }
