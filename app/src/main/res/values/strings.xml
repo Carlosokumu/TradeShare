@@ -17,4 +17,14 @@
     <string name="email_rationale">Verifying your email,Upon verification we will be using your email to send you updates.
         Please enter the 6 digit code sent to your email </string>
 
+    <string name="connection_lost"><![CDATA[
+        <font color=\'#ff0801\'>Connection Reset</font>
+        ]]>
+    </string>
+
+    <string name="connected"><![CDATA[
+        <font color=\'#78DC96\'>Connection Established</font>
+        ]]>
+    </string>
+
 </resources>
