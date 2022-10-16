@@ -388,7 +388,7 @@ class Positions : Fragment() {
     private fun findTrades(trades: List<String>): Int {
 
         var count = 0
-        var stagedList = mutableListOf<String>()
+        val stagedList = mutableListOf<String>()
         for (i in trades) {
             if (!stagedList.contains(i)) {
                 count += 1
