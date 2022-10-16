@@ -19,6 +19,7 @@ import com.example.smarttrader.adapters.ChatsAdapter
 import com.example.smarttrader.models.MessageData
 import com.example.smarttrader.models.MessageType
 import com.example.smarttrader.models.WebSocketState
+import com.example.smarttrader.settings.Settings
 import com.example.smarttrader.viewmodels.ForumViewModel
 import com.github.topbottomsnackbar.TBSnackbar
 import com.google.gson.Gson
@@ -154,7 +155,7 @@ class Forum : Fragment() {
     private fun sendMessage() {
 
         val messageInput = editChat.text.toString()
-        val chatDetails = ChatDetails("carlos", messageInput, time = getCurrentTime())
+        val chatDetails = ChatDetails(Settings.getUserName() ?: "user", messageInput, time = getCurrentTime())
         forumViewModel.sendMessage(chatDetails)
         val messageData =
             MessageData(chatDetails, MessageType.CHAT_MINE.index)
