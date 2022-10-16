@@ -95,6 +95,7 @@ class SignIn : Fragment() {
                         Settings.setUserIsLogged(true)
                         Settings.setPassword(signInBinding.password.text.toString())
                         Settings.setUserName(signInBinding.userName.text.toString())
+                        //Insert User into the Db.
                         userViewModel.insertUser(user = state.user)
 
                         requireContext().showSuccessMessage("Login successful")
