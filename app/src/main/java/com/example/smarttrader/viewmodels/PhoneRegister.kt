@@ -31,7 +31,7 @@ class PhoneRegister(private val userRepository: UserRepository, private val coro
                 }
                 is ApiCallResult.ServerError ->{
                     _uiState.value =  PhoneRegisterState.Error("Could not upload your number to the server,Please try again later")
-                    Log.d("ERROR", result.errorBody?.message ?: "Server Could not be reached")
+                    //Log.d("ERROR", result.errorBody?.message ?: "Server Could not be reached")
                 }
                 is ApiCallResult.Success ->{
                     _uiState.value = PhoneRegisterState.Success(result.data.response)
