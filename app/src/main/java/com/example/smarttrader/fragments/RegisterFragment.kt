@@ -27,6 +27,7 @@ import com.example.smarttrader.models.AccountCreationState
 import com.example.smarttrader.settings.Settings
 import com.example.smarttrader.showErrorToast
 import com.example.smarttrader.viewmodels.RegisterViewModel
+import com.example.smarttrader.viewmodels.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.ybs.passwordstrengthmeter.PasswordStrength
 import kotlinx.coroutines.launch
@@ -61,7 +62,7 @@ class RegisterFragment : Fragment(), TextWatcher {
                     is AccountCreationState.ServerError -> {
                         Toast.makeText(
                             requireContext(),
-                            creationState.code.toString(),
+                             creationState.message,
                             Toast.LENGTH_SHORT
                         ).show()
                         when (creationState.code) {
@@ -84,7 +85,6 @@ class RegisterFragment : Fragment(), TextWatcher {
                         registerBinding.btnsignUp.isEnabled = false
                         registerBinding.progress.visibility = View.VISIBLE
 
-                        Log.d("LOADING", "Loading State")
                     }
                     is AccountCreationState.Success -> {
                         registerBinding.progress.visibility = View.GONE
@@ -92,14 +92,14 @@ class RegisterFragment : Fragment(), TextWatcher {
                         val registeredUser = creationState.registeredUser
                         registerViewModel.saveUser(registeredUser.toUser())
                         val bundle = bundleOf(
-                            "USERNAME" to registeredUser.username,
-                            "EMAIL" to registeredUser.email
+                            "USERNAME" to registeredUser.user.username,
+                            "EMAIL" to registeredUser.user.email
                         )
 
                         //Load data into the preference file
                         Settings.setUserIsLogged(true)
-                        Settings.setUserName(registeredUser.username)
-                        Settings.setPassword(registeredUser.password)
+                        Settings.setUserName(registeredUser.user.username)
+                        Settings.setPassword(registeredUser.user.password)
 
 
                         activity?.supportFragmentManager?.commit {
@@ -113,7 +113,7 @@ class RegisterFragment : Fragment(), TextWatcher {
                             replace<OtpFragment>(R.id.fragmentContainer, args = bundle)
 
                         }
-                        Log.d("USERNAME", creationState.registeredUser.username)
+
                     }
                     is AccountCreationState.Error -> {
                         registerBinding.btnsignUp.text = "Sign Up"
@@ -121,7 +121,7 @@ class RegisterFragment : Fragment(), TextWatcher {
                         registerBinding.btnsignUp.isEnabled = true
                         requireActivity().showErrorToast("Check your internet connection")
                         registerBinding.progress.visibility = View.GONE
-                        Log.d("ErrorMessage", creationState.message)
+
 
                     }
                 }
@@ -149,18 +149,17 @@ class RegisterFragment : Fragment(), TextWatcher {
             ) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)
         ) {
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                // registerBinding.layoutEmail.error = "Please insert a valid email address"
+
                 registerBinding.edfirstName.error = "Please insert a valid email address"
                 return
             }
             if (confirmPassword != password) {
-                //registerBinding.layoutConfirmPassword.error = "Password does not match"
+
                 registerBinding.confrimPassword.error = "Password does not match"
                 return
             }
             if (registerBinding.progressBarz.progress < 25) {
-//                registerBinding.layoutPassword.error =
-//                    "Make sure your password has 8 characters, at least a number and a symbol"
+
                 registerBinding.edPassword.error =
                     "Make sure your password has 8 characters, at least a number and a symbol"
                 return
@@ -171,20 +170,21 @@ class RegisterFragment : Fragment(), TextWatcher {
                     lastName = lastName,
                     email = email,
                     userName = userName,
-                    password = password
+                    password = password,
+                    context = requireContext()
                 )
 
 
             }
         } else {
 
-            // registerBinding.layoutUserName.error = "enter your username here"
+
             if (registerBinding.edusername.text.isBlank()) {
                 registerBinding.edusername.error = "enter your username here"
             }
 
 
-            //    registerBinding.layoutPassword.hint = "enter your password here"
+
             if (registerBinding.edfirstName.text.isBlank()) {
                 registerBinding.edfirstName.error = "enter your first name here"
             }
