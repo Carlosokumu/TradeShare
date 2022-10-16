@@ -13,7 +13,7 @@
 
     <ImageView
         android:layout_width="50dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/swingwizards_pg"
         android:layout_height="50dp"/>
 
 

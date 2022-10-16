@@ -17,7 +17,7 @@
             android:layout_height="40dp"
             android:layout_margin="@dimen/padding_12"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/swingwizards_pg" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:orientation="horizontal"
