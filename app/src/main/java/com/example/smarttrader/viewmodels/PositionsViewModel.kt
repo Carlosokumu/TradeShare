@@ -65,7 +65,7 @@ class PositionsViewModel(
                     _mtFetchState.value = MtFetchState.Error("Could not fetch data")
                 }
                 is ApiCallResult.ServerError -> {
-                    _mtFetchState.value = MtFetchState.Error(message = mtPositions.errorBody?.message.toString())
+                   // _mtFetchState.value = MtFetchState.Error(message = mtPositions.errorBody?.message.toString())
                 }
                 is ApiCallResult.Success -> {
                     _mtFetchState.value = MtFetchState.Success(positions = mtPositions.data.positions)
