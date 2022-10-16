@@ -22,9 +22,15 @@
         ]]>
     </string>
 
+    <string name="connection_failed"><![CDATA[
+        <font color=\'#ff0801\'>Failed to make connection</font>
+        ]]>
+    </string>
+
     <string name="connected"><![CDATA[
         <font color=\'#78DC96\'>Connection Established</font>
         ]]>
     </string>
+
 
 </resources>
