@@ -1,10 +1,22 @@
 package com.example.core.network.data.models
 
-data class RegisteredUser(
-    var firstname: String,
-    var lastname: String,
-    var email: String,
-    var username: String,
-    var password: String,
+import com.google.gson.annotations.SerializedName
 
+data class RegisteredUser(
+    val user: UserInfo
+
+)
+
+
+data class UserInfo(
+    @SerializedName("FirstName")
+    var firstname: String,
+    @SerializedName("LastName")
+    var lastname: String,
+    @SerializedName("Email")
+    var email: String,
+    @SerializedName("Username")
+    var username: String,
+    @SerializedName("Password")
+    var password: String,
 )
