@@ -13,7 +13,7 @@ sealed class AccountCreationState{
 
     data class Success(val registeredUser: RegisteredUser): AccountCreationState()
     data class Error(val message: String): AccountCreationState()
-    data class ServerError(val code: Int?): AccountCreationState()
+    data class ServerError(val code: Int?, val message: String): AccountCreationState()
     object Loading: AccountCreationState()
     object Relaxed: AccountCreationState()
 
