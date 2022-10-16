@@ -22,9 +22,10 @@ suspend fun <T> safeApiCall(
                 val code = throwable.code()
                 Log.d("SERVERCODE", code.toString())
                 val errorResponse = convertErrorBody(throwable)
-                ApiCallResult.ServerError(code,null)
+                ApiCallResult.ServerError(code,errorResponse)
             }
             else -> {
+                Log.d("SERVERCODE","NOT HTTP")
                 ApiCallResult.ServerError(null, null)
             }
         }
