@@ -36,7 +36,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.truncate
 import kotlin.random.Random
-import kotlin.time.TestTimeSource
 
 
 class Positions : Fragment() {
@@ -49,11 +48,10 @@ class Positions : Fragment() {
     private lateinit var shimmerFrame: ShimmerFrameLayout
     private lateinit var recyclerPositions: RecyclerView
     private lateinit var txtPositions: TextView
-    private lateinit var refresher: SwipeRefreshLayout
     private lateinit var contentlayout: RelativeLayout
     private lateinit var txtTrades: TextView
     private lateinit var txtActualBalance: TextView
-    private  lateinit var currentDateTime: TextView
+    private lateinit var currentDateTime: TextView
 
 
     private var isLoading = MutableStateFlow(false)
@@ -69,9 +67,6 @@ class Positions : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_positions, container, false)
-
-
-        //refresher = view.findViewById(R.id.swipe_to_refresh_layout)
         shimmerFrame = view.findViewById(R.id.mShimmer)
         contentlayout = view.findViewById(R.id.contentLayout)
         txtPositions = view.findViewById(R.id.txtActualPositions)
@@ -81,13 +76,6 @@ class Positions : Fragment() {
 
 
         currentDateTime.text = getCurrentTime()
-
-
-        // refresher.setOnRefreshListener(this)
-
-        // refresher.setProgressBackgroundColorSchemeColor(Color.TRANSPARENT)
-        // refresher.setColorSchemeColors(Color.RED, Color.RED, Color.RED)
-
         recyclerPositions = view.findViewById(R.id.recyclerPositions)
 
 
@@ -102,17 +90,7 @@ class Positions : Fragment() {
             positionsViewModel.mtFetchState.collect { state ->
                 when (state) {
                     is MtFetchState.Success -> {
-                        val sdf = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
-                        val formattedDate = sdf.parse(state.positions[0].entryTime.dropLast(4))
-                        val currentDateandTime = sdf.format(Date())
-                        val current = sdf.parse(currentDateandTime)
-                        Log.d("DATECURRENT", current.toString())
-                        Log.d(
-                            "DURATIONBTN",
-                            calculateDifference(startDate = formattedDate, endDate = current)
-                        )
 
-                        Log.d("MTPOSITIONS", formattedDate.toString())
                         setDataList(state.positions)
                         val positions = state.positions
 
@@ -152,13 +130,7 @@ class Positions : Fragment() {
                         shimmerFrame.visibility = View.GONE
                         contentlayout.visibility = View.VISIBLE
                         shimmerFrame.stopShimmer()
-//                        Toast.makeText(
-//                            requireContext(),
-//                            "Data fetched successfully",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                        // refresher.isRefreshing = false
-//                        Log.d("POSITIONS", state.positions.openpositions.size.toString())
+
                     }
                     is OpenPositionFetchState.Loading -> {
                         // refresher.isRefreshing = false
@@ -175,97 +147,14 @@ class Positions : Fragment() {
 
 
         }
-
-
-//        positionsViewModel.profileModel.observe(viewLifecycleOwner) { positions ->
-//            setTable(dataTable = dataTable, context = requireContext(), positions = positions)
-//        }
-        positionsViewModel.positions.observe(viewLifecycleOwner) { positions ->
-            //setMt4Positions(dataTable = dataTable, context = requireContext(), positions = positions)
-        }
-
-
-
-
-
         return view
     }
 
 
-    private fun setTable(dataTable: DataTable, context: Context, positions: List<Position>) {
-
-        val header =
-            DataTableHeader.Builder().item("Position", 1).item("Entry time", 1).item("Duration", 1)
-                .item("Upside(%)", 1).item("Downside(%)", 1).build()
-
-        val rows = ArrayList<DataTableRow>()
-
-        for (i in positions) {
-            val r = Random
-            counter++
-            val random = r.nextInt() + 1
-            val randomDiscount = r.nextInt() + 20
-
-            val sdf = SimpleDateFormat("M/dd/yyyy hh:mm:ss")
-            val currentDateandTime = sdf.format(Date())
-
-            val entrytime = sdf.parse(i.EntryTime.dropLast(2))
-            val current = sdf.parse(currentDateandTime)
-
-            Log.d("ENTRYTIME", entrytime.toString())
-            Log.d("CURRENTTIME", current.toString())
 
 
-            val row = DataTableRow.Builder()
-                .value(counter.toString())
-                .value(i.EntryTime)
-                .value(calculateDifference(entrytime, current))
-                .value(getUpside(entryPrice = i.EntryPrice, takeProfit = i.TakeProfit) ?: "-")
-                .value(getDownSide(entryPrice = i.EntryPrice, stopLoss = i.StopLoss) ?: "-").build()
-            rows.add(row)
-        }
 
 
-        //dataTable.typeface = typeface;
-        dataTable.header = header;
-        dataTable.rows = rows;
-        dataTable.inflate(context);
-
-
-    }
-
-
-    private fun setMt4Positions(
-        dataTable: DataTable,
-        context: Context,
-        positions: List<MtPosition>
-    ) {
-        val header =
-            DataTableHeader.Builder().item("Position", 1).item("Entry time", 1).item("Duration", 1)
-                .item("Upside(%)", 1).item("Downside(%)", 1).build()
-        val rows = ArrayList<DataTableRow>()
-
-        for (i in positions) {
-            counter++
-            val sdf = SimpleDateFormat("yyyy-M-dd hh:mm:ss")
-            val entryDate = sdf.parse(i.entryTime.dropLast(4))
-            val currentDate = sdf.format(Date())
-            val current = sdf.parse(currentDate)
-
-
-            val row = DataTableRow.Builder()
-                .value(counter.toString())
-                .value(i.entryTime)
-                .value(calculateDifference(startDate = entryDate, endDate = current))
-                .value(getUpSideMt4(entryPrice = i.entryPrice, takeProfit = i.takeProfit))
-                .value(getDownSideMt4(entryPrice = i.entryPrice, stopLoss = i.stopLoss)).build()
-            rows.add(row)
-        }
-
-        dataTable.header = header
-        dataTable.rows = rows
-        dataTable.inflate(context)
-    }
 
     override fun onResume() {
         super.onResume()
@@ -279,82 +168,9 @@ class Positions : Fragment() {
     }
 
 
-    private fun calculateDifference(startDate: Date, endDate: Date): String {
-        var different = endDate.time.minus(startDate.time)
-        val secondsInMilli: Long = 1000
-        val minutesInMilli = secondsInMilli * 60
-        val hoursInMilli = minutesInMilli * 60
-        val daysInMilli = hoursInMilli * 24
-
-        val elapsedDays: Long = different / daysInMilli
-        different = different % daysInMilli
-
-        val elapsedHours: Long = different / hoursInMilli
-        different = different % hoursInMilli
-
-        val elapsedMinutes: Long = different / minutesInMilli
-        different = different % minutesInMilli
-
-        val elapsedSeconds: Long = different / secondsInMilli
-        Log.d(
-            "DIFFERENCE",
-            elapsedDays.toString() + "days" + elapsedHours + "hours" + elapsedMinutes.toString()
-        )
-        return elapsedDays.toString() + "d" + elapsedHours + "hr" + elapsedMinutes.toString() + "min"
-
-    }
 
 
-    private fun getUpside(entryPrice: Double?, takeProfit: Double?): String? {
-        return if (entryPrice == null || takeProfit == null) {
-            null
-        } else {
-            val difference = takeProfit - entryPrice
-            val percentageDiff = ((difference / entryPrice) * 100)
-            val number3digits: Double = String.format("%.3f", percentageDiff).toDouble()
-            number3digits.toString()
-        }
 
-    }
-
-    private fun getUpSideMt4(entryPrice: Double?, takeProfit: Double?): String {
-        return if (entryPrice == null || takeProfit == null) {
-            "-"
-        } else {
-            val difference = takeProfit - entryPrice
-            val percentageDiff = ((difference / entryPrice) * 100)
-            val number3digits: Double = String.format("%.3f", percentageDiff).toDouble()
-            number3digits.toString()
-        }
-    }
-
-
-    private fun getDownSideMt4(entryPrice: Double?, stopLoss: Double?): String {
-        return if (entryPrice == null || stopLoss == null) {
-            "-"
-        } else {
-            val difference = entryPrice - stopLoss
-            val percentageDiff = ((difference / entryPrice) * 100)
-            val number3digits: Double = String.format("%.3f", percentageDiff).toDouble()
-            number3digits.toString()
-        }
-    }
-
-    private fun getDownSide(entryPrice: Double?, stopLoss: Double?): String? {
-        return if (entryPrice == null || stopLoss == null) {
-            null
-        } else {
-            val difference = entryPrice - stopLoss
-            val percentageDiff = ((difference / entryPrice) * 100)
-            val number3digits: Double = String.format("%.3f", percentageDiff).toDouble()
-            number3digits.toString()
-        }
-    }
-
-//    override fun onRefresh() {
-//        refresher.isRefreshing = true
-//        positionsViewModel.getOpenPositions()
-//    }
 
 
     private fun setDataList(positions: List<MtPosition>) {
