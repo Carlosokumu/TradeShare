@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="username_exist">The username already exists,please try another one</string>
+    <string name="email_exist">The email is already registered</string>
+    <string name="unknown">Unknown error</string>
+</resources>
