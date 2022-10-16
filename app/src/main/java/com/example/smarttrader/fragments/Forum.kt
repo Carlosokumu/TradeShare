@@ -90,13 +90,6 @@ class Forum : Fragment() {
 
                     }
                     is WebSocketState.ConnectionInitializing -> {
-                        val websocketMessage = Html.fromHtml(getString(R.string.connection_lost))
-                        TBSnackbar.make(
-                            requireActivity().window.decorView,
-                            websocketMessage,
-                            TBSnackbar.LENGTH_SHORT,
-                            TBSnackbar.STYLE_SHOW_TOP_FITSYSTEMWINDOW
-                        ).show();
 
 
                     }
@@ -115,13 +108,18 @@ class Forum : Fragment() {
                             websocketMessage,
                             TBSnackbar.LENGTH_SHORT,
                             TBSnackbar.STYLE_SHOW_TOP_FITSYSTEMWINDOW
-                        ).show();
+                        ).show()
                         Toast.makeText(requireContext(), "connection opened", Toast.LENGTH_LONG)
                             .show()
                     }
                     is WebSocketState.ConnectionClosed -> {
-                        Toast.makeText(requireContext(), "connection closing...", Toast.LENGTH_LONG)
-                            .show()
+                        val websocketMessage = Html.fromHtml(getString(R.string.connection_lost))
+                        TBSnackbar.make(
+                            requireActivity().window.decorView,
+                            websocketMessage,
+                            TBSnackbar.LENGTH_SHORT,
+                            TBSnackbar.STYLE_SHOW_TOP_FITSYSTEMWINDOW
+                        ).show()
                     }
                 }
 
