@@ -7,11 +7,15 @@ import androidx.fragment.app.commit
 import com.example.smarttrader.R
 import com.example.smarttrader.databinding.ActivityAccountCreationBinding
 import com.example.smarttrader.fragments.RegisterFragment
+import com.example.smarttrader.viewmodels.ApplicationAuthViewModel
+import com.example.smarttrader.viewmodels.SharedViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class AccountCreation : AppCompatActivity() {
 
 
-    private  lateinit var binding : ActivityAccountCreationBinding
+    private lateinit var binding: ActivityAccountCreationBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAccountCreationBinding.inflate(layoutInflater)
@@ -23,6 +27,5 @@ class AccountCreation : AppCompatActivity() {
                 add<RegisterFragment>(R.id.fragmentContainer)
             }
         }
-
     }
 }
