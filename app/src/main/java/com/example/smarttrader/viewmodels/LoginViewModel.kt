@@ -23,23 +23,18 @@ class LoginViewModel(
     val uiState = _uiState.asStateFlow()
 
 
-
     fun loginUser(username: String, password: String) = viewModelScope.launch {
-        Log.d("INIT", "initialized")
         _uiState.value = LoginState.Loading
 
         when (val result = userRepository.loginUser(userName = username, password = password)) {
             is ApiCallResult.ApiCallError -> {
                 _uiState.value = LoginState.Error(message = "Something went wrong")
-                Log.d("APICALLERR", "Something went wrong")
             }
             is ApiCallResult.ServerError -> {
                 _uiState.value = LoginState.ServerCode(result.code)
             }
             is ApiCallResult.Success -> {
                 _uiState.value = LoginState.Success(user = result.data.toUser())
-               // _onServerResponse.postValue(LoginState.Success(response = result.data.response))
-                Log.d("APICALLERR", result.data.toString())
             }
         }
     }
