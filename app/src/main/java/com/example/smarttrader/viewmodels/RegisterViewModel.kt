@@ -48,7 +48,6 @@ class RegisterViewModel(
                 is ApiCallResult.ApiCallError -> {
                     _uiState.value =
                         AccountCreationState.Error("Something Went Wrong.Try Again Later")
-                    Log.d("ERROR", "Connectivity Error")
                 }
                 is ApiCallResult.ServerError -> {
                     _uiState.value =
@@ -56,7 +55,6 @@ class RegisterViewModel(
                     if (result.errorBody?.conflicting!!.contains("username")){
                         Log.d("USERNAME_ERROR","username error")
                     }
-                    Log.d("ERROR", result.errorBody?.conflicting ?: "Server Could not be reached")
                 }
                 is ApiCallResult.Success -> {
                     _uiState.value = AccountCreationState.Success(result.data)
