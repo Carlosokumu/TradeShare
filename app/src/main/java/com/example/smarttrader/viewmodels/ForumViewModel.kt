@@ -44,6 +44,7 @@ class ForumViewModel(private val chatRepository: ChatRepository): ViewModel() {
                 _webState.value = WebSocketState.ConnectionFailed
             }
             is WebSocket.Event.OnMessageReceived -> {
+
                 _webState.value = WebSocketState.MessageReceived(message = response.message)
             }
 
