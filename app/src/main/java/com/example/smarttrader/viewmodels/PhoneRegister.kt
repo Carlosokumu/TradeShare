@@ -12,28 +12,33 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class PhoneRegister(private val userRepository: UserRepository, private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO) : ViewModel() {
+class PhoneRegister(
+    private val userRepository: UserRepository,
+    private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : ViewModel() {
 
 
     private val _uiState: MutableStateFlow<PhoneRegisterState> = MutableStateFlow(
-        PhoneRegisterState.Loading)
+        PhoneRegisterState.Loading
+    )
 
     // The UI collects from this StateFlow to get its state updates
     val uiState: StateFlow<PhoneRegisterState> = _uiState
 
 
-
-    fun uploadPhoneNumber(userName: String,phoneNumber: String){
-        viewModelScope.launch(coroutineDispatcher){
-            when(val result = userRepository.updatePhoneNumber(userName = userName,phoneNumber = phoneNumber)){
-                is ApiCallResult.ApiCallError ->{
-                    _uiState.value = PhoneRegisterState.Error("Could not upload your number to the server")
+    fun uploadPhoneNumber(userName: String, phoneNumber: String) {
+        viewModelScope.launch(coroutineDispatcher) {
+            when (val result =
+                userRepository.updatePhoneNumber(userName = userName, phoneNumber = phoneNumber)) {
+                is ApiCallResult.ApiCallError -> {
+                    _uiState.value =
+                        PhoneRegisterState.Error("Could not upload your number to the server")
                 }
-                is ApiCallResult.ServerError ->{
-                    _uiState.value =  PhoneRegisterState.Error("Could not upload your number to the server,Please try again later")
-                    //Log.d("ERROR", result.errorBody?.message ?: "Server Could not be reached")
+                is ApiCallResult.ServerError -> {
+                    _uiState.value =
+                        PhoneRegisterState.Error("Could not upload your number to the server,Please try again later")
                 }
-                is ApiCallResult.Success ->{
+                is ApiCallResult.Success -> {
                     _uiState.value = PhoneRegisterState.Success(result.data.response)
                 }
             }
