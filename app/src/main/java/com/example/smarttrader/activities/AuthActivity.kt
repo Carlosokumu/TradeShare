@@ -7,21 +7,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.example.smarttrader.R
 import com.example.smarttrader.databinding.ActivityAuthBinding
 import com.example.smarttrader.fragments.ResetPass
+import com.example.smarttrader.models.ApplicationAuthState
 import com.example.smarttrader.settings.Settings
+import com.example.smarttrader.viewmodels.ApplicationAuthViewModel
 import com.example.smarttrader.viewmodels.UserViewModel
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
+import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class AuthActivity : AppCompatActivity() {
 
-    private  lateinit var binding : ActivityAuthBinding
+    private lateinit var binding: ActivityAuthBinding
     private val userViewModel: UserViewModel by viewModel()
+    private val applicationAuthViewModel: ApplicationAuthViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,21 +48,38 @@ class AuthActivity : AppCompatActivity() {
             ResetPass.newInstance().show(supportFragmentManager, "reset-password")
         }
         binding.btnLogin.setOnClickListener {
-            if (binding.edPassword.text.isBlank()){
+            if (binding.edPassword.text.isBlank()) {
                 binding.edPassword.error = "Enter your password here"
                 return@setOnClickListener
             }
-            if(Settings.getPassword() == binding.edPassword.text.toString()){
-                val intent = Intent(this,MainActivity::class.java)
+            if (Settings.getPassword() == binding.edPassword.text.toString()) {
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 this.finish()
-            }
-            else {
+            } else {
                 binding.edPassword.error = "Incorrect password"
             }
 
         }
+        applicationAuthViewModel.observeConnection()
+        lifecycleScope.launch {
+            applicationAuthViewModel.applicationAuthState.collect { appAuthState ->
+                when (appAuthState) {
+                    is ApplicationAuthState.Loading -> {
+
+
+                    }
+                    is ApplicationAuthState.AutheticationPassed -> {
+                        Toast.makeText(this@AuthActivity, "Auth Passed", Toast.LENGTH_SHORT).show()
+                    }
+                    is ApplicationAuthState.AutheticationFailed -> {
+
+                    }
+                }
+            }
+        }
     }
+
     companion object {
 
         private const val MY_REQUEST_CODE = 104
@@ -90,11 +113,12 @@ class AuthActivity : AppCompatActivity() {
 
 
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == MY_REQUEST_CODE) {
             if (resultCode != RESULT_OK) {
-                  updateApp(this)
+                updateApp(this)
             }
         }
     }
