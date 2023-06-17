@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/night"
+    android:orientation="vertical">
+
+
+    <View
+        android:layout_width="45dp"
+        android:layout_height="2.5dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/radius_8"
+        android:background="@color/gray" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/radius_2"
+        android:textColor="@color/white"
+        android:fontFamily="@font/gotham"
+        android:text="Choose Trades"
+        android:textAlignment="center" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtLastFive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_bottom_16"
+            android:drawableStart="@drawable/ic_witch"
+            android:drawablePadding="@dimen/padd_10"
+            android:padding="@dimen/radius_2"
+            android:textColor="@color/white"
+            tools:text="Last 5 Trades" />
+
+        <TextView
+            android:id="@+id/txtLast10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_bottom_16"
+            android:drawableStart="@drawable/ic_witch"
+            android:drawablePadding="@dimen/padd_10"
+            android:padding="@dimen/radius_2"
+            android:textColor="@color/white"
+            tools:text="Last 5 Trades" />
+
+        <TextView
+            android:id="@+id/txtLast15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_bottom_16"
+            android:drawableStart="@drawable/ic_witch"
+            android:drawablePadding="@dimen/padd_10"
+            android:padding="@dimen/radius_2"
+            android:textColor="@color/white"
+            tools:text="Last 5 Trades" />
+
+        <TextView
+            android:id="@+id/txtLast20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_bottom_16"
+            android:drawableStart="@drawable/ic_witch"
+            android:drawablePadding="@dimen/padd_10"
+            android:padding="@dimen/radius_2"
+            android:textColor="@color/white"
+            tools:text="Last 5 Trades" />
+
+        <TextView
+            android:id="@+id/txtCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_bottom_16"
+            android:background="@drawable/bg_cancel"
+            android:gravity="center"
+            android:padding="@dimen/padd_10"
+            android:text="Cancel"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
