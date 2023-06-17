@@ -1,3 +1,3 @@
-# smart-trader
+# SwingWizards
 Building
 
