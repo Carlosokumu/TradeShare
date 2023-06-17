@@ -1,22 +1,277 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.DataFeed">
 
-    <com.airbnb.lottie.LottieAnimationView
 
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/txtHistory"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/body_text_size"
+        android:layout_marginTop="@dimen/activity_padding_horizontal"
+        android:layout_marginRight="@dimen/body_text_size"
+        android:background="@drawable/background_history"
+        android:gravity="center"
+        android:text="History"
+        android:textAlignment="center"
+        android:visibility="gone"
+        tools:text="History" />
+
+    <LinearLayout
+        android:id="@+id/lastTradesContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:lottie_autoPlay="true"
+        android:layout_below="@+id/txtHistory"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtLastTrades"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/body_text_size"
+            android:layout_marginTop="@dimen/body_text_size"
+            android:layout_marginEnd="@dimen/body_text_size"
+            android:layout_marginBottom="@dimen/body_text_size"
+            android:layout_weight="1"
+            android:background="@drawable/bg_card"
+            android:fontFamily="@font/open"
+            android:gravity="center"
+            android:text="Last 5 Trades"
+            android:textAlignment="center" />
+
+        <ImageButton
+            android:id="@+id/chooseTradesNum"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@color/night"
+            android:padding="@dimen/radius_2"
+            android:src="@drawable/ic_witch" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lossvswins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lastTradesContainer"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/keyMap"
+            android:background="@drawable/card_account_growth"
+            app:cardBackgroundColor="@color/horsebrown"
+            app:cardCornerRadius="@dimen/radius_8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/padd_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="Wins" />
+
+                <Space
+                    android:layout_width="3dp"
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/gotham"
+                    android:text="7"
+                    android:textColor="@color/light_green" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="0dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/keyMap"
+            android:background="@drawable/card_account_growth"
+            app:cardBackgroundColor="@color/horsebrown"
+            app:cardCornerRadius="@dimen/radius_8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/padd_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="Losses" />
+
+                <Space
+                    android:layout_width="3dp"
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/gotham"
+                    android:text="3"
+                    android:textColor="@color/losses" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+    <ir.mahozad.android.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/lossvswins"
         android:layout_centerInParent="true"
-        app:lottie_rawRes="@raw/construction"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="@dimen/ccp_padding"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/keyMap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_toEndOf="@+id/pieChart"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_padding_horizontal"
+            android:orientation="horizontal"
+            android:padding="@dimen/ccp_padding">
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_margin="@dimen/radius_2"
+                android:background="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/robotolight"
+                android:gravity="center"
+                android:text="Win rate" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="3dp"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/radius_2"
+            android:layout_marginStart="@dimen/activity_padding_horizontal"
+            android:orientation="horizontal"
+            android:padding="@dimen/ccp_padding">
+
+            <View
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_margin="@dimen/radius_2"
+                android:background="@color/losses" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/robotolight"
+                android:gravity="center"
+                android:text="Loss rate"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/accountGrowthCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/keyMap"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:background="@drawable/card_account_growth"
+        app:cardBackgroundColor="@color/horsebrown"
+        app:cardCornerRadius="@dimen/radius_8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/open"
+                android:text=" Account Growth Rate" />
+
+            <TextView
+                android:id="@+id/accountGrowth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="+4.7%" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.naqdi.chart.ChainChartView
+        android:id="@+id/chainChartView"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_below="@id/accountGrowthCard"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_bottom_16"
+        app:cc_text_color="@color/bg_color" />
+
+
+    <ImageView
+        android:id="@+id/Load"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/swingwizards_pg"
+        android:visibility="gone">
+
+    </ImageView>
+
 
 </RelativeLayout>
