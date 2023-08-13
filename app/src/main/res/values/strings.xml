@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">smart trader</string>
+    <string name="app_name">SwingWizards</string>
     <string name="jmHoldings">Jm Holdings LLC</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -30,6 +30,34 @@
     <string name="connected"><![CDATA[
         <font color=\'#78DC96\'>Connection Established</font>
         ]]>
+    </string>
+    <string name="last_trades">
+<![CDATA[
+Last <font color=\'#D50000\'>5</font> trades]]>
+    </string>
+    <string name="account_growth">
+<![CDATA[
+ <font color=\'#78DC96\'>N/A</font>]]>
+    </string>
+
+    <string name="last_trades_5">
+<![CDATA[
+Last <font color=\'#D50000\'>5</font> trades]]>
+    </string>
+
+    <string name="last_trades_10">
+<![CDATA[
+Last <font color=\'#D50000\'>10</font> trades]]>
+    </string>
+
+    <string name="last_trades_15">
+<![CDATA[
+Last <font color=\'#D50000\'>15</font> trades]]>
+    </string>
+
+    <string name="last_trades_20">
+<![CDATA[
+Last <font color=\'#D50000\'>20</font> trades]]>
     </string>
 
 
