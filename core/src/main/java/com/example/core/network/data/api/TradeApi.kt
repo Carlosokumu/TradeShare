@@ -26,11 +26,14 @@ interface TradeApi {
 
 
     @GET("/tradex/positions/all")
-    suspend fun  getAllPositions(): OpenPosition
+    suspend fun getAllPositions(): OpenPosition
 
     @FormUrlEncoded
     @POST("/tradex/user/login")
-    suspend fun  loginUser(@Field("username") username: String,@Field("password")password: String): CurrentUserInfo
+    suspend fun loginUser(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): CurrentUserInfo
 
 
     @FormUrlEncoded
@@ -39,10 +42,10 @@ interface TradeApi {
 
     @FormUrlEncoded
     @POST("/tradex/user/confirmation")
-    suspend fun sendConfirmation(@Field("email") email: String,@Field("username") username: String)
+    suspend fun sendConfirmation(@Field("email") email: String, @Field("username") username: String)
 
 
-   @GET("/tradex/user/userinfo")
-   suspend fun  getUserInfo(@Query("username") username: String): CurrentUserInfo
+    @GET("/tradex/user/userinfo")
+    suspend fun getUserInfo(@Query("username") username: String): CurrentUserInfo
 
 }
