@@ -1,43 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:shimmer="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/night"
-    android:orientation="vertical">
+    android:scrollbars="none">
 
-
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:id="@+id/mShimmer"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        shimmer:duration="800">
-
-        <include layout="@layout/positionsloading_placeholder" />
-    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <RelativeLayout
-        android:id="@+id/contentLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
+        android:layout_height="wrap_content"
+        android:background="@color/night"
+        android:orientation="vertical">
 
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/mShimmer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            shimmer:duration="800">
+
+            <include layout="@layout/positionsloading_placeholder" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            tools:visibility="visible">
 
 
             <RelativeLayout
-                android:layout_width="match_parent"
                 android:id="@+id/topSection"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/accountDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_5"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gotham"
+                            android:padding="@dimen/radius_2"
+                            android:text="Balance:"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/currentBalance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lato"
+                            android:padding="@dimen/radius_2"
+                            android:text="-" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gotham"
+                            android:padding="@dimen/radius_2"
+                            android:text="Equity:"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/currentEquity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:fontFamily="@font/lato"
+                            android:padding="@dimen/radius_2"
+                            android:text="-" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
 
                 <LinearLayout
                     android:id="@+id/linearfirst"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_below="@+id/accountDetails"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
 
                     <androidx.cardview.widget.CardView
@@ -51,15 +116,7 @@
                         app:cardUseCompatPadding="true"
                         app:rippleColor="@color/black_effective">
 
-<!--                    <com.github.mmin18.widget.RealtimeBlurView-->
-<!--                        android:id="@+id/blur_view"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="200dp"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:background="@color/transparent"-->
-<!--                        android:gravity="center"-->
-<!--                        app:realtimeBlurRadius="20dp"-->
-<!--                        app:realtimeOverlayColor="@color/effect_group_selected_bg" />-->
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -86,48 +143,32 @@
 
 
                             <Space
-                                android:layout_width="50dp"
                                 android:id="@+id/spacer"
-                                android:layout_toRightOf="@+id/txtTime"
-                                android:layout_height="1dp"/>
+                                android:layout_width="50dp"
+                                android:layout_height="1dp"
+                                android:layout_toRightOf="@+id/txtTime" />
 
-<!--                            <TextView-->
-<!--                                android:id="@+id/txtBalance"-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginTop="@dimen/margin_left_8"-->
-<!--                                android:layout_marginBottom="@dimen/margin_left_8"-->
-<!--                                android:layout_toRightOf="@+id/spacer"-->
-<!--                                android:fontFamily="@font/open"-->
-<!--                                android:text="Balance" />-->
 
                             <TextView
                                 android:id="@+id/txtActualBalance"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
                                 android:layout_marginStart="@dimen/padding_12"
                                 android:layout_marginTop="@dimen/padding_12"
                                 android:layout_marginEnd="@dimen/padding_12"
                                 android:layout_marginBottom="@dimen/padding_12"
-                                android:layout_toLeftOf="@+id/flag"
                                 android:fontFamily="@font/lato"
-                                android:text="10000"
+                                android:text="Status"
                                 android:textColor="@color/green_connectify" />
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:id="@+id/flag"
-                                android:layout_marginEnd="@dimen/padding_20"
-                                android:layout_alignParentEnd="true"
-                                android:src="@drawable/kenya"
-                                android:layout_height="40dp"/>
 
                             <View
                                 android:id="@+id/separator"
                                 android:layout_width="match_parent"
-                                android:layout_height="1dp"
+                                android:layout_height="0.5dp"
                                 android:layout_below="@+id/txtTime"
                                 android:layout_marginStart="@dimen/margin_left_8"
-                                android:layout_marginTop="@dimen/padd_10"
+                                android:layout_marginTop="@dimen/padding_4"
                                 android:layout_marginEnd="@dimen/margin_left_8"
                                 android:layout_marginBottom="@dimen/margin_left_8"
                                 android:background="@color/gray" />
@@ -139,11 +180,12 @@
                                 android:layout_below="@+id/separator"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
-                                android:textColor="@color/curated"
                                 android:layout_marginEnd="@dimen/text_size_date_message"
                                 android:layout_marginBottom="@dimen/text_size_date_message"
-                                android:fontFamily="@font/lato"
-                                android:text="positions" />
+                                android:fontFamily="@font/gotham"
+                                android:padding="4dp"
+                                android:text="Positions"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/txtActualPositions"
@@ -153,8 +195,11 @@
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/positionNumber"
-                                android:fontFamily="@font/open"
-                                android:text="10" />
+                                android:background="@drawable/circle_green"
+                                android:fontFamily="@font/lato"
+                                android:padding="4dp"
+                                android:text="10"
+                                android:textColor="@color/curated" />
 
                             <TextView
                                 android:id="@+id/txtTrades"
@@ -165,8 +210,10 @@
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_marginEnd="@dimen/text_size_date_message"
                                 android:layout_marginBottom="@dimen/text_size_date_message"
-                                android:fontFamily="@font/lato"
-                                android:text="trades" />
+                                android:fontFamily="@font/gotham"
+                                android:padding="4dp"
+                                android:text="Trades"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/txtTradesActual"
@@ -176,7 +223,9 @@
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_toRightOf="@+id/txtTrades"
-                                android:fontFamily="@font/open"
+                                android:background="@drawable/circle_green"
+                                android:fontFamily="@font/lato"
+                                android:padding="4dp"
                                 android:text="7" />
 
                             <TextView
@@ -186,40 +235,46 @@
                                 android:layout_below="@+id/txtTradesActual"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
-                                android:fontFamily="@font/lato"
-                                android:text="Account Risk(%)" />
+                                android:fontFamily="@font/gotham"
+                                android:text="Account Risk(%)"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/txtAcountRisk"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/txtTradesActual"
+                                android:layout_alignParentRight="true"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
-                                android:layout_toRightOf="@+id/txtRisk"
-                                android:fontFamily="@font/open"
-                                android:text=" - %" />
+                                android:layout_marginEnd="@dimen/padd_10"
+                                android:fontFamily="@font/robotolight"
+                                android:text="-"
+                                android:textColor="@color/red" />
 
                             <TextView
-                                android:id="@+id/txtValue"
+                                android:id="@+id/txtRiskInUsd"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/txtAcountRisk"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
-                                android:fontFamily="@font/lato"
-                                android:text="Account Risk(Ksh)" />
+                                android:fontFamily="@font/gotham"
+                                android:text="Account Risk($)"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/txtRiskValue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/txtAcountRisk"
+                                android:layout_alignParentRight="true"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
-                                android:layout_toRightOf="@+id/txtValue"
-                                android:fontFamily="@font/open"
-                                android:text="-" />
+                                android:layout_marginEnd="@dimen/padd_10"
+                                android:fontFamily="@font/lato"
+                                android:text="-"
+                                android:textColor="@color/red" />
 
                             <TextView
                                 android:id="@+id/txtReturn"
@@ -229,143 +284,131 @@
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
                                 android:layout_marginBottom="@dimen/margin_left_16"
-                                android:fontFamily="@font/open"
-                                android:text="Expected Returns" />
+                                android:fontFamily="@font/gotham"
+                                android:text="Expected Returns($)" />
 
                             <TextView
+                                android:id="@+id/txtExpectedReturns"
                                 android:layout_width="wrap_content"
-                                android:textColor="@color/green_connectify"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/txtRiskValue"
+                                android:layout_alignParentEnd="true"
                                 android:layout_marginStart="@dimen/text_size_date_message"
                                 android:layout_marginTop="@dimen/text_size_date_message"
-                                android:layout_toRightOf="@+id/txtReturn"
+                                android:layout_marginEnd="@dimen/padd_10"
                                 android:fontFamily="@font/lato"
-                                android:text="+ 7000" />
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_below="@+id/txtRiskValue"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginRight="@dimen/padd_10"
-                                android:src="@drawable/moneybag"
-                                android:layout_height="35dp"/>
+                                android:text="+ 7000"
+                                android:textColor="@color/green_connectify" />
+
+                            <!--                        <ImageView-->
+                            <!--                            android:layout_width="20dp"-->
+                            <!--                            android:layout_height="35dp"-->
+                            <!--                            android:layout_below="@+id/txtRiskValue"-->
+                            <!--                            android:layout_alignParentEnd="true"-->
+                            <!--                            android:layout_marginRight="@dimen/padd_10"-->
+                            <!--                            android:src="@drawable/moneybag" />-->
 
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
 
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_margin="20dp"-->
-<!--                        android:background="@drawable/rounded_textview"-->
-<!--                        android:fontFamily="@font/open"-->
-<!--                        android:padding="10dp"-->
-<!--                        android:text="Positions"-->
-<!--                        android:textAllCaps="true"-->
-<!--                        android:textSize="@dimen/radius_16" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/txtTotalRisk"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_margin="20dp"-->
-<!--                        android:background="@drawable/rounded_textview"-->
-<!--                        android:fontFamily="@font/open"-->
-<!--                        android:padding="10dp"-->
-<!--                        android:text="Total Risk"-->
-<!--                        android:textAllCaps="true"-->
-<!--                        android:textSize="@dimen/radius_16" />-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_margin="20dp"-->
-<!--                        android:background="@drawable/rounded_textview"-->
-<!--                        android:fontFamily="@font/open"-->
-<!--                        android:padding="10dp"-->
-<!--                        android:text="Expected Returns"-->
-<!--                        android:textAllCaps="true"-->
-<!--                        android:textSize="@dimen/radius_16" />-->
-
                 </LinearLayout>
 
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="75dp"-->
-<!--                    android:layout_marginTop="75dp"-->
-<!--                    android:layout_toRightOf="@+id/linearfirst"-->
-<!--                    android:padding="@dimen/padd_10"-->
-<!--                    app:cardBackgroundColor="@color/horsebrown">-->
 
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_gravity="center_vertical"-->
-<!--                        android:padding="@dimen/padd_10"-->
-<!--                        android:text="Account Risk"-->
-<!--                        android:textAllCaps="true" />-->
-
-<!--                </androidx.cardview.widget.CardView>-->
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/recyclerPositions"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@+id/linearfirst"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:clipToPadding="false"-->
-<!--                    tools:listitem="@layout/row_positions" />-->
-
-
-                <!--                <ir.androidexception.datatable.DataTable-->
-<!--                    android:id="@+id/data_table"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="300dp"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:layout_marginStart="8dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:layout_marginEnd="8dp"-->
-<!--                    android:layout_marginBottom="8dp"-->
-<!--                    app:cardBackgroundColor="@color/night"-->
-<!--                    app:corner_radius="8dp"-->
-<!--                    app:direction="ltr"-->
-<!--                    app:header_background_color="@color/night"-->
-<!--                    app:header_gravity="center"-->
-<!--                    app:header_horizontal_padding="0dp"-->
-<!--                    app:header_text_color="@color/media"-->
-<!--                    app:header_text_size="5sp"-->
-<!--                    app:header_vertical_padding="16dp"-->
-<!--                    app:persian_number="false"-->
-<!--                    app:row_background_color="@color/night"-->
-<!--                    app:row_gravity="center"-->
-<!--                    app:row_text_color="@color/light_green"-->
-<!--                    app:row_text_size="5sp"-->
-<!--                    app:row_vertical_padding="16dp"-->
-<!--                    app:shadow="8dp" />-->
             </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Running Trades"
-            android:id="@+id/running"
-            android:layout_centerInParent="true"
-            android:textColor="@color/green_connectify"
-            android:layout_below="@+id/topSection"
-            android:fontFamily="@font/robotothin"
-            android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:id="@+id/running"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/topSection"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_4"
+                android:visibility="gone">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/topSection"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/gotham"
+                    android:padding="2dp"
+                    android:text="Floating Profit($)"
+                    android:textColor="@color/white" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerPositions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/running"
-            android:layout_marginTop="4dp"
-            android:clipToPadding="false"
-            tools:listitem="@layout/row_positions" />
+                <TextView
+                    android:id="@+id/txtFloatingProfit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/radius_2"
+                    android:fontFamily="@font/lato"
+                    android:padding="@dimen/radius_2"
+                    android:text="-39"
+                    android:textColor="@color/green_connectify" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/emptyView"
+                android:visibility="gone"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="300dp"
+                android:orientation="vertical">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lav_actionBar"
+                    android:layout_width="150dp"
+                    android:layout_height="175dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerCrop"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/wizard_empty" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/padding_4"
+                    android:fontFamily="@font/gotham"
+                    android:text="Oops!…You have No Running Positions!" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/padding_16"
+                    android:background="@drawable/background_otp"
+                    android:fontFamily="@font/open"
+                    android:gravity="center"
+                    android:text="Invest Now!" />
+            </LinearLayout>
+            <!-- Table View-->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/runningTable"
+                android:layout_below="@+id/running"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:scrollbars="none"
+                android:visibility="gone">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerPositions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/row_orders" />
+
+            </HorizontalScrollView>
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-
-
-</RelativeLayout>
+</ScrollView>
