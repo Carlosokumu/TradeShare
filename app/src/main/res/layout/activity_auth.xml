@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/night"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/night">
 
 
     <ImageView
@@ -15,67 +15,71 @@
         android:layout_marginTop="@dimen/radius_32"
         android:elevation="@dimen/padd_10"
         android:src="@drawable/swingwizards_pg" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/signUpCardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_margin="@dimen/padd_10"
         android:alpha="0.7"
         android:background="@color/transparent"
-        android:padding="@dimen/padding_20"
-        android:layout_margin="@dimen/padd_10"
-        android:layout_below="@+id/logo"
         android:foregroundGravity="center"
+        android:padding="@dimen/padding_20"
         app:cardBackgroundColor="@color/effect_group_selected_bg"
         app:cardCornerRadius="10dp"
         app:cardElevation="7dp"
         app:cardUseCompatPadding="true"
         app:rippleColor="@color/effect_group_selected_bg">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutUserName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/padding_20"
-            android:layout_marginRight="@dimen/padding_20"
-            android:layout_marginLeft="@dimen/padding_20"
-            android:hint="username"
-            app:boxStrokeColor="@color/white"
-            app:errorTextColor="@color/red"
-            app:hintAnimationEnabled="true"
-            app:hintEnabled="true"
-            app:hintTextColor="@color/light_green">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edUserName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/padding_12"
-                android:enabled="false"
-                android:inputType="none"
-                android:drawableStart="@drawable/ic_person"
-                android:drawablePadding="@dimen/padd_10"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="@dimen/padding_20"
-                android:background="@drawable/form_bg"
-                android:padding="@dimen/padding_12"
-                android:textColor="@color/white"
-                android:textCursorDrawable="@null"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:hintTextColor="@color/white" />
-
-        </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
-
+                android:id="@+id/layoutUserName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/padding_20"
                 android:layout_marginTop="@dimen/padding_20"
                 android:layout_marginRight="@dimen/padding_20"
+                android:hint="username"
+                app:boxStrokeColor="@color/white"
+                app:errorTextColor="@color/red"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/light_green">
+
+                <EditText
+                    android:id="@+id/edUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/padding_12"
+                    android:layout_marginBottom="@dimen/padding_20"
+                    android:background="@drawable/form_bg"
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawablePadding="@dimen/padd_10"
+                    android:enabled="false"
+                    android:inputType="none"
+                    android:padding="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@null"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:hintTextColor="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
                 android:id="@+id/passwordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/padding_20"
+                android:layout_marginTop="@dimen/padding_20"
+                android:layout_marginRight="@dimen/padding_20"
                 android:hint="password"
                 app:boxStrokeColor="@color/white"
                 app:errorTextColor="@color/red"
@@ -84,15 +88,15 @@
                 app:hintTextColor="@color/light_green">
 
                 <EditText
+                    android:id="@+id/edPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/padding_20"
                     android:layout_gravity="center_vertical"
-                    android:id="@+id/edPassword"
-                    android:drawableStart="@drawable/ic_password"
+                    android:layout_margin="@dimen/padding_20"
                     android:layout_marginBottom="@dimen/padd_10"
-                    android:drawablePadding="@dimen/padd_10"
                     android:background="@drawable/form_bg"
+                    android:drawableStart="@drawable/ic_password"
+                    android:drawablePadding="@dimen/padd_10"
                     android:inputType="textPersonName"
                     android:padding="@dimen/padding_12"
                     android:textColor="@color/white"
@@ -104,22 +108,23 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:layout_width="match_parent"
-                android:padding="@dimen/padd_10"
                 android:id="@+id/btnLogin"
-                android:background="@drawable/red_style"
-                android:text="Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padd_10"
-                android:layout_height="wrap_content"/>
+                android:background="@drawable/red_style"
+                android:padding="@dimen/padd_10"
+                android:text="Login" />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:text="Forgot password"
                 android:id="@+id/txtForgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:fontFamily="@font/open"
                 android:layout_margin="@dimen/padding_20"
-                android:textColor="@color/light_green"
-                android:layout_height="wrap_content"/>
+                android:fontFamily="@font/open"
+                android:text="Forgot password"
+                android:textColor="@color/light_green" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

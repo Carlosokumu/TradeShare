@@ -5,7 +5,7 @@
     android:background="@color/night"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context="com.android.swingwizards.activities.MainActivity">
 
 
     <com.github.mmin18.widget.RealtimeBlurView

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/night"
     android:layout_height="match_parent"
-    tools:context=".activities.MenuActivity">
+    tools:context="com.android.swingwizards.activities.MenuActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:elevation="@dimen/text_12"
