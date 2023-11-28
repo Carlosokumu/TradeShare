@@ -21,13 +21,16 @@ fun AppButton(
     modifier: Modifier = Modifier,
     text: String,
     onButtonClick: () -> Unit,
+    showDivider: Boolean = true
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
 
-        Divider(color = AppTheme.colors.onSurface)
+        if (showDivider){
+            Divider(color = AppTheme.colors.onSurface)
+        }
         Box(
             modifier = modifier
                 .padding(
