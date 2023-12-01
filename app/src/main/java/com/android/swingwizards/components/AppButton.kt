@@ -20,6 +20,7 @@ import com.android.swingwizards.theme.AppTheme
 fun AppButton(
     modifier: Modifier = Modifier,
     text: String,
+    enabled: Boolean = true,
     onButtonClick: () -> Unit,
     showDivider: Boolean = true
 ) {
@@ -28,7 +29,7 @@ fun AppButton(
         modifier = modifier
     ) {
 
-        if (showDivider){
+        if (showDivider) {
             Divider(color = AppTheme.colors.onSurface)
         }
         Box(
@@ -49,8 +50,8 @@ fun AppButton(
                 colors = ButtonDefaults.buttonColors(
                     containerColor = AppTheme.colors.secondaryVariant,
                     disabledContainerColor = AppTheme.colors.secondaryVariant
-
                 ),
+                enabled = enabled
             ) {
 
                 Text(
