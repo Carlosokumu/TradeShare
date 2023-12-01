@@ -2,6 +2,8 @@ package com.example.core.di
 
 import android.app.Application
 import com.example.core.BuildConfig
+
+import com.example.core.network.data.api.CTraderWebsocketService
 import com.example.core.network.data.api.MtApi
 import com.example.core.network.data.api.TradeApi
 import com.example.core.network.data.api.WebSocketService
@@ -11,6 +13,7 @@ import com.google.gson.GsonBuilder
 import com.tinder.scarlet.Scarlet
 import com.tinder.scarlet.lifecycle.android.AndroidLifecycle
 import com.tinder.scarlet.messageadapter.gson.GsonMessageAdapter
+import com.tinder.scarlet.messageadapter.protobuf.ProtobufMessageAdapter
 import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
 import com.tinder.scarlet.websocket.okhttp.newWebSocketFactory
 import okhttp3.OkHttpClient
@@ -67,7 +70,20 @@ val networkingModule: Module = module {
             .build()
     }
 
-    single {
+
+    single(named(Constants.CTrader_WS)){
+        val lifecycle = AndroidLifecycle.ofApplicationForeground(androidContext() as Application)
+        Scarlet.Builder()
+            .webSocketFactory(get<OkHttpClient>().newWebSocketFactory(Constants.CTrader_Websocket))
+            .lifecycle(lifecycle)
+            .addMessageAdapterFactory(ProtobufMessageAdapter.Factory())
+            .addStreamAdapterFactory(RxJava2StreamAdapterFactory())
+            .build()
+    }
+
+
+
+    single(named(Constants.ChatWs)) {
        val lifecycle = AndroidLifecycle.ofApplicationForeground(androidContext() as Application)
         Scarlet.Builder()
             .webSocketFactory(get<OkHttpClient>().newWebSocketFactory(Constants.EchoUrl))
@@ -90,7 +106,11 @@ val mtModule: Module = module {
 }
 
 val webSocketService = module {
-    single<WebSocketService> { get<Scarlet>().create() }
+    single<WebSocketService> { get<Scarlet>(named(Constants.ChatWs)).create() }
+}
+
+val cTraderWebsocketService = module {
+    single<CTraderWebsocketService> { get<Scarlet>(named(Constants.CTrader_WS)).create() }
 }
 
 
@@ -107,6 +127,11 @@ val  chatRepositoryModule: Module = module {
     single<ChatRepository> { ChatRepositoryImp(get())}
 }
 
+
+val  cTraderRepositoryModule: Module = module {
+    single<CTraderRepository> { CTraderRepositoryImpl(get())}
+}
+
 val coreModules: List<Module> = listOf(
     networkingModule,
     apiModule,
@@ -114,5 +139,7 @@ val coreModules: List<Module> = listOf(
     openPositionsRepoModule,
     mtModule,
     webSocketService,
-    chatRepositoryModule
+    chatRepositoryModule,
+    cTraderWebsocketService,
+    cTraderRepositoryModule
 )
