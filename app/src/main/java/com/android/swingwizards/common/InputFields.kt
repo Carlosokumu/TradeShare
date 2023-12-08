@@ -12,15 +12,22 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.android.swingwizards.R
 import com.android.swingwizards.theme.AppTheme
@@ -29,6 +36,8 @@ import com.android.swingwizards.theme.AppTheme
 @Composable
 fun EmailSection(
     modifier: Modifier = Modifier,
+    email: String = "",
+    updateEmail: (String) -> Unit
 ) {
     Column(modifier = modifier) {
         Text(
@@ -37,7 +46,35 @@ fun EmailSection(
             style = AppTheme.typography.subtitle
         )
         Spacer(modifier = Modifier.height(10.dp))
-        InputField(icon = R.drawable.email, placeHolder = R.string.email)
+        InputField(
+            icon = R.drawable.email,
+            placeHolder = R.string.email,
+            value = email,
+            updateText = updateEmail
+        )
+    }
+}
+
+
+@Composable
+fun UsernameSection(
+    modifier: Modifier = Modifier,
+    updateUserName: (String) -> Unit,
+    username: String = ""
+) {
+    Column(modifier = modifier) {
+        Text(
+            text = stringResource(id = R.string.username),
+            color = AppTheme.colors.textPrimary,
+            style = AppTheme.typography.subtitle
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        InputField(
+            icon = R.drawable.person_outline,
+            value = username,
+            placeHolder = R.string.username,
+            updateText = updateUserName
+        )
     }
 }
 
@@ -51,7 +88,11 @@ fun AccountName(modifier: Modifier = Modifier) {
             style = AppTheme.typography.subtitle
         )
         Spacer(modifier = Modifier.height(10.dp))
-        InputField(icon = null, placeHolder = R.string.account_name, requiresIcon = false)
+        InputField(
+            icon = null,
+            placeHolder = R.string.account_name,
+            requiresIcon = false,
+            updateText = {})
     }
 }
 
@@ -64,13 +105,19 @@ fun LoginId(modifier: Modifier = Modifier) {
             style = AppTheme.typography.subtitle
         )
         Spacer(modifier = Modifier.height(10.dp))
-        InputField(icon = null, placeHolder = R.string.login_id, requiresIcon = false)
+        InputField(
+            icon = null,
+            placeHolder = R.string.login_id,
+            requiresIcon = false,
+            updateText = {})
     }
 }
 
 @Composable
 fun PasswordSection(
     modifier: Modifier = Modifier,
+    updatePassword: (String) -> Unit,
+    password: String = ""
 ) {
     Column(modifier = modifier) {
         Text(
@@ -79,7 +126,13 @@ fun PasswordSection(
             style = AppTheme.typography.subtitle
         )
         Spacer(modifier = Modifier.height(10.dp))
-        InputField(icon = R.drawable.icon_lock, placeHolder = R.string.password)
+        InputField(
+            icon = R.drawable.icon_lock,
+            placeHolder = R.string.password,
+            updateText = updatePassword,
+            value = password,
+            isPasswordField = true
+        )
     }
 }
 
@@ -87,9 +140,14 @@ fun PasswordSection(
 fun InputField(
     modifier: Modifier = Modifier,
     @DrawableRes icon: Int?,
+    isPasswordField: Boolean = false,
+    value: String = "",
+    updateText: (String) -> Unit,
     requiresIcon: Boolean = true,
     @StringRes placeHolder: Int
 ) {
+    var passwordVisible by rememberSaveable { mutableStateOf(true) }
+
     Surface(
         color = AppTheme.colors.onPrimary,
         shape = RoundedCornerShape(10.dp),
@@ -115,8 +173,8 @@ fun InputField(
                 )
             }
             TextField(
-                value = "", onValueChange = { value: String ->
-
+                value = value, onValueChange = { value: String ->
+                    updateText(value)
                 },
                 placeholder = {
                     Text(
@@ -125,11 +183,12 @@ fun InputField(
                         color = AppTheme.colors.textPrimary
                     )
                 },
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
                     unfocusedContainerColor = Color.Transparent,
                     focusedTextColor = AppTheme.colors.textPrimary,
-                    unfocusedTextColor = AppTheme.colors.textPrimary ,
+                    unfocusedTextColor = AppTheme.colors.textPrimary,
                     disabledContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
@@ -137,7 +196,19 @@ fun InputField(
                     cursorColor = AppTheme.colors.secondaryVariant
                 ),
                 modifier = Modifier.weight(1f),
-                textStyle = AppTheme.typography.caption
+                textStyle = AppTheme.typography.caption,
+                trailingIcon = {
+                    if (isPasswordField) {
+                        val image =
+                            if (passwordVisible) painterResource(id = R.drawable.visible) else painterResource(
+                                id = R.drawable.visible_off
+                            )
+                        val description = if (passwordVisible) "Hide password" else "Show password"
+                        IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                            Icon(painter = image, description)
+                        }
+                    }
+                }
             )
         }
     }
