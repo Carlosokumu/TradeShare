@@ -8,17 +8,20 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.android.swingwizards"
-        minSdkVersion 22
-        targetSdkVersion 31
+        minSdkVersion 23
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
     }
 
     buildTypes {
@@ -38,20 +41,67 @@ android {
         viewBinding true
 
     }
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.4'
+    }
+
     lintOptions {
         checkReleaseBuilds false
     }
+    namespace 'com.android.swingwizards'
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += 'META-INF/DEPENDENCIES'
+            excludes += 'mozilla/public-suffix-list.txt'
+        }
+    }
+
+//    packagingOptions {
+//
+//        resources {
+//            excludes += '/META-INF/*'
+//        }
+//    }
+    //packagingOptions { resources.excludes.add("META-INF/*") }
 }
 
 dependencies {
 
 
-    def room_version = "2.4.2"
 
+
+    def room_version = "2.6.0"
     implementation project(':core')
 
-    // Import the BoM for the Firebase platform
-  //  implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
+
+
+
+
+    def composeBom = platform('androidx.compose:compose-bom:2023.09.00')
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
+    implementation "androidx.compose.runtime:runtime"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.foundation:foundation"
+    implementation "androidx.compose.foundation:foundation-layout"
+    implementation "androidx.compose.material:material"
+    implementation "androidx.compose.runtime:runtime-livedata"
+    implementation "androidx.compose.ui:ui-tooling"
+
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.32.0"
+
+    implementation "androidx.activity:activity-compose:1.8.0"
+
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+    implementation("it.skrape:skrapeit:1.2.0")
+
+
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -59,6 +109,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'org.jsoup:jsoup:1.16.2'
+
+    //implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation("io.coil-kt:coil-gif:2.1.0")
+    implementation("io.coil-kt:coil-compose:2.1.0")
+
+    implementation("com.airbnb.android:lottie-compose:6.0.1")
+
+
+
 
     // When using the BoM, you don't specify versions in Firebase library dependencies
    // implementation("com.google.firebase:firebase-auth-ktx")
@@ -87,6 +148,7 @@ dependencies {
     implementation 'androidx.databinding:databinding-runtime:7.1.0'
    // implementation 'com.airbnb.android:lottie:6.1.0'
 
+    implementation("androidx.compose.material3:material3:1.1.2")
 
     //Network ->OkHTTP,retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.0'
@@ -123,6 +185,7 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-ktx:$room_version"
+    implementation("androidx.room:room-rxjava2:$room_version")
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation 'com.github.pcpl2:simplecache:1.2.0'
@@ -132,10 +195,15 @@ dependencies {
     // For Kotlin users also import the Kotlin extensions library for Play In-App Update:
     implementation("com.google.android.play:app-update-ktx:2.0.0")
 
+    implementation "com.github.KevinnZou:compose-webview:0.33.2"
+
     // rx
     implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+
+
+    implementation("com.google.accompanist:accompanist-navigation-material:0.28.0")
 
 
     //Scarlet
