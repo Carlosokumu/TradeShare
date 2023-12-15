@@ -13,6 +13,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
 import com.android.swingwizards.theme.AppTheme
 
@@ -22,6 +23,7 @@ fun AppButton(
     text: String,
     enabled: Boolean = true,
     onButtonClick: () -> Unit,
+    isLoading: Boolean = false,
     showDivider: Boolean = true
 ) {
     Column(
@@ -42,24 +44,43 @@ fun AppButton(
                 )
         ) {
 
-            Button(
-                onClick = { onButtonClick() },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = AppTheme.colors.secondaryVariant,
-                    disabledContainerColor = AppTheme.colors.secondaryVariant
-                ),
-                enabled = enabled
-            ) {
+            if(isLoading){
+                Button(
+                    onClick = { onButtonClick() },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = AppTheme.colors.secondaryVariant,
+                        disabledContainerColor = AppTheme.colors.secondaryVariant
+                    ),
+                    enabled = false
+                ) {
+                    AppLoadingWheel(contentDesc = "Loading")
+                }
+            } else {
 
-                Text(
-                    text = text,
-                    style = MaterialTheme.typography.caption,
-                    color = AppTheme.colors.textPrimary
-                )
+                Button(
+                    onClick = { onButtonClick() },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .alpha(if(enabled) 1f else 0.5f)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = AppTheme.colors.secondaryVariant,
+                        disabledContainerColor = AppTheme.colors.secondaryVariant
+                    ),
+                    enabled = enabled
+                ) {
+
+                    Text(
+                        text = text,
+                        style = MaterialTheme.typography.caption,
+                        color = AppTheme.colors.textPrimary
+                    )
+                }
             }
+
         }
     }
 }
