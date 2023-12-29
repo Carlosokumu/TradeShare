@@ -10,10 +10,19 @@ interface UserRepository {
     suspend fun registerUser(firstname: String,lastname: String,email: String,userName: String,password: String) : ApiCallResult<RegisteredUser>
 
 
+    suspend fun  registerTradeShareUser(email: String,username: String,password: String): ApiCallResult<TradeShareUser>
+
+
     suspend fun updatePhoneNumber(userName: String,phoneNumber: String): ApiCallResult<PhoneUpdateResponse>
 
 
     suspend fun  loginUser(userName: String,password: String) : ApiCallResult<CurrentUserInfo>
+
+
+    suspend fun loginTradeShareUser(userName: String,password: String): ApiCallResult<TradeShareUser>
+
+
+    suspend fun  connectMetaTraderAccount(userName: String,metaTraderLogin: String,metaTraderPassword: String,metaTraderVersion: String,server: String): ApiCallResult<MetaAPIResponse>
 
 
     suspend fun  sendCode(email: String) : ApiCallResult<OtpCode>
