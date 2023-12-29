@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -97,7 +99,7 @@ fun AccountName(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun LoginId(modifier: Modifier = Modifier) {
+fun LoginId(modifier: Modifier = Modifier,updateLoginId: (String) -> Unit,loginId: String) {
     Column(modifier = modifier) {
         Text(
             text = stringResource(id = R.string.login_id),
@@ -108,8 +110,9 @@ fun LoginId(modifier: Modifier = Modifier) {
         InputField(
             icon = null,
             placeHolder = R.string.login_id,
+            value = loginId ,
             requiresIcon = false,
-            updateText = {})
+            updateText = updateLoginId)
     }
 }
 
@@ -117,7 +120,8 @@ fun LoginId(modifier: Modifier = Modifier) {
 fun PasswordSection(
     modifier: Modifier = Modifier,
     updatePassword: (String) -> Unit,
-    password: String = ""
+    password: String = "",
+    shouldShowIcon: Boolean = true
 ) {
     Column(modifier = modifier) {
         Text(
@@ -131,7 +135,8 @@ fun PasswordSection(
             placeHolder = R.string.password,
             updateText = updatePassword,
             value = password,
-            isPasswordField = true
+            isPasswordField = true,
+            shouldShowIcon = shouldShowIcon
         )
     }
 }
@@ -144,7 +149,9 @@ fun InputField(
     value: String = "",
     updateText: (String) -> Unit,
     requiresIcon: Boolean = true,
-    @StringRes placeHolder: Int
+    shouldBeNumber: Boolean = false,
+    @StringRes placeHolder: Int,
+    shouldShowIcon: Boolean = true
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(true) }
 
@@ -162,7 +169,7 @@ fun InputField(
                 ),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (requiresIcon && icon != null) {
+            if (requiresIcon && icon != null &&  shouldShowIcon) {
                 Icon(
                     painter = painterResource(id = icon),
                     contentDescription = "field icon",
@@ -176,6 +183,9 @@ fun InputField(
                 value = value, onValueChange = { value: String ->
                     updateText(value)
                 },
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    keyboardType = if (shouldBeNumber) KeyboardType.Number else KeyboardType.Text
+                ),
                 placeholder = {
                     Text(
                         text = stringResource(placeHolder),
