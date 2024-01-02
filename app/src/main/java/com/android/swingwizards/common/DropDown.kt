@@ -7,11 +7,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -35,6 +37,7 @@ import com.android.swingwizards.theme.AppTheme
 @Composable
 fun AccountPlatform(
     modifier: Modifier = Modifier,
+    selectedItem: (String) -> Unit
 ) {
     Column(modifier = modifier) {
         androidx.compose.material.Text(
@@ -43,12 +46,12 @@ fun AccountPlatform(
             style = AppTheme.typography.subtitle
         )
         Spacer(modifier = Modifier.height(10.dp))
-        DropdownMenu(items = listOf("mt4", "mt5"))
+        DropdownMenu(items = listOf("mt4", "mt5"),selectedItem)
     }
 }
 
 @Composable
-fun ServerSection(modifier: Modifier = Modifier) {
+fun ServerSection(modifier: Modifier = Modifier,selectedItem: (String) -> Unit) {
     Column(modifier = modifier) {
         androidx.compose.material.Text(
             text = stringResource(id = R.string.server),
@@ -56,17 +59,28 @@ fun ServerSection(modifier: Modifier = Modifier) {
             style = AppTheme.typography.subtitle
         )
         Spacer(modifier = Modifier.height(10.dp))
-        DropdownMenu(items = listOf("HFMarketsKE-Live Server 8", "HFMarketsKE-Demo Server 2"))
+        DropdownMenu(items = listOf("HFMarketsKE-Live Server 8", "HFMarketsKE-Demo Server 2","Deriv-Server","Deriv-Demo","EGMSecurities-Demo","EGMSecurities-Live4"),selectedItem)
     }
 }
 
 
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DropdownMenu(items: List<String>) {
+fun DropdownMenu(items: List<String>,selectedItem: (String) -> Unit) {
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
     var selectedText by remember { mutableStateOf(items[0]) }
+
+
+    selectedItem(selectedText)
+
+    Surface(
+        color = AppTheme.colors.onPrimary,
+        shape = RoundedCornerShape(10.dp),
+        modifier = Modifier.height(60.dp)
+    ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -135,11 +149,12 @@ fun DropdownMenu(items: List<String>) {
             }
         }
     }
+    }
 }
 
 
 @Preview
 @Composable
 fun DropDownMenuPreview() {
-    DropdownMenu(listOf())
+    DropdownMenu(listOf(), selectedItem = {})
 }
