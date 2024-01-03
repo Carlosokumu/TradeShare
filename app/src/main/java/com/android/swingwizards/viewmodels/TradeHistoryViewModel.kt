@@ -1,46 +1,51 @@
-package com.example.smarttrader.viewmodels
+package com.android.swingwizards.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.android.swingwizards.models.UiState
 import com.example.core.network.data.api.ApiCallResult
 import com.example.core.network.repository.UserRepository
-import com.example.smarttrader.models.PhoneRegisterState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class PhoneRegister(
+class TradeHistoryViewModel(
     private val userRepository: UserRepository,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
+    private val _uiState: MutableStateFlow<UiState> =
+        MutableStateFlow(UiState.Relaxed)
 
-    private val _uiState: MutableStateFlow<PhoneRegisterState> = MutableStateFlow(
-        PhoneRegisterState.Loading
-    )
-
-    // The UI collects from this StateFlow to get its state updates
-    val uiState: StateFlow<PhoneRegisterState> = _uiState
+    val uiState: StateFlow<UiState> = _uiState
 
 
-    fun uploadPhoneNumber(userName: String, phoneNumber: String) {
+    fun fetchTrades(offset: Int, accountId: String, range: Int) {
+        _uiState.value = UiState.Loading
         viewModelScope.launch(coroutineDispatcher) {
-            when (val result =
-                userRepository.updatePhoneNumber(userName = userName, phoneNumber = phoneNumber)) {
+            when (val result = userRepository.getTrades(accountId, offset, range)
+            ) {
                 is ApiCallResult.ApiCallError -> {
                     _uiState.value =
-                        PhoneRegisterState.Error("Could not upload your number to the server")
+                        UiState.Error("Something Went Wrong.Try Again Later")
                 }
+
                 is ApiCallResult.ServerError -> {
                     _uiState.value =
-                        PhoneRegisterState.Error("Could not upload your number to the server,Please try again later")
+                        UiState.ServerError(
+                            code = result.code,
+                            message = "Server error"
+                        )
                 }
+
                 is ApiCallResult.Success -> {
-                    _uiState.value = PhoneRegisterState.Success(result.data.response)
+                    _uiState.value = UiState.Success(result.data)
+                    Log.d("DATA:", result.data.trades.toString())
                 }
+
             }
         }
     }
