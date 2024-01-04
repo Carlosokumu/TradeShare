@@ -16,6 +16,10 @@ interface UserRepository {
     suspend fun updatePhoneNumber(userName: String,phoneNumber: String): ApiCallResult<PhoneUpdateResponse>
 
 
+
+    suspend fun getTrades(accountId: String,offset: Int,range: Int): ApiCallResult<Trades>
+
+
     suspend fun  loginUser(userName: String,password: String) : ApiCallResult<CurrentUserInfo>
 
 

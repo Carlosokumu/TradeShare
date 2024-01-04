@@ -38,6 +38,10 @@ class UserRepositoryImp(private val tradeApi: TradeApi,
         return@safeApiCall tradeApi.updatePhoneNumber(username = userName, phoneNumber = phoneNumber)
     }
 
+    override suspend fun getTrades(accountId: String,offset: Int,range: Int): ApiCallResult<Trades> = safeApiCall(ioDispatcher) {
+        return@safeApiCall mtApi.getTrades(accountId, range, offset)
+    }
+
     override suspend fun loginUser(userName: String, password: String): ApiCallResult<CurrentUserInfo> = safeApiCall(ioDispatcher) {
         return@safeApiCall  tradeApi.loginUser(userName,password)
     }
