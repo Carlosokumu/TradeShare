@@ -75,7 +75,7 @@ fun AppButton(
 
                     Text(
                         text = text,
-                        style = MaterialTheme.typography.caption,
+                        style = MaterialTheme.typography.button,
                         color = AppTheme.colors.textPrimary
                     )
                 }
