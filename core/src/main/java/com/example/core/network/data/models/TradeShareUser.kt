@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 
 data class TradeShareUser(
-    @SerializedName("Username")
+    @SerializedName("UserName")
     val username: String,
     @SerializedName("Email")
     val email: String,
@@ -17,5 +17,10 @@ data class TradeShareUser(
     @SerializedName("AccessToken")
     val accessToken: String,
     @SerializedName("RefreshToken")
-    val refreshToken: String
+    val refreshToken: String,
+    @SerializedName("AccountId")
+    val accountId: String?
 )
+
+
+data class LoginResponse(val user: TradeShareUser)
