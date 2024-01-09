@@ -17,6 +17,10 @@ interface UserRepository {
 
 
 
+    suspend fun getTradeShareUser(userName: String): ApiCallResult<TradeShareUserResponse>
+
+
+
     suspend fun getTrades(accountId: String,offset: Int,range: Int): ApiCallResult<Trades>
 
 
