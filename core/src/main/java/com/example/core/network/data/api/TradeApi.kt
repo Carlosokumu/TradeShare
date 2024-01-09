@@ -18,6 +18,14 @@ interface TradeApi {
 
 
     @FormUrlEncoded
+    @POST("/tradex/user/register")
+    suspend fun registerTradeShareUser(
+        @Field("email") email: String,
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): SignUpResponse
+
+    @FormUrlEncoded
     @PATCH("/tradex/user/phonenumber")
     suspend fun updatePhoneNumber(
         @Field("username") username: String,
@@ -34,6 +42,17 @@ interface TradeApi {
         @Field("username") username: String,
         @Field("password") password: String
     ): CurrentUserInfo
+
+
+
+    @FormUrlEncoded
+    @POST("/tradex/user/login")
+    suspend fun loginTradeShareUser(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): LoginResponse
+
+
 
 
     @FormUrlEncoded
