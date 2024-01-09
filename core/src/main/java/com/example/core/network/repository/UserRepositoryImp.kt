@@ -27,7 +27,7 @@ class UserRepositoryImp(private val tradeApi: TradeApi,
 
 
 
-    override suspend fun registerTradeShareUser(email: String, username: String, password: String): ApiCallResult<TradeShareUser> = safeApiCall(ioDispatcher){
+    override suspend fun registerTradeShareUser(email: String, username: String, password: String): ApiCallResult<SignUpResponse> = safeApiCall(ioDispatcher){
         return@safeApiCall tradeApi.registerTradeShareUser(username = username, password = password, email = email)
     }
 
@@ -49,7 +49,7 @@ class UserRepositoryImp(private val tradeApi: TradeApi,
     override suspend fun loginTradeShareUser(
         userName: String,
         password: String
-    ): ApiCallResult<TradeShareUser> = safeApiCall(ioDispatcher) {
+    ): ApiCallResult<LoginResponse> = safeApiCall(ioDispatcher) {
         return@safeApiCall  tradeApi.loginTradeShareUser(userName,password)
     }
 
