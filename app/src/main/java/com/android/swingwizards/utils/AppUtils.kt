@@ -12,14 +12,15 @@ object AppUtils {
     fun launchActivity(context: Context, targetActivity: Class<out ComponentActivity>) {
         val intent = Intent(context, targetActivity)
         context.startActivity(intent)
+
     }
 
 
 
     val navigationScreens = listOf(
         Screen.Home,
-        Screen.Trades,
-        Screen.Insights,
+        Screen.Markets,
+        Screen.Portfolio,
         Screen.Account
     )
 
