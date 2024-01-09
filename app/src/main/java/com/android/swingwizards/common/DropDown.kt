@@ -1,6 +1,5 @@
 package com.android.swingwizards.common
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -59,7 +58,7 @@ fun ServerSection(modifier: Modifier = Modifier,selectedItem: (String) -> Unit) 
             style = AppTheme.typography.subtitle
         )
         Spacer(modifier = Modifier.height(10.dp))
-        DropdownMenu(items = listOf("HFMarketsKE-Live Server 8", "HFMarketsKE-Demo Server 2","Deriv-Server","Deriv-Demo","EGMSecurities-Demo","EGMSecurities-Live4"),selectedItem)
+        DropdownMenu(items = listOf("HFMarketsKE-Live Server 8", "HFMarketsKE-Demo Server 2","Deriv-Server","Deriv-Demo","EGMSecurities-Demo","EGMSecurities-Live4","ACGMarkets-Live"),selectedItem)
     }
 }
 
@@ -142,7 +141,6 @@ fun DropdownMenu(items: List<String>,selectedItem: (String) -> Unit) {
                         onClick = {
                             selectedText = item
                             expanded = false
-                            Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
                         }
                     )
                 }
