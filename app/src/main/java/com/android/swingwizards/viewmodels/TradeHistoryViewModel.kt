@@ -1,6 +1,5 @@
 package com.android.swingwizards.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -37,13 +36,14 @@ class TradeHistoryViewModel(
     val username = _userUserName
 
 
-    private val _userAccountId = MutableLiveData<String>()
+    private val _userAccountId = MutableLiveData<String?>()
     val userAccountId = _userAccountId
 
 
 
     init {
         getAccountId()
+        getUsername()
     }
 
 
@@ -53,7 +53,7 @@ class TradeHistoryViewModel(
 
 
 
-    fun getUsername() {
+    private fun getUsername() {
         viewModelScope.launch {
             userRepo.getUsername.collectLatest { username ->
                 _userUserName.value = username
