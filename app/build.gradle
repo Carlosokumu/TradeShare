@@ -139,8 +139,9 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
     //Koin-> easy to use dependency injection for android
-    implementation "org.koin:koin-android:2.1.1"
-    implementation "org.koin:koin-android-viewmodel:2.1.1"
+    //implementation "org.koin:koin-android:3.1.2"
+    implementation "io.insert-koin:koin-android:3.1.2"
+    implementation"io.insert-koin:koin-androidx-compose:3.1.2"
 
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.0"
 
@@ -165,6 +166,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
 
     implementation project(':protobufmodels')
+
 
 
     implementation 'com.github.mmin18:realtimeblurview:1.2.1'
@@ -222,6 +224,12 @@ dependencies {
 
     //PIE-CHART
     implementation("ir.mahozad.android:pie-chart:0.7.0")
+
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+
+    implementation "me.onebone:toolbar-compose:2.3.5"
+
 
 
     //LINE-GRAPH

@@ -9,11 +9,11 @@ plugins {
 
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 32
+        minSdkVersion 23
+        targetSdkVersion 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -32,6 +32,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.example.core'
 }
 
 dependencies {
@@ -63,8 +64,8 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     //Koin-> easy to use dependency injection for android
-    implementation "org.koin:koin-android:2.1.1"
-    implementation "org.koin:koin-android-viewmodel:2.1.1"
+    implementation "io.insert-koin:koin-android:3.1.2"
+    implementation"io.insert-koin:koin-androidx-compose:3.1.2"
 
 
     //implementation 'com.tinder.scarlet:scarlet:0.1.12'
