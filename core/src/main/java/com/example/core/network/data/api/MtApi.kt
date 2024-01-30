@@ -30,6 +30,7 @@ interface  MtApi {
 
 
 
+    @GET("/history")
     suspend fun  getTrades(@Query("account_id") accountId: String,@Query("history_range") range: Int,@Query("offset") offset: Int): Trades
 
     @GET("/positions")
