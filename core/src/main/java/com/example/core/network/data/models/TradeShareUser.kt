@@ -27,3 +27,6 @@ data class LoginResponse(val user: TradeShareUser)
 
 
 data class SignUpResponse(val user: TradeShareUser)
+
+
+data class TradeShareUserResponse(val user: TradeShareUser)
