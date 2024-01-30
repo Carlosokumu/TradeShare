@@ -1,10 +1,9 @@
 package com.example.core.network.data.api
 
 import com.example.core.network.data.models.*
-import kotlinx.coroutines.flow.Flow
 import retrofit2.http.*
 
-interface TradeApi {
+interface TradeShareApi {
 
     @FormUrlEncoded
     @POST("/tradex/user/register")
@@ -24,6 +23,9 @@ interface TradeApi {
         @Field("username") username: String,
         @Field("password") password: String
     ): SignUpResponse
+
+
+
 
     @FormUrlEncoded
     @PATCH("/tradex/user/phonenumber")
@@ -66,5 +68,9 @@ interface TradeApi {
 
     @GET("/tradex/user/userinfo")
     suspend fun getUserInfo(@Query("username") username: String): CurrentUserInfo
+
+
+    @GET("/tradex/user/getspecificuser")
+    suspend fun getTradeShareUser(@Query("username") username: String): TradeShareUserResponse
 
 }
