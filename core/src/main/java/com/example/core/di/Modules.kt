@@ -5,7 +5,7 @@ import com.example.core.BuildConfig
 
 import com.example.core.network.data.api.CTraderWebsocketService
 import com.example.core.network.data.api.MtApi
-import com.example.core.network.data.api.TradeApi
+import com.example.core.network.data.api.TradeShareApi
 import com.example.core.network.data.api.WebSocketService
 import com.example.core.network.repository.*
 import com.example.core.utils.Constants
@@ -97,7 +97,7 @@ val networkingModule: Module = module {
 
 
 val apiModule: Module = module {
-    single<TradeApi> { get<Retrofit>(named(Constants.GolangBackend)).create() }
+    single<TradeShareApi> { get<Retrofit>(named(Constants.GolangBackend)).create() }
 
 }
 val mtModule: Module = module {
@@ -116,7 +116,7 @@ val cTraderWebsocketService = module {
 
 
 val userRepositoryModule: Module = module {
-    single<UserRepository> { UserRepositoryImp(get()) }
+    single<UserRepository> { UserRepositoryImp(get(),get()) }
 }
 
 val  openPositionsRepoModule: Module = module {
