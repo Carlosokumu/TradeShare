@@ -112,6 +112,7 @@ fun LoginId(modifier: Modifier = Modifier,updateLoginId: (String) -> Unit,loginI
             placeHolder = R.string.login_id,
             value = loginId ,
             requiresIcon = false,
+            shouldBeNumber = true,
             updateText = updateLoginId)
     }
 }
