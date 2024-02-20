@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.android.swingwizards.components.MetaTraderConnectionScreen
 import com.android.swingwizards.components.PasswordReset
 import com.android.swingwizards.components.SignInScreen
 import com.android.swingwizards.components.SignUpComponent
@@ -19,7 +18,7 @@ import com.android.swingwizards.viewmodels.SignUpProcessViewModel
 import com.android.swingwizards.viewmodels.SignUpViewModel
 
 @Composable
-fun MetaTraderNav(
+fun SignUpNav(
     navController: NavHostController,
     startDestination: String = "signup",
     signUpProcessViewModel: SignUpProcessViewModel,
@@ -32,6 +31,9 @@ fun MetaTraderNav(
     val tradingPlatforms by signUpProcessViewModel.tradingPlatforms.collectAsState()
     val selectedPlatform by signUpProcessViewModel.selectedPlatform.collectAsState()
 
+
+
+
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -40,10 +42,10 @@ fun MetaTraderNav(
 
 
         composable(route = "signup") {
-            SignUpScreen(navController,signUpViewModel)
+            SignUpScreen(navController, signUpViewModel, context)
         }
         composable(route = "signin") {
-            SignInScreen(navController,signInViewModel)
+            SignInScreen(navController, signInViewModel, context = context)
         }
         composable(route = "reset") {
             PasswordReset(navController)
@@ -58,9 +60,6 @@ fun MetaTraderNav(
                 navController = navController,
                 context = context
             )
-        }
-        composable(route = "mt") {
-            MetaTraderConnectionScreen()
         }
     }
 }
