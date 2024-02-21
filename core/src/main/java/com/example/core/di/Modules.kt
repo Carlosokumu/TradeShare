@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.core.BuildConfig
 
 import com.example.core.network.data.api.CTraderWebsocketService
+import com.example.core.network.data.api.EconomicCalendarService
 import com.example.core.network.data.api.MtApi
 import com.example.core.network.data.api.TradeShareApi
 import com.example.core.network.data.api.WebSocketService
@@ -92,6 +93,15 @@ val networkingModule: Module = module {
             .addStreamAdapterFactory(RxJava2StreamAdapterFactory())
             .build()
     }
+    single(named(Constants.ECONOMIC_CALENDER)) {
+        val lifecycle = AndroidLifecycle.ofApplicationForeground(androidContext() as Application)
+        Scarlet.Builder()
+            .webSocketFactory(get<OkHttpClient>().newWebSocketFactory(Constants.ECONOMIC_CALENDAR_URL))
+            .lifecycle(lifecycle)
+            .addMessageAdapterFactory(GsonMessageAdapter.Factory())
+            .addStreamAdapterFactory(RxJava2StreamAdapterFactory())
+            .build()
+    }
 
 }
 
@@ -113,6 +123,10 @@ val cTraderWebsocketService = module {
     single<CTraderWebsocketService> { get<Scarlet>(named(Constants.CTrader_WS)).create() }
 }
 
+val economicCalendarService = module {
+    single<EconomicCalendarService> { get<Scarlet>(named(Constants.ECONOMIC_CALENDER)).create() }
+}
+
 
 
 val userRepositoryModule: Module = module {
@@ -128,18 +142,30 @@ val  chatRepositoryModule: Module = module {
 }
 
 
+val  economicCalendarRepositoryModule: Module = module {
+    single<EconomicCalendarRepo> { EconomicCalendarImpl(get())}
+}
+
+val  equityChartRepositoryModule: Module = module {
+    single<EquityChartRepo> { EquityChartRepoImpl(get())}
+}
+
 val  cTraderRepositoryModule: Module = module {
     single<CTraderRepository> { CTraderRepositoryImpl(get())}
 }
 
 val coreModules: List<Module> = listOf(
     networkingModule,
+    economicCalendarService,
+    economicCalendarRepositoryModule,
     apiModule,
     userRepositoryModule,
     openPositionsRepoModule,
     mtModule,
     webSocketService,
+    economicCalendarService,
     chatRepositoryModule,
     cTraderWebsocketService,
-    cTraderRepositoryModule
+    cTraderRepositoryModule,
+    equityChartRepositoryModule
 )
