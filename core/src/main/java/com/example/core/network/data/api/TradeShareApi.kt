@@ -55,8 +55,6 @@ interface TradeShareApi {
     ): LoginResponse
 
 
-
-
     @FormUrlEncoded
     @POST("/tradex/user/email")
     suspend fun sendCode(@Field("email") email: String): OtpCode
