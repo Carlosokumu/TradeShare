@@ -1,11 +1,12 @@
 package com.example.core.network.repository
 
+import com.example.core.network.data.api.ApiCallResult
 import com.example.core.network.data.models.EquityChart
 import com.example.core.network.data.models.Metrics
 
 interface TradingAccountRepo {
-   suspend fun getEquity(accountId: String,startTime: String,endTime: String): EquityChart
+   suspend fun getEquity(accountId: String,startTime: String,endTime: String): ApiCallResult<EquityChart>
 
 
-   suspend fun getMetrics(accountId: String): Metrics
+   suspend fun getMetrics(accountId: String): ApiCallResult<Metrics>
 }
