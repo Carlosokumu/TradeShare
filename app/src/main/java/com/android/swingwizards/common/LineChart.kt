@@ -1,22 +1,26 @@
 package com.android.swingwizards.common
 
-import android.content.res.Resources.Theme
 import android.graphics.Paint
 import android.graphics.Typeface
 import androidx.compose.foundation.Canvas
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.asAndroidPath
+import androidx.compose.ui.graphics.asComposePath
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import com.android.swingwizards.models.DataPoint
-import kotlinx.collections.immutable.ImmutableList
-import androidx.compose.ui.graphics.asAndroidPath
-import androidx.compose.ui.graphics.asComposePath
-import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.drawscope.Stroke
 import com.android.swingwizards.theme.AppTheme
+import kotlinx.collections.immutable.ImmutableList
 
 
 @Composable
@@ -25,9 +29,11 @@ fun LineChart(
     data: ImmutableList<DataPoint>,
     graphColor: Color,
     showDashedLine: Boolean,
-    showYLabels: Boolean = false
+    showYLabels: Boolean = true
 ) {
 
+
+    val paintColor = AppTheme.colors.textPrimary.toArgb()
 
     if (data.isEmpty()) {
         return
@@ -44,9 +50,7 @@ fun LineChart(
             data.maxBy { it.y }
         )
     }
-
     val density = LocalDensity.current
-
     Canvas(modifier = modifier) {
 
         val spacePerHour = (size.width - spacing) / data.size
@@ -127,10 +131,10 @@ fun LineChart(
 
         if (showYLabels) {
             val textPaint = Paint().apply {
-                color = 0xFFFFB400.toInt()
+                color = paintColor
                 textAlign = Paint.Align.RIGHT
                 textSize = density.run { 12.dp.toPx() }
-                typeface = setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD))
+                typeface = setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL))
                 alpha = 192
             }
 
@@ -148,9 +152,6 @@ fun LineChart(
                     textPaint
                 )
             }
-
-
-
         }
 
     }
