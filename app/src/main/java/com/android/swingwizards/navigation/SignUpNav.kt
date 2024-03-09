@@ -13,17 +13,14 @@ import com.android.swingwizards.components.SignInScreen
 import com.android.swingwizards.components.SignUpComponent
 import com.android.swingwizards.components.SignUpScreen
 import com.android.swingwizards.data.local.entity.TradingPlatformEntity
-import com.android.swingwizards.viewmodels.SignInViewModel
 import com.android.swingwizards.viewmodels.SignUpProcessViewModel
-import com.android.swingwizards.viewmodels.SignUpViewModel
+
 
 @Composable
 fun SignUpNav(
     navController: NavHostController,
     startDestination: String = "signup",
     signUpProcessViewModel: SignUpProcessViewModel,
-    signInViewModel: SignInViewModel,
-    signUpViewModel: SignUpViewModel,
     context: Context,
     modifier: Modifier,
     onTradingPlatformClick: (TradingPlatformEntity) -> Unit
@@ -42,10 +39,10 @@ fun SignUpNav(
 
 
         composable(route = "signup") {
-            SignUpScreen(navController, signUpViewModel, context)
+            SignUpScreen(navController, context)
         }
         composable(route = "signin") {
-            SignInScreen(navController, signInViewModel, context = context)
+            SignInScreen(navController)
         }
         composable(route = "reset") {
             PasswordReset(navController)
