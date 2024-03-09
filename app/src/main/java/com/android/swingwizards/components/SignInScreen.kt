@@ -16,6 +16,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,7 +32,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.android.swingwizards.R
 import com.android.swingwizards.activities.Dashboard
 import com.android.swingwizards.common.PasswordSection
@@ -41,27 +44,28 @@ import com.android.swingwizards.theme.AppTheme
 import com.android.swingwizards.utils.AppUtils
 import com.android.swingwizards.viewmodels.SignInViewModel
 import com.example.core.network.data.models.LoginResponse
+import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 @Composable
-fun SignInScreen(navController: NavController, signInViewModel: SignInViewModel,context: Context) {
+fun SignInScreen(navController: NavController) {
+    val signInViewModel: SignInViewModel = getViewModel()
+
     val username = signInViewModel.signInFields.collectAsState().value.username
     val password = signInViewModel.signInFields.collectAsState().value.password
 
-
-
     val uiState: UiState by signInViewModel.uiState.collectAsState(initial = UiState.Relaxed)
     var isLoading by remember { mutableStateOf(false) }
-
+    val context = LocalContext.current
 
     when (uiState) {
         is UiState.Error -> {
             isLoading = false
-            Toast.makeText(
-                LocalContext.current,
+            showMessage(
                 "Something Went wrong.Please check your internet connection and try again",
-                Toast.LENGTH_SHORT
-            ).show()
+                context
+            )
         }
 
         UiState.Loading -> {
@@ -71,36 +75,27 @@ fun SignInScreen(navController: NavController, signInViewModel: SignInViewModel,
         is UiState.Success<*> -> {
             isLoading = false
             //Move to Dashboard
-            AppUtils.launchActivity(context = context,Dashboard::class.java)
+            AppUtils.launchActivity(context = context, Dashboard::class.java)
             val response = (uiState as UiState.Success<LoginResponse>).response
             signInViewModel.saveUserUsername(response.user.username)
-            Log.d("ServerResponse:", response.user.username)
             signInViewModel.saveUserLoggedIn()
         }
 
         is UiState.ServerError -> {
             isLoading = false
             val serverMessage = (uiState as UiState.ServerError)
-            when(serverMessage.code){
-                 404 -> {
-                    Toast.makeText(
-                        LocalContext.current,
-                        "The given username was not found.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+            when (serverMessage.code) {
+                404 -> {
+                    showMessage("The given username was not found.", context)
                 }
+
                 401 -> {
-                    Toast.makeText(
-                        LocalContext.current,
-                        "The password is incorrect.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }else -> {
-                Toast.makeText(
-                    LocalContext.current,
-                    "An unknown error occurred while trying to log you in.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                    showMessage("The password is incorrect.", context)
+                }
+
+                else -> {
+                    showMessage("An unknown error occurred while trying to log you in.", context)
+
                 }
 
 
@@ -186,7 +181,7 @@ fun SignInScreen(navController: NavController, signInViewModel: SignInViewModel,
             AppButton(
                 text = "Sign in",
                 onButtonClick = {
-                     signInViewModel.signInUser(username, password)
+                    signInViewModel.signInUser(username, password)
                 },
                 isLoading = isLoading,
                 enabled = username != "" && password != ""
@@ -212,8 +207,17 @@ fun SignInTopBar(
 }
 
 
+fun showMessage(message: String, context: Context) {
+    Toast.makeText(
+        context,
+        message,
+        Toast.LENGTH_SHORT
+    ).show()
+}
+
+
 @Preview
 @Composable
 fun SignInScreenPreview() {
-   // SignInScreen(rememberNavController(), SignInViewModel())
+    SignInScreen(rememberNavController())
 }
