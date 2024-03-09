@@ -39,7 +39,7 @@ fun SignUpNav(
 
 
         composable(route = "signup") {
-            SignUpScreen(navController, context)
+            SignUpScreen(navController)
         }
         composable(route = "signin") {
             SignInScreen(navController)
