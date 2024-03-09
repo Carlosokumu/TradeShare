@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.android.swingwizards.R
-import com.android.swingwizards.navigation.MetaTraderNav
+import com.android.swingwizards.navigation.SignUpNav
 import com.android.swingwizards.utils.AppUtils
 import com.android.swingwizards.viewmodels.SignInViewModel
 import com.android.swingwizards.viewmodels.SignUpProcessViewModel
@@ -18,9 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class SignUpProcess : ComponentActivity() {
 
     private val signUpProcessViewModel: SignUpProcessViewModel by viewModel()
-    private val signUpViewModel: SignUpViewModel by viewModel()
-    private val signInViewModel: SignInViewModel by viewModel()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -33,16 +30,14 @@ class SignUpProcess : ComponentActivity() {
             } else {
                 setContent {
                     val navController = rememberNavController()
-                    MetaTraderNav(
+                    SignUpNav(
                         navController = navController,
-                        modifier = Modifier,
                         signUpProcessViewModel = signUpProcessViewModel,
                         context = this,
-                        signUpViewModel = signUpViewModel,
-                        signInViewModel = signInViewModel,
-                        onTradingPlatformClick = {
-                            signUpProcessViewModel.selectTradingPlatform(it)
-                        })
+                        modifier = Modifier
+                    ) {
+                        signUpProcessViewModel.selectTradingPlatform(it)
+                    }
                 }
             }
 
