@@ -2,6 +2,7 @@ package com.android.swingwizards.common
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -39,14 +40,27 @@ import com.android.swingwizards.theme.AppTheme
 fun EmailSection(
     modifier: Modifier = Modifier,
     email: String = "",
-    updateEmail: (String) -> Unit
+    updateEmail: (String) -> Unit,
+    isError: Boolean = false
 ) {
     Column(modifier = modifier) {
-        Text(
-            text = stringResource(id = R.string.email),
-            color = AppTheme.colors.textPrimary,
-            style = AppTheme.typography.subtitle
-        )
+        Row {
+            Text(
+                text = stringResource(id = R.string.email),
+                color = AppTheme.colors.textPrimary,
+                style = AppTheme.typography.subtitle
+            )
+            Spacer(modifier = Modifier.size(10.dp))
+            AnimatedVisibility(visible = isError && email != "") {
+                Text(
+                    text = stringResource(id = R.string.email_error),
+                    color = AppTheme.colors.error,
+                    style = AppTheme.typography.caption
+                )
+            }
+
+        }
+
         Spacer(modifier = Modifier.height(10.dp))
         InputField(
             icon = R.drawable.email,
@@ -99,7 +113,7 @@ fun AccountName(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun LoginId(modifier: Modifier = Modifier,updateLoginId: (String) -> Unit,loginId: String) {
+fun LoginId(modifier: Modifier = Modifier, updateLoginId: (String) -> Unit, loginId: String) {
     Column(modifier = modifier) {
         Text(
             text = stringResource(id = R.string.login_id),
@@ -110,10 +124,11 @@ fun LoginId(modifier: Modifier = Modifier,updateLoginId: (String) -> Unit,loginI
         InputField(
             icon = null,
             placeHolder = R.string.login_id,
-            value = loginId ,
+            value = loginId,
             requiresIcon = false,
             shouldBeNumber = true,
-            updateText = updateLoginId)
+            updateText = updateLoginId
+        )
     }
 }
 
@@ -122,14 +137,26 @@ fun PasswordSection(
     modifier: Modifier = Modifier,
     updatePassword: (String) -> Unit,
     password: String = "",
-    shouldShowIcon: Boolean = true
+    shouldShowIcon: Boolean = true,
+    isValidPassword: Boolean = false
 ) {
     Column(modifier = modifier) {
-        Text(
-            text = stringResource(id = R.string.password),
-            color = AppTheme.colors.textPrimary,
-            style = AppTheme.typography.subtitle
-        )
+        Row {
+            Text(
+                text = stringResource(id = R.string.password),
+                color = AppTheme.colors.textPrimary,
+                style = AppTheme.typography.subtitle
+            )
+            Spacer(modifier = Modifier.size(10.dp))
+            AnimatedVisibility(visible = isValidPassword && password != "") {
+                Text(
+                    text = stringResource(id = R.string.password_length),
+                    color = AppTheme.colors.error,
+                    style = AppTheme.typography.caption
+                )
+            }
+        }
+
         Spacer(modifier = Modifier.height(10.dp))
         InputField(
             icon = R.drawable.icon_lock,
@@ -156,6 +183,7 @@ fun InputField(
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(true) }
 
+
     Surface(
         color = AppTheme.colors.onPrimary,
         shape = RoundedCornerShape(10.dp),
@@ -170,7 +198,7 @@ fun InputField(
                 ),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (requiresIcon && icon != null &&  shouldShowIcon) {
+            if (requiresIcon && icon != null && shouldShowIcon) {
                 Icon(
                     painter = painterResource(id = icon),
                     contentDescription = "field icon",

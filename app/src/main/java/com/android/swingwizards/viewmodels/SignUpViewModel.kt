@@ -1,14 +1,16 @@
 package com.android.swingwizards.viewmodels
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.swingwizards.data.repository.UserRepo
 import com.android.swingwizards.models.InputFieldsStates
 import com.android.swingwizards.models.SwitchState
 import com.android.swingwizards.models.UiState
-import com.example.core.network.data.api.ApiCallResult
-import com.example.core.network.repository.UserRepository
+import com.carlos.data.repositories.UserRepository
+import com.carlos.model.DomainUser
+import com.carlos.network.models.ApiCallResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,8 +20,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SignUpViewModel(
-    private val userRepository: UserRepository,
     private val userRepo: UserRepo,
+    private val userRepository: UserRepository,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
@@ -67,6 +69,11 @@ class SignUpViewModel(
         userRepo.saveUsername(username)
     }
 
+
+    fun saveAccessToken(accessToken: String) = viewModelScope.launch {
+        userRepo.saveAccessToken(accessToken)
+    }
+
     fun onSwitch(isSwitched: Boolean) {
         _switchState.update {
             _switchState.value.copy(
@@ -80,7 +87,8 @@ class SignUpViewModel(
         userRepo.saveUserLoggedInStatus(true)
     }
 
-    fun submitUser(username: String, email: String, password: String) {
+
+    fun registerTradeShareUser(username: String, email: String, password: String) {
         _uiState.value = UiState.Loading
         viewModelScope.launch(coroutineDispatcher) {
             when (val result = userRepository.registerTradeShareUser(
@@ -95,6 +103,7 @@ class SignUpViewModel(
                 }
 
                 is ApiCallResult.ServerError -> {
+                    Log.d("STATE:", result.errorBody?.error.toString())
                     _uiState.value =
                         UiState.ServerError(
                             code = result.code,
@@ -103,6 +112,7 @@ class SignUpViewModel(
                 }
 
                 is ApiCallResult.Success -> {
+                    Log.d("STATE:", "SUCCESS")
                     _uiState.value = UiState.Success(result.data)
                 }
 

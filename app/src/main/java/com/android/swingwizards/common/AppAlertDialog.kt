@@ -72,7 +72,7 @@ fun AppAlertDialog(
         },
         text = {
             Text(
-                text =  dialogText,
+                text = dialogText,
                 style = AppTheme.typography.caption,
                 color = AppTheme.colors.textPrimary
             )

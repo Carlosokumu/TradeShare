@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SwingWizards</string>
+    <string name="app_name">TradeShare</string>
     <string name="jmHoldings">Jm Holdings LLC</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -7,15 +7,24 @@
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="account">Let us  create you an account real quick.It wont take long!</string>
+    <string name="login_back">Provide your username and password to login back to your account</string>
+    <string name="metatrader_rationale">By providing your metatrader credentials,your account will be deployed securely on the cloud.</string>
     <string name="datafeed">Data Feed</string>
     <string name="positions">Positions</string>
     <string name="forums">Forums</string>
+    <string name="login_id">Login</string>
     <string name="mainmenu">Main Menu</string>
+    <string name="account_name">Account Name</string>
     <string name="accountdet">Account</string>
     <string name="us">Trading With You</string>
+    <string name="started">Get Started</string>
+    <string name="password_reset">Password Reset</string>
+    <string name="password_info">Provide the email that you used to sign up with,a link to reset your password will be sent to you via email</string>
     <string name="company_name">Smart trader &#8482;</string>
     <string name="email_rationale">Verifying your email,Upon verification we will be using your email to send you updates.
         Please enter the 6 digit code sent to your email </string>
+
+    <string name="load_fail">⚠️</string>
 
     <string name="connection_lost"><![CDATA[
         <font color=\'#ff0801\'>Connection Reset</font>
@@ -59,6 +68,46 @@ Last <font color=\'#D50000\'>15</font> trades]]>
 <![CDATA[
 Last <font color=\'#D50000\'>20</font> trades]]>
     </string>
+    <string name="title_activity_sample">Sample</string>
+    <string name="who_are_you">Who are you?</string>
+    <string name="ctrader_console">Ctrader Connection Console</string>
+    <string name="change_who">You can always change who you are later</string>
+    <string name="change_platform">You can  be able to add  other trading platform(s) later</string>
+    <string name="ctrader_rationale">TradeShare empowers traders to establish trustworthy connections with the global community by transparently showcasing their trading portfolios.To achieve this, we need your help in making some of your trading data public. Follow the instructions below to  deploy your trading accounts in the ctrader trading platform.</string>
+    <string name="trading_platform">Select your trading platform</string>
+    <string name="investor">I am an Investor</string>
+    <string name="investor_caption">Establish connections with successful traders by analyzing their trading portfolios.
+        Identify profitable strategies and engage with experienced traders to foster a collaborative and mutually beneficial trading community.</string>
+    <string name="trader">I am a Trader</string>
+    <string name="step_one">1.Login  to  your ctrader account if you are currently not logged in</string>
+    <string name="step_two">2.If you have no applications listed,please create one by clicking Add New App and  give it  a few hours for it to be verified by the ctrader team and then come back to this screen,repeat the steps but skip step 2.</string>
+    <string name="step_three">3.To be at this step,i assume you already have an application listed,click view on the one you want to deploy,copy the Client ID and the Secret</string>
+    <string name="step_four">4.Proceed by clicking playground,then GetToken,Allow access to trading accounts by checking them then  click Allow Access.</string>
+    <string name="step_five">5.Now copy the Access Token and the Refresh Token and you are Done.</string>
+    <string name="home_feed">Home</string>
+    <string name="traders">Traders</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="account_profile">Account</string>
+
+    <string name="trader_caption">Showcase your trading prowess by listing your accounts on leading trading platforms, complete with a comprehensive portfolio. This not only attracts potential investors but also opens the door to connect with like-minded individuals, fostering a network for shared insights and opportunities in the world of trading</string>
+    <string name="email">Email</string>
+    <string name="email_error">check email address</string>
+    <string name="username">Username</string>
+    <string name="username_error">enter an interesting username</string>
+    <string name="password">Password</string>
+    <string name="password_length">check password length</string>
+    <string name="i_agree_to_terms"><![CDATA[I agree to   Tradeshare Terms & Conditions]]></string>
+    <string name="sign_in">Sign In</string>
+    <string name="already_have_account">Already have an Account?</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="connect_metatrader">Connect to your metatrader account</string>
+
+
+    <!-- Destinations -->
+    <string name="meta_trader_connection_screen">meta_trader</string>
+    <string name="mt_version">Metatrader version</string>
+    <string name="server">Server</string>
 
 
 </resources>

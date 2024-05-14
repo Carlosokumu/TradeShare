@@ -41,32 +41,36 @@ fun TradeShareCardUi() {
             .aspectRatio(bankCardAspectRatio),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
-        Box(modifier = Modifier.background(AppTheme.colors.secondaryVariant).wrapContentSize()) {
+        Box(
+            modifier = Modifier
+                .background(AppTheme.colors.secondaryVariant)
+                .wrapContentSize()
+        ) {
             CardBackground(baseColor = AppTheme.colors.secondaryVariant)
             Column {
                 Text(
-                    text = "Welcome to TradeShare \uD83D\uDC4B",
+                    text = "Balance(KES)",
                     modifier = Modifier.padding(16.dp),
                     style = AppTheme.typography.subtitle,
                     color = AppTheme.colors.textPrimary
                 )
                 Text(
-                    text = "Verify your account to start Investing !",
+                    text = "0.0",
                     modifier = Modifier.padding(start = 16.dp, top = 5.dp),
-                    style = AppTheme.typography.caption,
+                    style = AppTheme.typography.body,
                     color = AppTheme.colors.textPrimary
                 )
                 Button(
                     onClick = {},
-                    border = BorderStroke(width = 1.dp,color = Color.Gray),
+                    border = BorderStroke(width = 1.dp, color = Color.Gray),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Transparent,
                         disabledContainerColor = Color.Transparent
                     ),
-                    modifier = Modifier.padding(start = 16.dp,top = 10.dp)
+                    modifier = Modifier.padding(start = 16.dp, top = 10.dp)
                 ) {
                     Text(
-                        text = "Verify",
+                        text = "Deposit",
                         modifier = Modifier,
                         style = AppTheme.typography.button,
                         color = AppTheme.colors.textPrimary

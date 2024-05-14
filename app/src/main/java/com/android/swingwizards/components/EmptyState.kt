@@ -13,17 +13,30 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.android.swingwizards.R
+import com.android.swingwizards.common.AppButton
 import com.android.swingwizards.theme.AppTheme
 
 
 @Composable
-fun EmptyState(modifier: Modifier = Modifier, emptyMessage: String,isRegistered: Boolean = true) {
-    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+fun EmptyState(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+    emptyMessage: String,
+    isRegistered: Boolean = true
+) {
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.wizard_empty))
         LottieAnimation(
             modifier = modifier.size(100.dp),
@@ -36,8 +49,11 @@ fun EmptyState(modifier: Modifier = Modifier, emptyMessage: String,isRegistered:
             style = MaterialTheme.typography.subtitle1,
             color = AppTheme.colors.textPrimary
         )
-        if (isRegistered){
-             AppButton(text = "Register", showDivider = false, onButtonClick = {})
+        if (isRegistered) {
+            AppButton(
+                text = "Register",
+                showDivider = false,
+                onButtonClick = { navController.navigate("signup") })
         }
     }
 }
@@ -45,6 +61,6 @@ fun EmptyState(modifier: Modifier = Modifier, emptyMessage: String,isRegistered:
 
 @Preview
 @Composable
-fun EmptyStatePreview(){
-    EmptyState(emptyMessage = "You  have no account")
+fun EmptyStatePreview() {
+    EmptyState(emptyMessage = "You  have no account", navController = rememberNavController())
 }

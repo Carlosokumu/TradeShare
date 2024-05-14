@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/night"
     android:padding="@dimen/padding_8"
-    tools:context=".fragments.DataFeed">
+    tools:context="com.android.swingwizards.fragments.DataFeed">
 
     <LinearLayout
         android:id="@+id/topBar"
@@ -56,15 +56,15 @@
                 android:layout_width="wrap_content"
                 android:fontFamily="@font/lato"
                 android:id="@+id/txtUserNameTop"
-                android:layout_height="wrap_content"
-                android:text="320186" />
+                tools:text="carlos"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open"
                 android:id="@+id/txtTop"
-                android:text="0.0"
+                tools:text="0.0"
                 android:textColor="@color/light_green" />
 
         </LinearLayout>
@@ -80,16 +80,19 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/homeOption"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_20"
-            android:drawableStart="@drawable/ic_home"
-            android:drawablePadding="@dimen/padding_8"
-            android:fontFamily="@font/lato"
-            android:text="Home"
-            android:textSize="@dimen/text_20" />
+           <TextView
+               android:id="@+id/homeOption"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="@dimen/text_20"
+               android:layout_marginTop="@dimen/text_20"
+               android:layout_marginEnd="@dimen/text_20"
+               android:layout_marginBottom="@dimen/text_20"
+               android:drawableStart="@drawable/ic_home"
+               android:drawablePadding="@dimen/padding_8"
+               android:fontFamily="@font/lato"
+               android:text="Home"
+               android:textSize="@dimen/text_20" />
 
         <LinearLayout
             android:id="@+id/userContainer"

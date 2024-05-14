@@ -75,7 +75,7 @@ fun WhoAreYouComponent(
                 Text(
                     text = stringResource(R.string.investor),
                     style = MaterialTheme.typography.subtitle1,
-                    color =AppTheme.colors.textPrimary
+                    color = AppTheme.colors.textPrimary
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))

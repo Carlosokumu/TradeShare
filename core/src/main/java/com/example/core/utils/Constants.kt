@@ -3,9 +3,16 @@ package com.example.core.utils
 object Constants {
 
 
-    const val BASE_URL_GO = "https://smarttraders.herokuapp.com/"
-    const val BASE_URL_NODE = "https://mt4functions.herokuapp.com/"
-    const val EchoUrl = "https://smarttraders.herokuapp.com/ws"
+    const val BASE_URL_GO = "https://tradesharebackend-xuqcyp00.b4a.run/"
+    const val BASE_URL_NODE = "https://tradeshare.onrender.com/api/v1/"
+    const val ECONOMIC_CALENDAR_URL = "ws://tradeshare-calendar.cleverapps.io/ws"
+    const val EchoUrl = "https://swingwizards.onrender.com/ws"
+    const val C_TRADER_ECHO_URL = "https://ctraderapi.onrender.com/ws"
+
+
+    //const val CTrader_Websocket = "wss://demo.ctraderapi.com:5035"
+    const val CTrader_Websocket = "wss://live.ctraderapi.com:5035"
+
 
 
 
@@ -27,5 +34,12 @@ object Constants {
     //Backends
     const val NodeBackend = "NodeBackend"
     const val GolangBackend = "GolangBackend"
+
+    //Websocket Echo Endpoints
+    const val ChatWs = "ChatWs"
+    const val CTrader_WS = "CTraderWs"
+    const val ECONOMIC_CALENDER = "EconomicCalender"
+
+
 
 }

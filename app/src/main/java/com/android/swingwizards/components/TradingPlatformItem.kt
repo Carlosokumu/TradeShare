@@ -1,5 +1,6 @@
 package com.android.swingwizards.components
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
@@ -20,8 +21,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.android.swingwizards.R
-import com.android.swingwizards.data.local.entity.TradingPlatformEntity
 import com.android.swingwizards.theme.AppTheme
+import com.carlos.core_database.entities.TradingPlatformEntity
 
 
 @Composable
@@ -38,7 +39,9 @@ fun TradingPlatformItem(
             1.dp,
             if (tradingPlatform.isSelected) AppTheme.colors.inverseSurface else AppTheme.colors.onSurface
         ),
-        onClick = { onPlatformClick(tradingPlatform) },
+        onClick = {
+            onPlatformClick(tradingPlatform)
+        },
         color = AppTheme.colors.onPrimary,
     ) {
         Row(

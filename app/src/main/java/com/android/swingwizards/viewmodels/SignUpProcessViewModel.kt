@@ -1,11 +1,12 @@
 package com.android.swingwizards.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.swingwizards.data.local.entity.TradingPlatformEntity
-import com.android.swingwizards.data.repository.TradingPlatFormRepository
 import com.android.swingwizards.data.repository.UserRepo
+import com.carlos.core_database.entities.TradingPlatformEntity
+import com.carlos.data.repositories.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -15,13 +16,13 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class SignUpProcessViewModel(
-    private val tradingPlatFormRepository: TradingPlatFormRepository,
+    private val userRepository: UserRepository,
     private val userRepo: UserRepo
 ) :
     ViewModel() {
 
     suspend fun setPlatformAsSelected(id: Int) =
-        tradingPlatFormRepository.setPlatformAsSelected(id = id)
+        userRepository.setPlatformAsSelected(id = id)
 
     private val _tradingPlatforms =
         MutableStateFlow<List<TradingPlatformEntity>>(emptyList())
@@ -30,10 +31,6 @@ class SignUpProcessViewModel(
 
     private val _isUserSignUp = MutableLiveData<Boolean>()
     val isUserSignUp = _isUserSignUp
-
-
-
-
 
 
     private val _isSignUp = MutableStateFlow(true)
@@ -55,7 +52,7 @@ class SignUpProcessViewModel(
 
 
     val selectedPlatform =
-        tradingPlatFormRepository.getSelectedTradingPlatform()
+        userRepository.getSelectedTradingPlatform()
             .stateIn(
                 viewModelScope,
                 SharingStarted.WhileSubscribed(),
@@ -64,19 +61,20 @@ class SignUpProcessViewModel(
 
     private fun getTradingPlatforms() {
         viewModelScope.launch {
-            tradingPlatFormRepository.getTradingPlatforms().collectLatest {
+            userRepository.getTradingPlatforms().collectLatest {
                 _tradingPlatforms.emit(it)
             }
         }
     }
 
     fun selectTradingPlatform(tradingPlatformEntity: TradingPlatformEntity) {
+        Log.d("TradingPlatformEntity",tradingPlatformEntity.toString())
         viewModelScope.launch {
             if (tradingPlatformEntity.isSelected) {
-                tradingPlatFormRepository.setPlatformAsUnSelected(tradingPlatformEntity.id)
+                userRepository.setPlatformAsUnSelected(tradingPlatformEntity.id)
             } else {
-                tradingPlatFormRepository.unselectAllTradingPlatforms()
-                tradingPlatFormRepository.setPlatformAsSelected(tradingPlatformEntity.id)
+                userRepository.unselectAllTradingPlatforms()
+                userRepository.setPlatformAsSelected(tradingPlatformEntity.id)
             }
         }
     }

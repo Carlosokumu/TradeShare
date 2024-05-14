@@ -1,13 +1,15 @@
 package com.android.swingwizards.viewmodels
 
+
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.swingwizards.data.repository.UserRepo
 import com.android.swingwizards.models.InputFieldsStates
 import com.android.swingwizards.models.UiState
-import com.example.core.network.data.api.ApiCallResult
-import com.example.core.network.repository.UserRepository
+import com.carlos.data.repositories.UserRepository
+import com.carlos.network.models.ApiCallResult
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,10 +29,12 @@ class MetaTraderViewModel(
     private var _metaTraderFields = MutableStateFlow(InputFieldsStates())
     val metaTraderFields get() = _metaTraderFields.asStateFlow()
 
-    private val _uiState: MutableStateFlow<UiState> =
-        MutableStateFlow(UiState.Relaxed)
+    private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState.Relaxed)
 
     val uiState: StateFlow<UiState> = _uiState
+
+    private val _accessToken = MutableLiveData<String>()
+    val accessToken = _accessToken
 
 
     fun onLoginEntered(login: String) {
@@ -42,16 +46,22 @@ class MetaTraderViewModel(
     }
 
 
+    init {
+        getAccessToken()
+    }
+
+
     fun saveUserAccountId(accountId: String) = viewModelScope.launch {
         userRepo.saveUserAccountId(accountId = accountId)
     }
 
 
-    fun subMitDetails(
+    fun connectTradingAccount(
         metaTraderPassword: String,
         metaTraderLogin: String,
         server: String,
-        metaTraderVersion: String
+        metaTraderVersion: String,
+        token: String
     ) {
         _uiState.value = UiState.Loading
         viewModelScope.launch(coroutineDispatcher) {
@@ -62,20 +72,19 @@ class MetaTraderViewModel(
                         metaTraderLogin = metaTraderLogin,
                         metaTraderPassword = metaTraderPassword,
                         metaTraderVersion = metaTraderVersion,
-                        server = server
-                    )
-                    ) {
+                        server = server,
+                        token = token
+                    )) {
                         is ApiCallResult.ApiCallError -> {
-                            _uiState.value =
-                                UiState.Error("Something Went Wrong.Try Again Later")
+                            _uiState.value = UiState.Error("Something Went Wrong.Try Again Later")
                         }
 
                         is ApiCallResult.ServerError -> {
-                            _uiState.value =
-                                UiState.ServerError(
-                                    code = result.code,
-                                    message = result.errorBody?.message ?: "Server Error"
-                                )
+                            Log.d("SERVERERROR:", result.toString())
+                            _uiState.value = UiState.ServerError(
+                                code = result.code,
+                                message = result.errorBody?.error ?: "Server Error"
+                            )
                         }
 
                         is ApiCallResult.Success -> {
@@ -85,7 +94,16 @@ class MetaTraderViewModel(
                     }
                 }
             }
+        }
 
+    }
+
+
+    fun getAccessToken() {
+        viewModelScope.launch {
+            userRepo.getAccessToken.collectLatest { accessToken ->
+                _accessToken.value = accessToken
+            }
         }
     }
 

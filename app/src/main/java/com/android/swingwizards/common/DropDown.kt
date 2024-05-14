@@ -1,6 +1,5 @@
 package com.android.swingwizards.common
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -22,7 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,10 +34,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.swingwizards.R
+import com.android.swingwizards.enums.PeriodHistoryRange
+import com.android.swingwizards.enums.PeriodRange
 import com.android.swingwizards.theme.AppTheme
-import com.android.swingwizards.utils.AppUtils
-import kotlinx.coroutines.flow.MutableStateFlow
-import org.apache.commons.lang3.mutable.MutableBoolean
 
 
 @Composable
@@ -72,6 +68,7 @@ fun ServerSection(modifier: Modifier = Modifier, selectedItem: (String) -> Unit)
             items = listOf(
                 "HFMarketsKE-Live Server 8",
                 "HFMarketsKE-Demo Server 2",
+                "DerivVU-Server-02",
                 "Deriv-Server",
                 "Deriv-Demo",
                 "EGMSecurities-Demo",
@@ -86,12 +83,10 @@ fun ServerSection(modifier: Modifier = Modifier, selectedItem: (String) -> Unit)
 @Composable
 fun TradeHistoryPeriod(
     modifier: Modifier = Modifier,
-    selectedPeriod: (String) -> Unit,
+    selectedPeriod: (PeriodRange) -> Unit,
     shouldExpand: Boolean,
     shouldClose: () -> Unit
 ) {
-    //var expanded by remember { mutableStateOf(false) }
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -109,29 +104,29 @@ fun TradeHistoryPeriod(
                 .background(AppTheme.colors.onPrimary)
                 .padding(horizontal = 15.dp)
         ) {
-            AppUtils.periodOptions.forEach { period ->
+            PeriodHistoryRange.values().forEach { period ->
                 DropdownMenuItem(
                     modifier = Modifier
                         .background(AppTheme.colors.onPrimary)
                         .padding(),
                     text = {
                         Text(
-                            text = period,
+                            text = period.uiString,
                             style = AppTheme.typography.caption,
                             color = AppTheme.colors.textPrimary
                         )
                     },
                     onClick = {
-                        selectedPeriod(period)
+                        selectedPeriod(period.periodRange)
                         shouldClose()
                     },
                 )
-                if (AppUtils.periodOptions.indexOf(period) < AppUtils.periodOptions.lastIndex) {
-                    Divider(
-                        modifier = Modifier.padding(start = 10.dp, end = 10.dp),
-                        color = AppTheme.colors.onSurface
-                    )
-                }
+//                if (AppUtils.periodOptions.indexOf(period) < AppUtils.periodOptions.lastIndex) {
+//                    Divider(
+//                        modifier = Modifier.padding(start = 10.dp, end = 10.dp),
+//                        color = AppTheme.colors.onSurface
+//                    )
+//                }
 
             }
         }

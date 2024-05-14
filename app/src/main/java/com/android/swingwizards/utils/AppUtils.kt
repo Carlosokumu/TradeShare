@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import com.android.swingwizards.R
 import com.android.swingwizards.models.Action
 import com.android.swingwizards.models.Screen
+import java.util.regex.Pattern
 
 
 object AppUtils {
@@ -16,14 +17,12 @@ object AppUtils {
     }
 
 
-
     val navigationScreens = listOf(
-        Screen.Home,
-        Screen.Markets,
+        Screen.HomeFeed,
+        Screen.Traders,
         Screen.Portfolio,
         Screen.Account
     )
-
 
 
     val actions = listOf(
@@ -33,6 +32,18 @@ object AppUtils {
         Action(action = "Withdraw", icon = R.drawable.ic_withdraw)
 
     )
+
+}
+
+
+fun String.isValidEmail(): Boolean {
+    val emailString = ("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+    return Pattern.compile(emailString).matcher(this).matches()
+}
+
+fun String.isValidPassword(): Boolean {
+    return length >= 5
 }
 
 

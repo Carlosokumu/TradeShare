@@ -29,7 +29,7 @@ fun LineChart(
     data: ImmutableList<DataPoint>,
     graphColor: Color,
     showDashedLine: Boolean,
-    showYLabels: Boolean = true
+    showYLabels: Boolean
 ) {
 
 

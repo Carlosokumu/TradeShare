@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.android.swingwizards.components.PasswordReset
-import com.android.swingwizards.components.SignInScreen
-import com.android.swingwizards.components.SignUpComponent
-import com.android.swingwizards.components.SignUpScreen
-import com.android.swingwizards.data.local.entity.TradingPlatformEntity
+import com.android.swingwizards.screens.PasswordReset
+import com.android.swingwizards.screens.SignInScreen
+import com.android.swingwizards.screens.SignUpComponent
+import com.android.swingwizards.screens.SignUpScreen
 import com.android.swingwizards.viewmodels.SignUpProcessViewModel
+import com.carlos.core_database.entities.TradingPlatformEntity
 
 
 @Composable
@@ -53,7 +53,10 @@ fun SignUpNav(
             SignUpComponent(
                 tradingPlatformEntity = selectedPlatform,
                 tradingPlatForms = tradingPlatforms,
-                onTradingPlatformClick = { onTradingPlatformClick(it) },
+                onTradingPlatformClick = {
+
+                    onTradingPlatformClick(it)
+                                         },
                 navController = navController,
                 context = context
             )

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/night"
     android:layout_height="match_parent"
-    tools:context=".activities.Splash">
+    android:background="@color/night"
+    tools:context="com.android.swingwizards.activities.Splash">
 
     <ImageView
         android:id="@+id/jmLogo"
@@ -13,56 +12,60 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@drawable/swingwizards_pg" />
-     <TextView
-         android:layout_width="wrap_content"
-         android:id="@+id/text"
-         android:layout_height="wrap_content"/>
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
-        android:layout_below="@+id/jmLogo"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
         android:id="@+id/nameContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/jmLogo"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gotham"
             android:text="S"
-            android:textSize="@dimen/radius_32"
             android:textColor="@color/infowin"
-            android:fontFamily="@font/gotham"
-            android:layout_height="wrap_content"/>
+            android:textSize="@dimen/radius_32" />
+
         <TextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gotham"
             android:text="wing"
-            android:textSize="@dimen/radius_32"
-            android:fontFamily="@font/gotham"
-            android:layout_height="wrap_content"/>
+            android:textSize="@dimen/radius_32" />
+
         <TextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gotham"
             android:text="W"
             android:textColor="@color/infowin"
-            android:textSize="@dimen/radius_32"
-            android:fontFamily="@font/gotham"
-            android:layout_height="wrap_content"/>
+            android:textSize="@dimen/radius_32" />
+
         <TextView
             android:layout_width="wrap_content"
-            android:text="izards"
-            android:textSize="@dimen/radius_32"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/gotham"
-            android:layout_height="wrap_content"/>
+            android:text="izards"
+            android:textSize="@dimen/radius_32" />
 
     </LinearLayout>
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:layout_marginStart="@dimen/margin_right_16"-->
-<!--        android:layout_marginTop="@dimen/margin_right_16"-->
-<!--        android:layout_marginEnd="@dimen/margin_right_16"-->
-<!--        android:layout_marginBottom="@dimen/margin_right_16"-->
-<!--        android:fontFamily="@font/open"-->
-<!--        android:text="@string/company_name"-->
-<!--        android:textColor="@color/white" />-->
+
+    <ProgressBar
+        android:id="@+id/loadingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/radius_2"
+        android:indeterminateTint="@color/red_connectify" />
+
 
 </RelativeLayout>

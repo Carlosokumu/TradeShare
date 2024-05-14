@@ -20,7 +20,7 @@ fun SwitchComponent(
     label: String,
     signUpViewModel: SignUpViewModel
 ) {
-   val isCheckedValue = signUpViewModel.switchState.collectAsState().value.isChecked
+    val isCheckedValue = signUpViewModel.switchState.collectAsState().value.isChecked
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -30,7 +30,7 @@ fun SwitchComponent(
         Checkbox(
             checked = isCheckedValue,
             onCheckedChange = { isChecked ->
-               signUpViewModel.onSwitch(isSwitched = isChecked)
+                signUpViewModel.onSwitch(isSwitched = isChecked)
             },
             colors = CheckboxDefaults.colors(
                 checkedColor = AppTheme.colors.secondaryVariant,
