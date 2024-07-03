@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/pieFake"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:alpha="0.1"
+        android:src="@drawable/circle_pie" />
+
+    <LinearLayout
+        android:id="@+id/topFake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pieFake"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/activity_padding_horizontal"
+        android:orientation="horizontal"
+        android:padding="@dimen/ccp_padding">
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="@dimen/radius_2"
+            android:alpha="0.2"
+            android:background="@color/gray" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="16dp"
+            android:layout_margin="@dimen/radius_2"
+            android:alpha="0.2"
+            android:background="@color/gray"
+            android:fontFamily="@font/robotolight"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topFake"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/activity_padding_horizontal"
+        android:orientation="horizontal"
+        android:padding="@dimen/ccp_padding">
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_margin="@dimen/radius_2"
+            android:alpha="0.2"
+            android:background="@color/gray" />
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="16dp"
+            android:layout_margin="@dimen/radius_2"
+            android:alpha="0.2"
+            android:background="@color/gray"
+            android:fontFamily="@font/robotolight"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

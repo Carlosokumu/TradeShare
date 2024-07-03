@@ -1,0 +1,4 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+<!--    <solid android:color="@color/night" /> &lt;!&ndash; Set the color of the circle &ndash;&gt;-->
+    <stroke android:width="2dp" android:color="@color/gray" /> <!-- Set the stroke width and color -->
+</shape>
