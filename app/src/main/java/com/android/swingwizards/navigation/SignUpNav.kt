@@ -28,9 +28,6 @@ fun SignUpNav(
     val tradingPlatforms by signUpProcessViewModel.tradingPlatforms.collectAsState()
     val selectedPlatform by signUpProcessViewModel.selectedPlatform.collectAsState()
 
-
-
-
     NavHost(
         navController = navController,
         startDestination = startDestination,
@@ -54,9 +51,8 @@ fun SignUpNav(
                 tradingPlatformEntity = selectedPlatform,
                 tradingPlatForms = tradingPlatforms,
                 onTradingPlatformClick = {
-
                     onTradingPlatformClick(it)
-                                         },
+                },
                 navController = navController,
                 context = context
             )
