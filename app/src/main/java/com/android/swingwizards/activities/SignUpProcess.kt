@@ -1,7 +1,6 @@
 package com.android.swingwizards.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.ui.Modifier
@@ -23,7 +22,6 @@ class SignUpProcess : ComponentActivity() {
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.trade_share_black)
         signUpProcessViewModel.isUserSignUp()
-
         signUpProcessViewModel.isUserSignUp.observe(this) { isSignedUp ->
             if (isSignedUp) {
                 handleIsSignedUp()
@@ -36,7 +34,6 @@ class SignUpProcess : ComponentActivity() {
                         context = this,
                         modifier = Modifier
                     ) {
-
                         signUpProcessViewModel.selectTradingPlatform(it)
                     }
                 }
