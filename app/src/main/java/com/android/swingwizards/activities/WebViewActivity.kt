@@ -1,7 +1,6 @@
 package com.android.swingwizards.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -44,7 +43,6 @@ class WebViewActivity : ComponentActivity() {
         window.statusBarColor = getColor(R.color.trade_share_black)
         setContent {
             WebViewComponent()
-
         }
     }
 }
