@@ -23,7 +23,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.android.swingwizards.R
-import com.android.swingwizards.models.Screen
 import com.android.swingwizards.theme.AppTheme
 
 @Composable
