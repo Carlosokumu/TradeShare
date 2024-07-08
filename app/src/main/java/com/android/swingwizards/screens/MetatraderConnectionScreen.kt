@@ -29,16 +29,17 @@ import androidx.navigation.NavController
 import com.android.swingwizards.R
 import com.android.swingwizards.common.AccountPlatform
 import com.android.swingwizards.common.AppAlertDialog
+import com.android.swingwizards.common.AppButton
 import com.android.swingwizards.common.LoginId
 import com.android.swingwizards.common.PasswordSection
 import com.android.swingwizards.common.ServerSection
-import com.android.swingwizards.common.AppButton
 import com.android.swingwizards.models.Screen
 import com.android.swingwizards.models.UiState
 import com.android.swingwizards.theme.AppTheme
 import com.android.swingwizards.viewmodels.MetaTraderViewModel
 import com.carlos.network.models.ApiResponse
 import org.koin.androidx.compose.getViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun MetaTraderConnectionScreen(navController: NavController) {
@@ -48,6 +49,9 @@ fun MetaTraderConnectionScreen(navController: NavController) {
         metaTraderViewModel.metaTraderFields.collectAsState().value.metaTraderLogin
     val metaTraderPassword =
         metaTraderViewModel.metaTraderFields.collectAsState().value.metaTraderPassword
+
+    val servers = metaTraderViewModel.brokerServers.collectAsStateWithLifecycle().value
+
     val openAlertDialog = remember { mutableStateOf(false) }
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -145,10 +149,6 @@ fun MetaTraderConnectionScreen(navController: NavController) {
             )
         }
     }
-
-
-
-
     Scaffold(
         topBar = {
             SignInTopBar {
@@ -201,8 +201,10 @@ fun MetaTraderConnectionScreen(navController: NavController) {
                     .verticalScroll(rememberScrollState())
                     .weight(1f)
             ) {
-
                 Spacer(modifier = Modifier.height(20.dp))
+                ServerSection(selectedItem = {}, servers = servers.map { it.name }, searchQuery = {
+                    metaTraderViewModel.searchServer(it)
+                })
                 Spacer(modifier = Modifier.height(15.dp))
                 LoginId(loginId = metaTraderLogin, updateLoginId = { loginId ->
                     metaTraderViewModel.onLoginEntered(loginId)
@@ -214,11 +216,6 @@ fun MetaTraderConnectionScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(15.dp))
                 AccountPlatform(selectedItem = { platform ->
                     selectedPlatform.value = platform
-
-                })
-                Spacer(modifier = Modifier.height(15.dp))
-                ServerSection(selectedItem = { server ->
-                    selectedServer.value = server
                 })
                 Spacer(modifier = Modifier.height(15.dp))
 
