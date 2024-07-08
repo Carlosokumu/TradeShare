@@ -41,7 +41,7 @@ val signInViewModel: Module = module {
 }
 
 val metaTraderViewModel: Module = module {
-    viewModel { MetaTraderViewModel(get(), get()) }
+    viewModel { MetaTraderViewModel(get(), get(), get()) }
 }
 
 
