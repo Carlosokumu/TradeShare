@@ -2,6 +2,7 @@ package com.carlos.network.api
 
 import com.carlos.network.models.AccountTrades
 import com.carlos.network.models.ApiResponse
+import com.carlos.network.models.Broker
 import com.carlos.network.models.ClosedTrade
 import com.carlos.network.models.EquityChart
 import com.carlos.network.models.Metrics
@@ -45,5 +46,9 @@ interface MtApi {
         @Query("history_range") range: Int,
         @Query("offset") offset: Int
     ): ClosedTrade
+
+
+    @GET("servers")
+    suspend fun searchServer(@Query("name") name: String): Broker
 
 }
