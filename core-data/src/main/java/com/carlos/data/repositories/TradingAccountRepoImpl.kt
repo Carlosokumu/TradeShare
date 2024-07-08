@@ -1,6 +1,5 @@
 package com.carlos.data.repositories
 
-import android.util.Log
 import com.carlos.data.mapper.asDomain
 import com.carlos.model.DomainAccountMetrics
 import com.carlos.model.DomainAccountTrades
@@ -9,7 +8,7 @@ import com.carlos.model.DomainEquityChart
 import com.carlos.network.api.MtApi
 import com.carlos.network.api.safeApiCall
 import com.carlos.network.models.ApiCallResult
-import com.carlos.network.models.EquityChart
+import com.carlos.network.models.Broker
 import com.carlos.network.models.GraphData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -25,6 +24,11 @@ class TradingAccountRepoImpl(
     ): ApiCallResult<DomainEquityChart> = safeApiCall(dispatcher = dispatcher) {
         return@safeApiCall mtApi.getEquityChart(accountId, startTime, endTime).asDomain()
     }
+
+    override suspend fun searchServer(name: String): ApiCallResult<Broker> =
+        safeApiCall(dispatcher = dispatcher) {
+            return@safeApiCall mtApi.searchServer(name = name)
+        }
 
 
     override suspend fun getAccountTrades(accountId: String): ApiCallResult<DomainAccountTrades> =
