@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -56,7 +57,12 @@ fun AccountPlatform(
 }
 
 @Composable
-fun ServerSection(modifier: Modifier = Modifier, selectedItem: (String) -> Unit) {
+fun ServerSection(
+    modifier: Modifier = Modifier,
+    selectedItem: (String) -> Unit,
+    servers: List<String>,
+    searchQuery: (String) -> Unit
+) {
     Column(modifier = modifier) {
         androidx.compose.material.Text(
             text = stringResource(id = R.string.server),
@@ -64,17 +70,10 @@ fun ServerSection(modifier: Modifier = Modifier, selectedItem: (String) -> Unit)
             style = AppTheme.typography.subtitle
         )
         Spacer(modifier = Modifier.height(10.dp))
-        DropdownMenu(
-            items = listOf(
-                "HFMarketsKE-Live Server 8",
-                "HFMarketsKE-Demo Server 2",
-                "DerivVU-Server-02",
-                "Deriv-Server",
-                "Deriv-Demo",
-                "EGMSecurities-Demo",
-                "EGMSecurities-Live4",
-                "ACGMarkets-Live"
-            ), selectedItem
+        SearchDropdownMenu(
+            servers,
+            selectedItem,
+            searchQuery
         )
     }
 }
@@ -220,8 +219,128 @@ fun DropdownMenu(items: List<String>, selectedItem: (String) -> Unit) {
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SearchDropdownMenu(
+    items: List<String>,
+    selectedItem: (String) -> Unit,
+    searchQuery: (String) -> Unit
+) {
+    LocalContext.current
+    var expanded by remember { mutableStateOf(false) }
+    var canFocus by remember { mutableStateOf(true) }
+    var expandedDropDownMenu by remember {
+        mutableStateOf(true)
+    }
+    val selectedText by remember { mutableStateOf("") }
+    var selectedOptionText by rememberSaveable { mutableStateOf("") }
+
+    var filteredItems by remember { mutableStateOf(items) }
+
+    // Filter items based on user input
+    val filteredList = items.filter { item ->
+        item.lowercase().contains(selectedOptionText.lowercase()) // Case-insensitive search
+    }
+    filteredItems = filteredList
+
+    selectedItem(selectedText)
+
+    Surface(
+        color = AppTheme.colors.onPrimary,
+        shape = RoundedCornerShape(10.dp),
+        modifier = Modifier.height(60.dp)
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .background(AppTheme.colors.onPrimary),
+        ) {
+            ExposedDropdownMenuBox(
+                expanded = expanded,
+                modifier = Modifier.background(AppTheme.colors.onPrimary),
+                onExpandedChange = {
+                    expanded = !expanded
+                    expandedDropDownMenu = it
+                    canFocus = true
+                },
+            ) {
+                TextField(
+                    value = selectedOptionText,
+                    onValueChange = { value ->
+                        selectedOptionText = value
+                        if (value.isNotEmpty()) {
+                            expandedDropDownMenu = true
+                        }
+                        searchQuery(value)
+                    },
+                    readOnly = false,
+                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                    placeholder = {
+                        Text(
+                            text = "Search for broker",
+                            color = AppTheme.colors.textPrimary,
+                            style = AppTheme.typography.subtitle
+                        )
+                    },
+                    modifier = Modifier
+                        .menuAnchor()
+                        .focusProperties {
+                            this.canFocus = canFocus
+                        }
+                        .fillMaxWidth(),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.Transparent,
+                        focusedTextColor = AppTheme.colors.textPrimary,
+                        unfocusedTextColor = AppTheme.colors.textPrimary,
+                        unfocusedContainerColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        cursorColor = AppTheme.colors.secondaryVariant,
+                    ),
+                    textStyle = AppTheme.typography.caption,
+
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.None,
+                    )
+
+                )
+                if (filteredItems.isNotEmpty() && selectedOptionText.isNotEmpty()) {
+                    ExposedDropdownMenu(
+                        expanded = expandedDropDownMenu,
+                        modifier = Modifier.background(AppTheme.colors.onPrimary),
+                        onDismissRequest = { expandedDropDownMenu = false }
+                    ) {
+                        filteredItems.forEach { item ->
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        text = item,
+                                        style = AppTheme.typography.caption,
+                                        color = AppTheme.colors.textPrimary
+                                    )
+                                },
+                                modifier = Modifier.background(AppTheme.colors.onPrimary),
+                                onClick = {
+                                    selectedOptionText = item
+                                    expandedDropDownMenu = false
+                                    canFocus = false
+                                }
+                            )
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 @Preview
 @Composable
 fun DropDownMenuPreview() {
-    DropdownMenu(listOf(), selectedItem = {})
+    SearchDropdownMenu(listOf(), selectedItem = {}, searchQuery = {})
 }
