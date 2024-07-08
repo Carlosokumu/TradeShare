@@ -62,8 +62,10 @@ fun Modifier.drawColoredShadow(
     offsetX: Dp = 0.dp
 ) = this.drawBehind {
 //    Color.
-    val transparentColor =  color.copy(alpha = 0.0f).toArgb()//android.graphics.Color.toArgb(color.copy(alpha = 0.0f).value.toLong())
-    val shadowColor = color.copy(alpha = alpha).toArgb()//android.graphics.Color.toArgb(color.copy(alpha = alpha).value.toLong())
+    val transparentColor = color.copy(alpha = 0.0f)
+        .toArgb()//android.graphics.Color.toArgb(color.copy(alpha = 0.0f).value.toLong())
+    val shadowColor = color.copy(alpha = alpha)
+        .toArgb()//android.graphics.Color.toArgb(color.copy(alpha = alpha).value.toLong())
     this.drawIntoCanvas {
         val paint = Paint()
         val frameworkPaint = paint.asFrameworkPaint()
