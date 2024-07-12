@@ -3,6 +3,8 @@ package com.carlos.model
 data class DomainAccountMetrics<T>(
     val dailyGrowth: List<T>,
     val bestTrade: Double,
+    val bestTradesPips: Double,
+    val worstTradePips: Double,
     val wonTradesPercent: Double,
     val lostTradesPercent: Double,
     val worstTrade: Double,
