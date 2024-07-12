@@ -1,7 +1,6 @@
 package com.carlos.data.mapper
 
 import com.carlos.model.DomainAccountMetrics
-import com.carlos.model.PeriodMetrics
 import com.carlos.network.models.GraphData
 import com.carlos.network.models.Metrics
 
@@ -26,7 +25,9 @@ object MetricsMapper : BaseMapper<Metrics, DomainAccountMetrics<GraphData>> {
             periods = apiResponse.metrics.periods,
             profit = apiResponse.metrics.profit,
             deposits = apiResponse.metrics.deposits,
-            risk = apiResponse.metrics.expectancy
+            risk = apiResponse.metrics.expectancy,
+            bestTradesPips = apiResponse.metrics.bestTradePips,
+            worstTradePips = apiResponse.metrics.worstTradePips
         )
     }
 }
