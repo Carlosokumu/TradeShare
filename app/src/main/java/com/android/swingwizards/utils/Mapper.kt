@@ -3,6 +3,7 @@ package com.android.swingwizards.utils
 import com.android.swingwizards.enums.TimeRange
 import com.android.swingwizards.models.DataPoint
 import com.carlos.model.DomainAccountMetrics
+import com.carlos.model.DomainTraderStats
 import com.carlos.network.models.GraphData
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -42,3 +43,13 @@ fun DomainAccountMetrics<GraphData>.toDataPoint(timeRange: TimeRange): List<Data
     }
 
 }
+
+
+fun DomainTraderStats.toTraderStats() = mapOf(
+    "Best Trade Pips" to this.bestTradesPips,
+    "Best Trade" to this.bestTrades,
+    "Worst Trade Pips" to this.worstTradePips
+)
+
+
+
