@@ -1,21 +1,17 @@
 package com.carlos.data.repositories
 
 import com.carlos.core_database.daos.TradingPlatformDao
-import com.carlos.core_database.entities.TradingPlatformEntity
 import com.carlos.data.mapper.asDomain
 import com.carlos.model.DomainTrader
 import com.carlos.model.DomainUser
 import com.carlos.network.api.MtApi
 import com.carlos.network.api.TradeShareApi
 import com.carlos.network.api.safeApiCall
+import com.carlos.network.api.safeFlowApiCall
 import com.carlos.network.models.ApiCallResult
-import com.carlos.network.models.ApiResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.runBlocking
 
 class UserRepositoryImpl(
     private val tradeShareApi: TradeShareApi,
@@ -79,6 +75,11 @@ class UserRepositoryImpl(
     override suspend fun getTraders(page: Int): ApiCallResult<List<DomainTrader>> =
         safeApiCall(dispatcher) {
             return@safeApiCall tradeShareApi.getTraders(page).traders.asDomain()
+        }
+
+    override suspend fun getTradersFlow(page: Int): Flow<ApiCallResult<List<DomainTrader>>> =
+        safeFlowApiCall(dispatcher) {
+            return@safeFlowApiCall tradeShareApi.getTraders(page = page).traders.asDomain()
         }
 
 

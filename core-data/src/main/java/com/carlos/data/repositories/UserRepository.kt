@@ -32,6 +32,9 @@ interface UserRepository {
     suspend fun getTraders(page: Int): ApiCallResult<List<DomainTrader>>
 
 
+    suspend fun getTradersFlow(page: Int): Flow<ApiCallResult<List<DomainTrader>>>
+
+
     suspend fun connectMetaTraderAccount(
         userName: String,
         metaTraderLogin: String,
