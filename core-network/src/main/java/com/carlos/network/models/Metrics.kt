@@ -13,6 +13,8 @@ data class Metric(
     val deposits: Double,
     val worstTrade: Double,
     val dailyGain: Double,
+    val bestTradePips: Double,
+    val worstTradePips: Double,
     val profit: Double,
     val balance: Double,
     val monthlyGain: Double,
@@ -25,9 +27,6 @@ data class Metric(
     val periods: Map<String, PeriodMetrics>
 
 )
-
-
-//data class PeriodMetrics(val trades: String, val profit: Double?)
 
 
 data class GraphData(
