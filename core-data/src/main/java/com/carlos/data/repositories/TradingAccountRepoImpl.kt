@@ -7,11 +7,13 @@ import com.carlos.model.DomainClosedTrade
 import com.carlos.model.DomainEquityChart
 import com.carlos.network.api.MtApi
 import com.carlos.network.api.safeApiCall
+import com.carlos.network.api.safeFlowApiCall
 import com.carlos.network.models.ApiCallResult
 import com.carlos.network.models.Broker
 import com.carlos.network.models.GraphData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 
 class TradingAccountRepoImpl(
     private val mtApi: MtApi,
@@ -40,6 +42,12 @@ class TradingAccountRepoImpl(
         safeApiCall(dispatcher = dispatcher) {
             return@safeApiCall mtApi.getMetrics(accountId).asDomain()
         }
+
+    override suspend fun getMetricsFlow(accountId: String): Flow<ApiCallResult<DomainAccountMetrics<GraphData>>> =
+        safeFlowApiCall(dispatcher = dispatcher) {
+            return@safeFlowApiCall mtApi.getMetrics(accountId).asDomain()
+        }
+
 
     override suspend fun getHistoricalTrades(
         accountId: String,

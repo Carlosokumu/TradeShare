@@ -7,6 +7,7 @@ import com.carlos.model.DomainEquityChart
 import com.carlos.network.models.ApiCallResult
 import com.carlos.network.models.Broker
 import com.carlos.network.models.GraphData
+import kotlinx.coroutines.flow.Flow
 
 
 interface TradingAccountRepo {
@@ -21,6 +22,9 @@ interface TradingAccountRepo {
     suspend fun getAccountTrades(accountId: String): ApiCallResult<DomainAccountTrades>
 
     suspend fun getMetrics(accountId: String): ApiCallResult<DomainAccountMetrics<GraphData>>
+
+
+    suspend fun getMetricsFlow(accountId: String): Flow<ApiCallResult<DomainAccountMetrics<GraphData>>>
 
 
     suspend fun getHistoricalTrades(
