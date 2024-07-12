@@ -1,13 +1,15 @@
 package com.carlos.network.api
 
-import android.util.Log
 import com.carlos.network.models.ApiCallResult
 import com.carlos.network.models.ErrorResponse
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
-import java.io.IOException
 import retrofit2.HttpException
+import java.io.IOException
 
 suspend fun <T> safeApiCall(
     dispatcher: CoroutineDispatcher,
@@ -17,7 +19,6 @@ suspend fun <T> safeApiCall(
     try {
         ApiCallResult.Success(apiCall.invoke())
     } catch (throwable: Throwable) {
-        (Log.d("THROWABLE:", throwable.toString()))
         when (throwable) {
             is IOException -> ApiCallResult.ApiCallError
             is HttpException -> {
@@ -32,6 +33,30 @@ suspend fun <T> safeApiCall(
         }
     }
 }
+
+
+fun <T> safeFlowApiCall(
+    dispatcher: CoroutineDispatcher,
+    apiCall: suspend () -> T
+): Flow<ApiCallResult<T>> = flow {
+    try {
+        emit(ApiCallResult.Success(apiCall.invoke()))
+    } catch (throwable: Throwable) {
+        when (throwable) {
+            is IOException -> emit(ApiCallResult.ApiCallError)
+            is HttpException -> {
+                val code = throwable.code()
+                val errorResponse = convertErrorBody(throwable)
+                emit(ApiCallResult.ServerError(code, errorResponse))
+            }
+
+            else -> {
+                emit(ApiCallResult.ServerError(null, null))
+            }
+        }
+    }
+}.flowOn(dispatcher)
+
 
 private fun convertErrorBody(throwable: HttpException): ErrorResponse? = try {
     throwable.response()?.errorBody()?.charStream()?.let {
