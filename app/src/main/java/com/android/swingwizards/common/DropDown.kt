@@ -120,13 +120,6 @@ fun TradeHistoryPeriod(
                         shouldClose()
                     },
                 )
-//                if (AppUtils.periodOptions.indexOf(period) < AppUtils.periodOptions.lastIndex) {
-//                    Divider(
-//                        modifier = Modifier.padding(start = 10.dp, end = 10.dp),
-//                        color = AppTheme.colors.onSurface
-//                    )
-//                }
-
             }
         }
     }
@@ -232,7 +225,6 @@ fun SearchDropdownMenu(
     var expandedDropDownMenu by remember {
         mutableStateOf(true)
     }
-    val selectedText by remember { mutableStateOf("") }
     var selectedOptionText by rememberSaveable { mutableStateOf("") }
 
     var filteredItems by remember { mutableStateOf(items) }
@@ -242,9 +234,6 @@ fun SearchDropdownMenu(
         item.lowercase().contains(selectedOptionText.lowercase()) // Case-insensitive search
     }
     filteredItems = filteredList
-
-    selectedItem(selectedText)
-
     Surface(
         color = AppTheme.colors.onPrimary,
         shape = RoundedCornerShape(10.dp),
@@ -325,6 +314,7 @@ fun SearchDropdownMenu(
                                 modifier = Modifier.background(AppTheme.colors.onPrimary),
                                 onClick = {
                                     selectedOptionText = item
+                                    selectedItem(item)
                                     expandedDropDownMenu = false
                                     canFocus = false
                                 }
