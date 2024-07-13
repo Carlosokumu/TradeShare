@@ -202,7 +202,9 @@ fun MetaTraderConnectionScreen(navController: NavController) {
                     .weight(1f)
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
-                ServerSection(selectedItem = {}, servers = servers.map { it.name }, searchQuery = {
+                ServerSection(selectedItem = {
+                    selectedServer.value = it
+                }, servers = servers.map { it.name }, searchQuery = {
                     metaTraderViewModel.searchServer(it)
                 })
                 Spacer(modifier = Modifier.height(15.dp))
